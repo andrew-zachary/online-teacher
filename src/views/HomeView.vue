@@ -13,7 +13,7 @@ const {increment} = store;
 
 <template>
   <div id="home">
-    <h1>This is a home page {{count}}</h1>
+    <h1 class="text-4xl">This is a home page {{count}}</h1>
     <button @click="increment">increment</button>
   </div>
 </template>

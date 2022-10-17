@@ -16,10 +16,3 @@ html, body {
 *:focus {
   outline: unset!important;
 }
-
-// simplebar style
-.simplebar-scrollbar::before {
-  background-color: $primary;
-  opacity: 1!important;
-  width: 0.4rem!important;
-}

@@ -5,9 +5,11 @@ import 'simplebar';
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+// parts
 import App from './App.vue'
 import router from './router'
 
+// styles
 import 'simplebar/dist/simplebar.css'
 import './styles/base.scss'
 

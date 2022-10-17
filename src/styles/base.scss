@@ -2,6 +2,24 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-body {
-  background-color: yellow;
+html {
+  font-size: 62.5%;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background-color: $secondary;
+  color: $ternary;
+}
+
+*:focus {
+  outline: unset!important;
+}
+
+// simplebar style
+.simplebar-scrollbar::before {
+  background-color: $primary;
+  opacity: 1!important;
+  width: 0.4rem!important;
 }

@@ -1,9 +1,8 @@
 <script setup>
 import { RouterView } from 'vue-router';
 
-import gear from './assets/gear.svg';
-
 import Nav from './layout/nav.vue';
+import Footer from './components/footer.vue';
 </script>
 
 <template>
@@ -18,9 +17,7 @@ import Nav from './layout/nav.vue';
         </transition>
       </RouterView>
     </main>
-    <footer class="w-full flex justify-end absolute bottom-0">
-      <img class="cursor-pointer" :src="gear" alt="gear">
-    </footer>
+    <Footer />
   </div>
 </template>
 

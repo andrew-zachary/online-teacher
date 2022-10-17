@@ -13,9 +13,8 @@ import router from './router'
 import 'simplebar/dist/simplebar.css'
 import './styles/base.scss'
 
+// create , init, mount app
 const app = createApp(App)
-
 app.use(createPinia())
 app.use(router)
-
 app.mount('#app')

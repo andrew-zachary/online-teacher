@@ -1,11 +1,13 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+
+import Translate from '../components/translate.vue';
 </script>
 
 <template>
-    <nav class="px-4 py-12">
-        <RouterLink activeClass="active-link" class="text-3xl font-mont" to="/">Home</RouterLink>
-        <RouterLink activeClass="active-link" class="text-3xl font-mont" to="/about">About</RouterLink>
+    <nav class="flex px-4 py-12">
+        <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/"><Translate toTranslate="nav.home" /></RouterLink>
+        <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/about"><Translate toTranslate="nav.about" /></RouterLink>
     </nav>
 </template>
 

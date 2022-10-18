@@ -20,11 +20,11 @@ const pickingLang = (langIndex) => {
             id="lang-tag" 
             class="flex items-center justify-between"
             @click="open = !open">
-            <div class="text-2xl font-pop font-regular">{{pickedLang.name}}</div>
+            <div class="text-2xl font-popp font-regular">{{pickedLang.name}}</div>
             <img :src="ArrowDown" />
         </div>
         <ul v-if="open" id="langs-list" class="pt-2">
-            <li class="mb-2 cursor-pointer text-2xl font-pop font-regular" v-for="lang of langs" :key="lang.code" @click="pickingLang(lang.index)">
+            <li class="mb-2 cursor-pointer text-2xl font-popp font-regular" v-for="lang of langs" :key="lang.locale" @click="pickingLang(lang.index)">
                 <template v-if="pickedLang.index !== lang.index">
                     {{lang.name}}
                 </template>

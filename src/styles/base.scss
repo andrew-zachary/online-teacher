@@ -10,7 +10,6 @@ html {
   }
 }
 
-
 html, body {
   height: 100%;
   overflow: hidden;
@@ -20,4 +19,12 @@ html, body {
 
 *:focus {
   outline: unset!important;
+}
+
+.font-mont {
+  @include withRtl('font-family', 'Montserrat', 'Tajawal');
+}
+
+.font-popp {
+  @include withRtl('font-family', 'Poppins', 'Vazirmatn');
 }

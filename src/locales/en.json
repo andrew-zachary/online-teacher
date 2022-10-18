@@ -1,0 +1,23 @@
+{
+    "home": {
+        "title": "welcome",
+        "para": "building"
+    },
+    "about": {
+        "title": "yes",
+        "para": "We are specialized in online training and learning. With us, Education is simple and fast."
+    },
+    "nav": {
+        "home": "home",
+        "about": "tell you"
+    },
+    "modal": {
+        "settings": {
+            "label": "settings",
+            "language": "language"
+        },
+        "btns": {
+            "save": "save"
+        }
+    }
+}

@@ -1,21 +1,18 @@
 <script setup>
-import gear from '../assets/gear.svg';
-
 import AppModal from './app-modal.vue';
 import Settings from '../components/settings.vue';
-
-import { useAppStore } from '../stores/app';
-const appStore = useAppStore();
+import SettingsOpenBtn from '../components/settings-open-btn.vue';
+import Translate from '../components/translate.vue';
 </script>
 <template>
     <footer class="w-full flex justify-end absolute bottom-0">
-        <img class="cursor-pointer" :src="gear" alt="gear" @click="appStore.toggleAppModalHandler">
+        <SettingsOpenBtn />
         <AppModal>
             <template #header>
-                settings
+                <Translate toTranslate="modal.settings.label" />
             </template>
             <template #content>
-                <Settings :appStore="appStore" />
+                <Settings />
             </template>
         </AppModal>
     </footer>

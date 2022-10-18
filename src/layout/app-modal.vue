@@ -28,7 +28,7 @@ const appStore = useAppStore();
                         <BtnIcon :icon="CloseIcon" :clickHandler="appStore.toggleAppModalHandler" />
                     </div>
                     <div id="box-header">
-                        <h1 class="text-5xl text-primary capitalize font-pop font-bold ">
+                        <h1 class="text-5xl text-primary capitalize font-popp font-bold ">
                             <slot name="header"></slot>
                         </h1>
                     </div>

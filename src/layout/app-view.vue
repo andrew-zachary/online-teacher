@@ -3,7 +3,7 @@
 <template>
   <section data-simplebar data-simplebar-auto-hide="false">
     <header>
-      <h1 class="mb-8 text-6xl font-bold font-pop text-primary capitalize">
+      <h1 class="mb-8 text-6xl font-bold font-popp text-primary capitalize">
         <slot name="header"></slot>
       </h1>
     </header>

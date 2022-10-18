@@ -1,25 +1,23 @@
 <script setup>
 import gear from '../assets/gear.svg';
 
-import AppModal from '../layout/app-modal.vue';
+import AppModal from './app-modal.vue';
+import Settings from '../components/settings.vue';
 
 import { useAppStore } from '../stores/app';
 const appStore = useAppStore();
 </script>
 <template>
     <footer class="w-full flex justify-end absolute bottom-0">
-        <img class="cursor-pointer" :src="gear" alt="gear" @click="appStore.toggleModalHandler">
+        <img class="cursor-pointer" :src="gear" alt="gear" @click="appStore.toggleAppModalHandler">
         <AppModal>
             <template #header>
-                title 1
+                settings
             </template>
             <template #content>
-                <p class="text-2xl font-mont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, iusto!
-                </p>
+                <Settings :appStore="appStore" />
             </template>
         </AppModal>
     </footer>
 </template>
-<style>
-
-</style>
+<style></style>

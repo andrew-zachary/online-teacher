@@ -2,7 +2,7 @@
 import { RouterView } from 'vue-router';
 
 import Nav from './layout/nav.vue';
-import Footer from './components/footer.vue';
+import Footer from './layout/footer.vue';
 </script>
 
 <template>

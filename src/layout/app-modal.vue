@@ -3,7 +3,6 @@ import BtnIcon from './btn-icon.vue';
 import CloseIcon from '../assets/close.svg';
 
 import {useAppStore} from '../stores/app';
-
 const appStore = useAppStore();
 </script>
 <template>
@@ -13,18 +12,27 @@ const appStore = useAppStore();
                 id="app-modal" 
                 class="flex items-center justify-center 
                 absolute top-0 bottom-0 left-0 right-0" 
-                v-if="appStore.toggleModal">
-                <div id="modal-drop-bg" class="absolute top-0 bottom-0 left-0 right-0" @click="appStore.toggleModalHandler"></div>
-                <div id="modal-box" class="bg-secondary m-2 p-2">
-                    <div id="box-ctrl" class="flex justify-end">
-                        <BtnIcon :icon="CloseIcon" :clickHandler="appStore.toggleModalHandler" />
+                v-if="appStore.toggleAppModal">
+                <div 
+                    id="modal-drop-bg" 
+                    class="z-0 
+                    absolute top-0 bottom-0 left-0 right-0" 
+                    @click="appStore.toggleAppModalHandler"></div>
+                <div 
+                    id="modal-box" 
+                    class="z-10
+                    w-full mx-auto bg-secondary m-2 p-2">
+                    <div 
+                        id="box-ctrl" 
+                        class="flex justify-end">
+                        <BtnIcon :icon="CloseIcon" :clickHandler="appStore.toggleAppModalHandler" />
                     </div>
                     <div id="box-header">
-                        <h1 class="text-5xl capitalize font-pop font-bold text-primary">
+                        <h1 class="text-5xl text-primary capitalize font-pop font-bold ">
                             <slot name="header"></slot>
                         </h1>
                     </div>
-                    <div id="box-content" class="mt-12 mb-4">
+                    <div id="box-content" class="mt-8 mb-4">
                         <slot name="content"></slot>
                     </div>
                 </div>            
@@ -45,12 +53,15 @@ const appStore = useAppStore();
     #app-modal {
 
         #modal-box {
-            z-index: 1;
+            max-width: 37.5rem;
+
+            #box-header {
+                @include withRtl('padding', 0 0 0 1rem, 0 1rem 0 0);
+            }
         }
 
         #modal-drop-bg{
             background-color: #064e3be6;
-            z-index: 0;
         }
     }
 </style>

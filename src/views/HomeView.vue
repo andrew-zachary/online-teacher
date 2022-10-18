@@ -1,6 +1,5 @@
 <script setup>
 import AppView from '../layout/app-view.vue';
-import Btn from '../layout/btn.vue';
 
 const id = 'home';
 </script>
@@ -11,7 +10,9 @@ const id = 'home';
       home page
     </template>
     <template #content>
-      building ...
+      <p class="text-3xl font-mont font-normal">
+        building ...
+      </p>
     </template>
   </AppView>
 </template>

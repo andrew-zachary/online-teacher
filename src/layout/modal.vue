@@ -1,6 +1,6 @@
 <script setup>
 import BtnIcon from './btn-icon.vue';
-import CloseIcon from '../assets/close.svg';
+import CloseIcon from '../assets/close.vue';
 
 import {useAppStore} from '../stores/app';
 const appStore = useAppStore();
@@ -21,14 +21,14 @@ const appStore = useAppStore();
                 <div 
                     id="modal-box" 
                     class="z-10
-                    w-full mx-auto bg-secondary m-2 p-2">
+                    w-full mx-auto bg-secondary dark:bg-secondary-dark m-2 p-2">
                     <div 
                         id="box-ctrl" 
                         class="flex justify-end">
                         <BtnIcon :icon="CloseIcon" :clickHandler="appStore.toggleAppModalHandler" />
                     </div>
                     <div id="box-header">
-                        <h1 class="text-5xl text-primary capitalize font-popp font-bold ">
+                        <h1 class="text-5xl text-primary dark:text-primary-dark capitalize font-popp font-bold ">
                             <slot name="header"></slot>
                         </h1>
                     </div>
@@ -61,7 +61,7 @@ const appStore = useAppStore();
         }
 
         #modal-drop-bg{
-            background-color: #064e3be6;
+            background-color: var(--ternary);
         }
     }
 </style>

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
@@ -10,6 +11,11 @@ module.exports = {
         'primary': 'rgb(16 185 129)',
         'secondary': 'rgb(209 250 229)',
         'ternary': 'rgb(68, 50, 17)',
+        'quaternary': 'rgb(16 185 129)',
+        'primary-dark': 'rgb(255, 255, 255)',
+        'secondary-dark': 'rgb(15, 23, 42)',
+        'ternary-dark': 'rgb(137, 151, 172)',
+        'quaternary-dark': 'rgb(14, 165, 233)'
       }
     },
   },

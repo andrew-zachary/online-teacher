@@ -3,7 +3,7 @@
 <template>
   <section data-simplebar data-simplebar-auto-hide="false">
     <header>
-      <h1 class="mb-8 text-6xl font-bold font-popp text-primary capitalize">
+      <h1 class="mb-8 text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
         <slot name="header"></slot>
       </h1>
     </header>
@@ -35,7 +35,7 @@
     @include withRtl('padding', 0 0 8rem 1rem, 0 1rem 8rem 0);
 
     .simplebar-scrollbar::before {
-      background-color: $primary;
+      background-color: var(--primary);
       opacity: 1!important;
       width: 0.4rem!important;
     }

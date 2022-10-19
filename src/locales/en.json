@@ -14,7 +14,8 @@
     "modal": {
         "settings": {
             "label": "settings",
-            "language": "language"
+            "language": "language",
+            "dark_mode": "dark colors"
         },
         "btns": {
             "save": "save"

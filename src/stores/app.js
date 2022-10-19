@@ -12,6 +12,7 @@ export const useAppStore = defineStore('app', () => {
   ];
 
   const currentLang = ref(langs[defaultLangIndex]);
+  const currentColorMode = ref('light');
   const toggleAppModal = ref(false);
 
   function toggleAppModalHandler() {
@@ -19,14 +20,20 @@ export const useAppStore = defineStore('app', () => {
   }
 
   function updateAppSettings(newSettings) {
-    // update current language
+    // update current language, color mode
     currentLang.value = langs[newSettings.langIndex];
+    currentColorMode.value = newSettings.darkModeChecked?'dark':'light';
     
     // adjust ui
     if(currentLang.value.dir === 'rtl') {
       document.querySelector('html').classList.add('is-rtl');
     } else {
       document.querySelector('html').classList.remove('is-rtl');
+    }
+    if(currentColorMode.value === 'dark') {
+      document.querySelector('html').classList.add('dark');
+    } else {
+      document.querySelector('html').classList.remove('dark');
     }
 
     // change global locale
@@ -36,5 +43,5 @@ export const useAppStore = defineStore('app', () => {
     toggleAppModal.value = !toggleAppModal.value;
   }
 
-  return { langs, currentLang, toggleAppModal, toggleAppModalHandler, updateAppSettings }
+  return { langs, currentLang, currentColorMode, toggleAppModal, toggleAppModalHandler, updateAppSettings }
 })

@@ -2,6 +2,20 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+:root {
+  --primary: rgb(16 185 129);
+  --secondary: rgb(209 250 229);
+  --ternary: rgb(68, 50, 17);
+  --quaternary: rgb(16 185 129);
+
+  &.dark {
+    --primary: rgb(255, 255, 255);
+    --secondary: rgb(15, 23, 42);
+    --ternary: rgb(137, 151, 172);
+    --quaternary: rgb(14, 165, 233);
+  }
+}
+
 html {
   font-size: 62.5%;
 
@@ -13,8 +27,8 @@ html {
 html, body {
   height: 100%;
   overflow: hidden;
-  background-color: $secondary;
-  color: $ternary;
+  background-color: var(--secondary);
+  color: var(--ternary);
 }
 
 *:focus {

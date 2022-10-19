@@ -14,7 +14,8 @@
     "modal": {
         "settings": {
             "label": "اعدادات",
-            "language": "اللغة"
+            "language": "اللغة",
+            "dark_mode": "الوان هادئة"
         },
         "btns": {
             "save": "حفظ"

@@ -18,7 +18,7 @@ import Translate from '../components/translate.vue';
 
             &.active-link {
                 font-weight: 700;
-                border-bottom: 0.3rem solid $primary;
+                border-bottom: 0.3rem solid var(--ternary);
             }
         }
     }

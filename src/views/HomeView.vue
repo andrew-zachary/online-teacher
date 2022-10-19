@@ -1,5 +1,5 @@
 <script setup>
-import AppView from '../layout/app-view.vue';
+import View from '../layout/view.vue';
 
 import Translate from '../components/translate.vue';
 
@@ -7,7 +7,7 @@ const id = 'home';
 </script>
 
 <template>
-  <AppView :id="id">
+  <View :id="id">
     <template #header>
       <Translate toTranslate="home.title" />
     </template>
@@ -16,7 +16,7 @@ const id = 'home';
         <Translate toTranslate="home.para" /> ...
       </p>
     </template>
-  </AppView>
+  </View>
 </template>
 
 <style>

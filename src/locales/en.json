@@ -14,6 +14,20 @@
         "tabs": {
             "login": "login",
             "register": "register"
+        },
+        "forms": {
+            "login": {
+                "email": "email",
+                "password": "password",
+                "btn": "ok"
+            },
+            "register": {
+                "name": "name",
+                "email": "email",
+                "password": "password",
+                "confirm_password": "confirm_password",
+                "btn": "ok"
+            }
         }
     },
     "nav": {

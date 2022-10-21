@@ -31,6 +31,17 @@ html, body {
   color: var(--ternary);
 }
 
+form {
+  input {
+    border: 0.1rem solid var(--quaternary);
+    background-color: var(--secondary);
+
+    .dark & {
+      color: rgb(209 250 229);
+    }
+  }
+}
+
 *:focus {
   outline: unset!important;
 }

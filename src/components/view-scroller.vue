@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
         @include withRtl('padding', 0 0 10rem 1rem, 0 1rem 10rem 0);
     }
     .simplebar-scrollbar::before {
-      background-color: var(--primary)!important;
+      background-color: var(--quaternary)!important;
       opacity: 1!important;
       width: 0.4rem!important;
     }

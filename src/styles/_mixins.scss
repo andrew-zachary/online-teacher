@@ -4,7 +4,7 @@
       #{$property}: $ltr-value;
     }
   
-    [class='is-rtl'] & {
+    .is-rtl & {
       #{$property}: $rtl-value;
     }
 }

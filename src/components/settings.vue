@@ -41,15 +41,15 @@ const modePicked = (checked) => {
                 flex flex-col">
                 <div class="ctrl-row">
                     <div class="font-bold">
-                        <Translate toTranslate="modal.settings.language" />
-                    </div>
-                    <LangSwitch @langPicked="langPicked" :currentLang="appStore.currentLang" :langs="appStore.langs" />
-                </div>
-                <div class="ctrl-row">
-                    <div class="font-bold">
                         <Translate toTranslate="modal.settings.dark_mode" />
                     </div>
                     <ColorSwitch @modePicked="modePicked" :currentColorMode="appStore.currentColorMode" />
+                </div>
+                <div class="ctrl-row">
+                    <div class="font-bold">
+                        <Translate toTranslate="modal.settings.language" />
+                    </div>
+                    <LangSwitch @langPicked="langPicked" :currentLang="appStore.currentLang" :langs="appStore.langs" />
                 </div>
                 <div class="save-row mt-12 flex justify-end">
                     <Btn text="modal.btns.save" :clickHandler="() => appStore.updateAppSettings({...newSettings})" />

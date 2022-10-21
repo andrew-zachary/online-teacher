@@ -21,7 +21,9 @@ const appStore = useAppStore();
                 <div 
                     id="modal-box" 
                     class="z-10
-                    w-full mx-auto bg-secondary dark:bg-secondary-dark m-2 p-2">
+                    w-full mx-auto 
+                    bg-secondary dark:bg-secondary-dark 
+                    m-2 p-2">
                     <div 
                         id="box-ctrl" 
                         class="flex justify-end">
@@ -32,7 +34,7 @@ const appStore = useAppStore();
                             <slot name="header"></slot>
                         </h1>
                     </div>
-                    <div id="box-content" class="mt-8 mb-4">
+                    <div id="box-content" class="mt-14 mb-4">
                         <slot name="content"></slot>
                     </div>
                 </div>            

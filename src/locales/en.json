@@ -3,12 +3,16 @@
         "title": "welcome",
         "para": "building"
     },
+    "lessons": {
+        "title": "lessons"
+    },
     "about": {
         "title": "yes",
         "para": "We are specialized in online training and learning. With us, Education is simple and fast."
     },
     "nav": {
         "home": "home",
+        "lessons": "lessons",
         "about": "tell you"
     },
     "modal": {

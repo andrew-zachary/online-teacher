@@ -4,6 +4,9 @@ import { createPinia } from 'pinia'
 import { createI18n } from 'vue-i18n'
 import messages from '@intlify/vite-plugin-vue-i18n/messages'
 
+//includes
+import validation from './includes/validation';
+
 // parts
 import App from './App.vue'
 import router from './router'
@@ -21,4 +24,5 @@ app.use(createI18n({
     messages
 }))
 app.use(router)
+app.use(validation)
 app.mount('#app')

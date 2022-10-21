@@ -21,14 +21,17 @@ const router = createRouter({
     },
     {
       path: '/account',
+      name: 'account',
       component: AccountView,
       children: [
         {
-          path: 'register',
+          path: '/account/register',
+          name: 'register',
           component: RegisterForm
         },
         {
-          path: 'login',
+          path: '/account/login',
+          name: 'login',
           component: LoginForm
         }
       ]

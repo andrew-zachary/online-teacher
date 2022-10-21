@@ -7,6 +7,7 @@ import Translate from '../components/translate.vue';
 <template>
     <nav class="flex px-4 py-12">
         <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/"><Translate toTranslate="nav.home" /></RouterLink>
+        <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/lessons"><Translate toTranslate="nav.lessons" /></RouterLink>
         <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/about"><Translate toTranslate="nav.about" /></RouterLink>
     </nav>
 </template>

@@ -21,7 +21,7 @@ const {onChangeHandler, checked} = defineProps(['onChangeHandler', 'checked']);
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-100%, -50%);
+            @include withRtl('transform', translate(-100%, -50%), translate(0, -50%));
             height: 2.5rem;
             width: 2.5rem;
             border: 0.2rem solid var(--primary);

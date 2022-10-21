@@ -1,6 +1,3 @@
-// includes
-import 'simplebar';
-
 // imports
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -12,7 +9,6 @@ import App from './App.vue'
 import router from './router'
 
 // styles
-import 'simplebar/dist/simplebar.css'
 import './styles/base.scss'
 
 // create , init, mount app

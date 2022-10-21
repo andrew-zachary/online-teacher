@@ -10,10 +10,17 @@
         "title": "yes",
         "para": "We are specialized in online training and learning. With us, Education is simple and fast."
     },
+    "account": {
+        "tabs": {
+            "login": "login",
+            "register": "register"
+        }
+    },
     "nav": {
         "home": "home",
         "lessons": "lessons",
-        "about": "tell you"
+        "about": "tell you",
+        "my_account": "my account"
     },
     "modal": {
         "settings": {

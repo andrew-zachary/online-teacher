@@ -5,5 +5,5 @@ const {toTranslate} = defineProps(['toTranslate']);
 
 const {t} = useI18n();
 </script>
-<template>{{t(toTranslate)}}</template>
+<template>{{t(toTranslate.toLowerCase())}}</template>
 <style></style>

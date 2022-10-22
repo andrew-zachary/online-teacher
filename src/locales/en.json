@@ -19,7 +19,16 @@
             "login": {
                 "email": "email",
                 "password": "password",
-                "btn": "ok"
+                "btn": "ok",
+                "errors": {
+                    "password": {
+                        "required": "password is required"
+                    },
+                    "email": {
+                        "required": "email is required",
+                        "email": "email is not valid"
+                    }
+                }
             },
             "register": {
                 "name": "name",

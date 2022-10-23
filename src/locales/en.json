@@ -1,14 +1,14 @@
 {
     "home": {
-        "title": "welcome",
-        "para": "building"
+        "title": "online teacher",
+        "para": "learn and teach"
     },
     "lessons": {
         "title": "lessons"
     },
-    "about": {
-        "title": "yes",
-        "para": "We are specialized in online training and learning. With us, Education is simple and fast."
+    "tell_you": {
+        "title": "sure",
+        "para": "The person who says he knows what he thinks but cannot express it usually does not know what he thinks. When you learn something with the intention to teach it later, you learn it more deeply.The power of teaching on learning is real. It's so powerful that researchers have given it a name—The Protege Effect."
     },
     "account": {
         "tabs": {
@@ -62,7 +62,7 @@
     "nav": {
         "home": "home",
         "lessons": "lessons",
-        "about": "tell you",
+        "tell_you": "tell you",
         "my_account": "my account"
     },
     "modal": {

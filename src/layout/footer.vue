@@ -4,8 +4,18 @@ import Settings from '../components/settings.vue';
 
 </script>
 <template>
-    <footer class="w-full flex justify-end absolute bottom-0">
+    <footer class="absolute bottom-0">
         <Settings />
     </footer>
 </template>
-<style></style>
+<style lang="scss">
+footer {
+    @include withRtl('left', 100%, unset);
+    @include withRtl('right', unset, 100%);
+    @include withRtl('transform', translate(-120%, -50%), translate(120%, -50%));
+  
+    img {
+        width: 4rem;
+    }
+}
+</style>

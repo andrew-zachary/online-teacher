@@ -37,9 +37,9 @@ const router = createRouter({
       ]
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
+      path: '/tell-you',
+      name: 'tell-you',
+      component: () => import('../views/TellYouView.vue')
     }
   ]
 })

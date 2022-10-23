@@ -3,10 +3,13 @@ import { RouterView } from 'vue-router';
 
 import Nav from './layout/nav.vue';
 import Footer from './layout/footer.vue';
+
+import Profile from './components/profile.vue';
 </script>
 
 <template>
   <div id="app-container" class="w-full relative">
+    <Profile />
     <header>
       <Nav />
     </header>

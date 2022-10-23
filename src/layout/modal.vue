@@ -16,7 +16,8 @@ const appStore = useAppStore();
                 <div 
                     id="modal-drop-bg" 
                     class="z-0 
-                    absolute top-0 bottom-0 left-0 right-0" 
+                    absolute top-0 bottom-0 left-0 right-0
+                    bg-ternary dark:ternary-dark" 
                     @click="appStore.toggleAppModalHandler"></div>
                 <div 
                     id="modal-box" 
@@ -60,10 +61,6 @@ const appStore = useAppStore();
             #box-header {
                 @include withRtl('padding', 0 0 0 1rem, 0 1rem 0 0);
             }
-        }
-
-        #modal-drop-bg{
-            background-color: var(--ternary);
         }
     }
 </style>

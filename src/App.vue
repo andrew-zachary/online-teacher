@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router';
 
 import Nav from './layout/nav.vue';
 import Footer from './layout/footer.vue';
+import PageLoader from './layout/page-loader.vue';
 
 import Profile from './components/profile.vue';
 </script>
@@ -10,6 +11,7 @@ import Profile from './components/profile.vue';
 <template>
   <div id="app-container" class="w-full relative">
     <Profile />
+    <PageLoader />
     <header>
       <Nav />
     </header>

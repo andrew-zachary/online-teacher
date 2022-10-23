@@ -31,11 +31,31 @@
                 }
             },
             "register": {
-                "name": "الاسم",
+                "first_name": "الاسم الاول",
+                "last_name": "اسم العائلة",
                 "email": "البريد الالكتروني",
                 "password": "كلمة المرور",
                 "confirm_password": "تاكيد كلمة المرور",
-                "btn": "حسناً"
+                "btn": "حسناً",
+                "errors": {
+                    "first_name": {
+                        "required": "الاسم الاول مطلوب"
+                    },
+                    "last_name": {
+                        "required": "اسم العائلة مطلوب"
+                    },
+                    "email": {
+                        "required": "البريد الالكتروني مطلوب",
+                        "email": "صيغة البريد الالكتروني غير صحيحة"
+                    },
+                    "password": {
+                        "required": "كلمة المرور مطلوبة"
+                    },
+                    "confirm_password": {
+                        "required": "تاكيد كلمة المرور مطلوب",
+                        "confirmed": "كلمة المرور غير متطابقة"
+                    }
+                }
             }
         }
     },

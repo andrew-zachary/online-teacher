@@ -21,21 +21,41 @@
                 "password": "password",
                 "btn": "ok",
                 "errors": {
-                    "password": {
-                        "required": "password is required"
-                    },
                     "email": {
                         "required": "email is required",
                         "email": "email is not valid"
+                    },
+                    "password": {
+                        "required": "password is required"
                     }
                 }
             },
             "register": {
-                "name": "name",
+                "first_name": "first name",
+                "last_name": "last name",
                 "email": "email",
                 "password": "password",
-                "confirm_password": "confirm_password",
-                "btn": "ok"
+                "confirm_password": "confirm password",
+                "btn": "ok",
+                "errors": {
+                    "first_name": {
+                        "required": "first name is required"
+                    },
+                    "last_name": {
+                        "required": "last name is required"
+                    },
+                    "email": {
+                        "required": "email is required",
+                        "email": "email is not valid"
+                    },
+                    "password": {
+                        "required": "password is required"
+                    },
+                    "confirm_password": {
+                        "required": "confirm password is required",
+                        "confirmed": "passwords do not match"
+                    }
+                }
             }
         }
     },

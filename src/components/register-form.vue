@@ -1,35 +1,88 @@
 <script setup>
 import Btn from '../layout/btn.vue';
 import Translate from './translate.vue';
+
+import { useUserStore } from '../stores/users';
+
+const userStore = useUserStore();
+const schema = {
+    first_name: 'required',
+    last_name: 'required',
+    email: 'required|email',
+    password: 'required',
+    confirm_password: 'confirmed:@password'
+};
+
+const preTranslate = (target) => {
+    return `account.forms.register.${target}`;
+};
+const submit = (values) => {
+    userStore.register({
+        ...values,
+        firstName:values['first_name'],
+        lastName:values['last_name']
+    });
+};
 </script>
 <template>
-    <vee-form>
+    <vee-form @submit="submit" :validationSchema="schema">
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
-            <label for="name">
-                <Translate to-translate="account.forms.register.name" />
+            <label for="first_name">
+                <Translate :to-translate="preTranslate('first_name')" />
             </label>
-            <vee-field name="name" type="text" class="mt-4 p-4 font-popp"></vee-field>
+            <vee-field name="first_name" v-slot="{field, errors}">
+                <input name="first_name" type="text" class="mt-4 p-4 font-popp" v-bind="field" />
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
+            </vee-field>
+        </div>
+        <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
+            <label for="last_name">
+                <Translate :to-translate="preTranslate('last_name')" />
+            </label>
+            <vee-field name="last_name" v-slot="{field, errors}">
+                <input name="last_name" type="text" class="mt-4 p-4 font-popp" v-bind="field" />
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
+            </vee-field>
         </div>
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="email">
-                <Translate to-translate="account.forms.register.email" />
+                <Translate :to-translate="preTranslate('email')" />
             </label>
-            <vee-field name="email" type="email" class="mt-4 p-4 font-popp"></vee-field>
+            <vee-field name="email" v-slot="{field, errors}" :validateOnInput="true">
+                <input name="email" type="text" class="mt-4 p-4 font-popp" v-bind="field" />
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
+            </vee-field>
         </div>
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="password">
-                <Translate to-translate="account.forms.register.password" />
+                <Translate :to-translate="preTranslate('password')" />
             </label>
-            <vee-field name="password" type="password" class="mt-4 p-4 font-popp"></vee-field>
+            <vee-field name="password" v-slot="{field, errors}">
+                <input name="password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
+            </vee-field>
         </div>
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="confirm_password">
-                <Translate to-translate="account.forms.register.confirm_password" />
+                <Translate :to-translate="preTranslate('confirm_password')" />
             </label>
-            <vee-field name="confirm_password" type="password" class="mt-4 p-4 font-popp"></vee-field>
+            <vee-field name="confirm_password" v-slot="{field, errors}" :validateOnInput="true">
+                <input name="confirm_password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
+            </vee-field>
         </div>
-        <div id="login-ctrl" class="w-full mt-8 flex justify-end">
-            <Btn text="account.forms.register.btn" />
+        <div id="register-ctrl" class="w-full mt-8 flex justify-end">
+            <Btn :text="preTranslate('btn')" />
         </div>
     </vee-form>
 </template>

@@ -10,11 +10,11 @@ const id = 'home';
 <template>
   <View :id="id">
     <ViewScroller>
-      <template #header>
-        <Translate toTranslate="home.title" />
-      </template>
       <template #content>
-        <p class="text-3xl font-mont font-normal">
+        <h1 class="text-8xl text-center dark:text-amber-50 font-popp font-bold capitalize">
+          <Translate toTranslate="home.title" />
+        </h1>
+        <p class="mt-8 text-4xl text-center font-popp font-normal capitalize">
           <Translate toTranslate="home.para" /> ...
         </p>
       </template>
@@ -22,6 +22,4 @@ const id = 'home';
   </View>
 </template>
 
-<style>
-
-</style>
+<style></style>

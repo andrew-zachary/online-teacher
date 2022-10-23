@@ -9,7 +9,7 @@ import Translate from '../components/translate.vue';
         <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/"><Translate toTranslate="nav.home" /></RouterLink>
         <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/account"><Translate toTranslate="nav.my_account" /></RouterLink>
         <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/lessons"><Translate toTranslate="nav.lessons" /></RouterLink>
-        <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/about"><Translate toTranslate="nav.about" /></RouterLink>
+        <RouterLink activeClass="active-link" class="text-3xl font-mont capitalize" to="/tell-you"><Translate toTranslate="nav.tell_you" /></RouterLink>
     </nav>
 </template>
 

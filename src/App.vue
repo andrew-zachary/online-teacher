@@ -21,15 +21,4 @@ import Footer from './layout/footer.vue';
   </div>
 </template>
 
-<style lang="scss">
-  #app-container {
-
-    footer {
-      @include withRtl('padding', 2rem 2rem 2rem 0rem, 2rem 0rem 2rem 2rem);
-  
-      img {
-        width: 4rem;
-      }
-    }
-  }
-</style>
+<style></style>

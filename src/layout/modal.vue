@@ -17,7 +17,7 @@ const appStore = useAppStore();
                     id="modal-drop-bg" 
                     class="z-0 
                     absolute top-0 bottom-0 left-0 right-0
-                    bg-ternary dark:ternary-dark" 
+                    bg-ternary dark:bg-ternary-dark" 
                     @click="appStore.toggleAppModalHandler"></div>
                 <div 
                     id="modal-box" 

@@ -65,6 +65,9 @@
         "tell_you": "نقول لك",
         "my_account": "حسابي"
     },
+    "page_loader": {
+        "msg": "انتظر من فضلك"
+    },
     "modal": {
         "settings": {
             "label": "اعدادات",

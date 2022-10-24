@@ -65,6 +65,9 @@
         "tell_you": "tell you",
         "my_account": "my account"
     },
+    "page_loader": {
+        "msg": "please wait"
+    },
     "modal": {
         "settings": {
             "label": "settings",

@@ -3,8 +3,8 @@ import { RouterView } from 'vue-router';
 
 import Nav from './layout/nav.vue';
 import Footer from './layout/footer.vue';
-import PageLoader from './layout/page-loader.vue';
 
+import PageLoader from './components/page-loader.vue';
 import Profile from './components/profile.vue';
 </script>
 

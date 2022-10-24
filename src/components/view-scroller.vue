@@ -6,7 +6,7 @@ let mainScroller = null;
 const emit = defineEmits(['atBottom']);
 const viewScroller = ref(null);
 const scrollingHandler = (e) => {
-    if ((Math.floor(e.target.scrollTop) + Math.floor(e.target.clientHeight)) === Math.floor(e.target.scrollHeight)) {
+    if ((Math.floor(e.target.scrollTop) + Math.floor(e.target.clientHeight) + 150) > Math.floor(e.target.scrollHeight)) {
         emit('atBottom');
     }
 };

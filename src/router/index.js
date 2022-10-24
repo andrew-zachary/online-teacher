@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
-import HomeView from '../views/HomeView.vue'
-import LessonsView from '../views/Lessons.vue'
-import AccountView from '../views/AccountView.vue'
-import LoginForm from '../components/login-form.vue'
-import RegisterForm from '../components/register-form.vue'
+import HomeView from '../views/HomeView.vue';
+import LessonsView from '../views/LessonsView.vue';
+import AccountView from '../views/AccountView.vue';
+import LoginForm from '../components/login-form.vue';
+import RegisterForm from '../components/register-form.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,6 +42,6 @@ const router = createRouter({
       component: () => import('../views/TellYouView.vue')
     }
   ]
-})
+});
 
-export default router
+export default router;

@@ -1,26 +1,10 @@
-<script setup>
-import {useAppStore} from '../stores/app';
-const appStore = useAppStore();
-</script>
+<script></script>
 <template>
-    <Teleport to="body">
-        <div 
-            v-if="appStore.togglePageLoader" 
-            id="page-loader" 
-            class="absolute top-0 bottom-0 left-0 right-0 
-            bg-green-800
-            z-50
-            flex flex-col items-center justify-center">
-            <h1 class="text-6xl text-amber-50">please wait</h1>
-            <div id="loader" className="mt-8">
-                <div className="spinner">
-                    <div className="bounce1"></div>
-                    <div className="bounce2"></div>
-                    <div className="bounce3"></div>
-                </div>
-            </div>
-        </div>
-    </Teleport>
+    <div className="spinner">
+        <div className="bounce1"></div>
+        <div className="bounce2"></div>
+        <div className="bounce3"></div>
+    </div>
 </template>
 <style lang="scss">
 .spinner {
@@ -31,11 +15,14 @@ const appStore = useAppStore();
     & > div {
         width: 1.8rem;
         height: 1.8rem;
-        background-color: rgb(255, 251, 235);
+        background-color: var(--ternary);
         border-radius: 100%;
         display: inline-block;
         -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
         animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+    .dark & > div {
+        background-color: rgb(255, 251, 235);
     }
     .bounce1 {
         -webkit-animation-delay: -0.32s;

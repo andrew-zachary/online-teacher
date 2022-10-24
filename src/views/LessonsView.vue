@@ -2,6 +2,7 @@
 import {onMounted,reactive} from 'vue';
 
 import View from '../layout/view.vue';
+import Loader from '../layout/loader.vue';
 
 import Translate from '../components/translate.vue';
 import ViewScroller from '../components/view-scroller.vue';
@@ -16,7 +17,7 @@ const lessonsStore = useLessonsStore();
 const id = 'lessons';
 
 const paginateLessons = () => {
-    if(!lessonsStore.noMoreLessons) {
+    if(!lessonsStore.noMoreLessons && !lessonsStore.fetchingLessons) {
         lessonsStore.getLessons(pagination.page, pagination.limit);
         pagination.page++;
     }
@@ -58,6 +59,7 @@ onMounted(() => {
                             {{lesson.catId.title}}
                         </div>
                     </li>
+                    <li><Loader v-if="!lessonsStore.noMoreLessons" /></li>
                 </ul>
             </template>
         </ViewScroller>

@@ -35,10 +35,10 @@ onBeforeUnmount(() => {
     #section-scroller {
         overflow-y: auto;
         opacity: 1;
-        max-height: calc(100vh - 10rem);
+        max-height: calc(100vh - 12.57rem);
         width: 100%;
 
-        @include withRtl('padding', 0 0 10rem 1rem, 0 1rem 10rem 0);
+        @include withRtl('padding', 0 0 6rem 1rem, 0 1rem 6rem 0);
     }
     div[data-simplebar=init] {
         .simplebar-track.simplebar-vertical {

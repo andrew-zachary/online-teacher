@@ -15,13 +15,13 @@ const appStore = useAppStore();
                 v-if="appStore.toggleAppModal">
                 <div 
                     id="modal-drop-bg" 
-                    class="z-0 
+                    class="z-40 
                     absolute top-0 bottom-0 left-0 right-0
                     bg-ternary dark:bg-ternary-dark" 
                     @click="appStore.toggleAppModalHandler"></div>
                 <div 
                     id="modal-box" 
-                    class="z-10
+                    class="z-50
                     w-full mx-auto 
                     bg-secondary dark:bg-secondary-dark 
                     m-2 p-2">

@@ -1,11 +1,11 @@
 <script setup>
 import { RouterView } from 'vue-router';
 
-import Nav from './layout/nav.vue';
 import Footer from './layout/footer.vue';
 
 import PageLoader from './components/page-loader.vue';
 import Profile from './components/profile.vue';
+import NavSwitch from './components/nav-switch.vue';
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import Profile from './components/profile.vue';
     <Profile />
     <PageLoader />
     <header>
-      <Nav />
+      <NavSwitch />
     </header>
     <main>
       <RouterView v-slot="{Component}">

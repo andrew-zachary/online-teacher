@@ -65,6 +65,11 @@
         "tell_you": "tell you",
         "my_account": "my account"
     },
+    "authed_nav": {
+        "my_account": "my account",
+        "new_lesson": "new lesson",
+        "lessons": "lessons"
+    },
     "page_loader": {
         "msg": "please wait"
     },

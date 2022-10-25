@@ -59,6 +59,9 @@
             }
         }
     },
+    "hello": {
+        "title": "hello"
+    },
     "nav": {
         "home": "home",
         "lessons": "lessons",

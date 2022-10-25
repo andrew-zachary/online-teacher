@@ -16,6 +16,16 @@ export const useLessonsStore = defineStore('lessons', () => {
         fetchingLessons.value = false;
     };
 
+    const createLesson = async (values) => {
+        try {
+            await axiosClient.post(`/ot/articles`, {...values});
+            lessons.value = [];
+            noMoreLessons.value = false;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     const storeLessons = (data) => {
         if(data.length === 0) {
             noMoreLessons.value = true;
@@ -24,5 +34,5 @@ export const useLessonsStore = defineStore('lessons', () => {
         }
     }
 
-    return { lessons, noMoreLessons, fetchingLessons, getLessons };
+    return { lessons, noMoreLessons, fetchingLessons, getLessons, createLesson };
 });

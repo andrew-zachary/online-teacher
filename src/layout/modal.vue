@@ -2,33 +2,32 @@
 import BtnIcon from './btn-icon.vue';
 import CloseIcon from '../assets/close.vue';
 
-import {useAppStore} from '../stores/app';
-const appStore = useAppStore();
+const {toggler,clickHandler} = defineProps(['toggler', 'clickHandler']);
 </script>
 <template>
     <Teleport to="body">
         <Transition name="modal-in-out">
             <div 
-                id="app-modal" 
-                class="flex items-center justify-center 
-                absolute top-0 bottom-0 left-0 right-0" 
-                v-if="appStore.toggleAppModal">
+            id="app-modal" 
+            class="flex items-center justify-center 
+            absolute top-0 bottom-0 left-0 right-0" 
+            v-if="toggler">
                 <div 
-                    id="modal-drop-bg" 
-                    class="z-40 
-                    absolute top-0 bottom-0 left-0 right-0
-                    bg-ternary dark:bg-ternary-dark" 
-                    @click="appStore.toggleAppModalHandler"></div>
+                id="modal-drop-bg" 
+                class="z-40 
+                absolute top-0 bottom-0 left-0 right-0
+                bg-ternary dark:bg-ternary-dark" 
+                @click="clickHandler"></div>
                 <div 
-                    id="modal-box" 
-                    class="z-50
-                    w-full mx-auto 
-                    bg-secondary dark:bg-secondary-dark 
-                    m-2 p-2">
+                id="modal-box" 
+                class="z-50
+                w-full mx-auto 
+                bg-secondary dark:bg-secondary-dark 
+                m-2 p-2">
                     <div 
-                        id="box-ctrl" 
-                        class="flex justify-end">
-                        <BtnIcon :icon="CloseIcon" :clickHandler="appStore.toggleAppModalHandler" />
+                    id="box-ctrl" 
+                    class="flex justify-end">
+                        <BtnIcon :icon="CloseIcon" :clickHandler="clickHandler" />
                     </div>
                     <div id="box-header">
                         <h1 class="text-5xl text-primary dark:text-primary-dark capitalize font-popp font-bold ">

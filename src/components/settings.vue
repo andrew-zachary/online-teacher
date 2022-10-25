@@ -30,15 +30,15 @@ const modePicked = (checked) => {
 </script>
 <template>
     <BtnIcon :icon="GearIcon" :clickHandler="appStore.toggleAppModalHandler" />
-    <Modal>
+    <Modal :toggler="appStore.toggleAppModal" :clickHandler="appStore.toggleAppModalHandler">
         <template #header>
             <Translate toTranslate="modal.settings.label" />
         </template>
         <template #content>
             <div 
-                id="settings" 
-                class="text-3xl capitalize font-mont font-regular
-                flex flex-col">
+            id="settings" 
+            class="text-3xl capitalize font-mont font-regular
+            flex flex-col">
                 <div class="ctrl-row">
                     <div class="font-bold">
                         <Translate toTranslate="modal.settings.dark_mode" />

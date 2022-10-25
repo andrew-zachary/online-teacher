@@ -1,0 +1,54 @@
+<script setup>
+import { ref, onMounted, onBeforeUnmount} from 'vue';
+
+let scrollerObj = null;
+
+const emit = defineEmits(['atBottom']);
+const scroller = ref(null);
+const scrollingHandler = (e) => {
+    if ((Math.floor(e.target.scrollTop) + Math.floor(e.target.clientHeight) + 150) > Math.floor(e.target.scrollHeight)) {
+        emit('atBottom');
+    }
+};
+
+onMounted(() => {
+    scrollerObj = new SimpleBar(scroller.value);
+    scrollerObj.getScrollElement().addEventListener('scroll', scrollingHandler);
+});
+
+onBeforeUnmount(() => {
+    scrollerObj.getScrollElement().removeEventListener('scroll', scrollingHandler);
+    scrollerObj.unMount();
+});
+</script>
+<template>
+    <div ref="scroller" id="section-scroller">
+        <header>
+            <h1 class="mb-14 text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
+                <slot name="header"></slot>
+            </h1>
+        </header>
+        <slot name="content"></slot>
+    </div>
+</template>
+<style lang="scss">
+    #section-scroller {
+        overflow-y: auto;
+        opacity: 1;
+        max-height: calc(100vh - 12.57rem);
+        width: 100%;
+
+        @include withRtl('padding', 0 0 6rem 1rem, 0 1rem 6rem 0);
+    }
+    div[data-simplebar=init] {
+        .simplebar-track.simplebar-vertical {
+            @include withRtl(right, 0, unset);
+            @include withRtl(left, unset, 0);
+        }
+    }
+    .simplebar-scrollbar::before {
+      background-color: var(--quaternary)!important;
+      opacity: 1!important;
+      width: 0.4rem!important;
+    }
+</style>

@@ -65,6 +65,11 @@
         "tell_you": "نقول لك",
         "my_account": "حسابي"
     },
+    "authed_nav": {
+        "my_account": "حسابي",
+        "new_lesson": "درس جديد",
+        "lessons": "الدروس"
+    },
     "page_loader": {
         "msg": "انتظر من فضلك"
     },

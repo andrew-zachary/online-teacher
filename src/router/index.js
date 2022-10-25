@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import LessonsView from '../views/LessonsView.vue';
 import AccountView from '../views/AccountView.vue';
+import NewLessonView from '../views/NewLessonView.vue';
+import HelloView from '../views/HelloView.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
 
@@ -40,7 +42,17 @@ const router = createRouter({
       path: '/tell-you',
       name: 'tell-you',
       component: () => import('../views/TellYouView.vue')
-    }
+    },
+    {
+      path: '/new-lesson',
+      name: 'new-lesson',
+      component: NewLessonView
+    },
+    {
+      path: '/hello',
+      name: 'hello',
+      component: HelloView
+    },
   ]
 });
 

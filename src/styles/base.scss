@@ -32,7 +32,7 @@ html, body {
 }
 
 form {
-  input {
+  input, textarea, select {
     border: 0.1rem solid var(--quaternary);
     background-color: var(--secondary);
 

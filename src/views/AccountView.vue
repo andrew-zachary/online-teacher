@@ -1,10 +1,11 @@
 <script setup>
 import { onMounted } from 'vue';
 import { RouterView, RouterLink, useRouter } from 'vue-router';
+
 import View from '../layout/view.vue';
+import Scroller from '../layout/scroller.vue';
 
 import Translate from '../components/translate.vue';
-import ViewScroller from '../components/view-scroller.vue';
 
 const id="my-account";
 const router = useRouter();
@@ -15,7 +16,7 @@ onMounted(() => {
 </script>
 <template>
     <View :id="id">
-        <ViewScroller>
+        <Scroller>
             <template #content>
                 <div id="tabs-box" class="mx-auto">
                     <div id="tabs-header" class="flex justify-around">
@@ -27,7 +28,7 @@ onMounted(() => {
                     </div>
                 </div>
             </template>
-        </ViewScroller>
+        </Scroller>
     </View>
 </template>
 <style scoped lang="scss">

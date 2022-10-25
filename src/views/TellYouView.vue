@@ -1,15 +1,15 @@
 <script setup>
 import View from '../layout/view.vue';
+import Scroller from '../layout/scroller.vue';
 
 import Translate from '../components/translate.vue';
-import ViewScroller from '../components/view-scroller.vue';
 
 const id = 'tell-you';
 </script>
 
 <template>
   <View :id="id">
-    <ViewScroller>
+    <Scroller>
       <template #header>
         <Translate toTranslate="tell_you.title" />
       </template>
@@ -18,7 +18,7 @@ const id = 'tell-you';
           <Translate toTranslate="tell_you.para" />
         </p>
       </template>
-    </ViewScroller>
+    </Scroller>
   </View>
 </template>
 

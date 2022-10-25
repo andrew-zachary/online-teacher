@@ -5,7 +5,7 @@ import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
 
 import Translate from '../components/translate.vue';
-import ViewScroller from '../components/view-scroller.vue';
+import PaginateScroller from '../components/paginate-scroller.vue';
 
 import { useLessonsStore } from '../stores/lessons.js';
 
@@ -32,7 +32,7 @@ onMounted(() => {
 
 <template>
     <View :id="id">
-        <ViewScroller @atBottom="paginateLessons">
+        <PaginateScroller @atBottom="paginateLessons">
             <template #header>
                 <Translate toTranslate="lessons.title" />
             </template>
@@ -62,7 +62,7 @@ onMounted(() => {
                     <li><Loader v-if="!lessonsStore.noMoreLessons" /></li>
                 </ul>
             </template>
-        </ViewScroller>
+        </PaginateScroller>
     </View>
 </template>
 

@@ -1,28 +1,20 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount} from 'vue';
 
-let mainScroller = null;
+let scrollerObj = null;
 
-const emit = defineEmits(['atBottom']);
-const viewScroller = ref(null);
-const scrollingHandler = (e) => {
-    if ((Math.floor(e.target.scrollTop) + Math.floor(e.target.clientHeight) + 150) > Math.floor(e.target.scrollHeight)) {
-        emit('atBottom');
-    }
-};
+const scroller = ref(null);
 
 onMounted(() => {
-    mainScroller = new SimpleBar(viewScroller.value);
-    mainScroller.getScrollElement().addEventListener('scroll', scrollingHandler);
+    scrollerObj = new SimpleBar(scroller.value);
 });
 
 onBeforeUnmount(() => {
-    mainScroller.getScrollElement().removeEventListener('scroll', scrollingHandler);
-    mainScroller.unMount();
+    scrollerObj.unMount();
 });
 </script>
 <template>
-    <div ref="viewScroller" id="section-scroller">
+    <div ref="scroller" id="section-scroller">
         <header>
             <h1 class="mb-14 text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
                 <slot name="header"></slot>
@@ -47,8 +39,8 @@ onBeforeUnmount(() => {
         }
     }
     .simplebar-scrollbar::before {
-      background-color: var(--quaternary)!important;
-      opacity: 1!important;
-      width: 0.4rem!important;
+        background-color: var(--quaternary)!important;
+        opacity: 1!important;
+        width: 0.4rem!important;
     }
 </style>

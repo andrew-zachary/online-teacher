@@ -1,15 +1,15 @@
 <script setup>
 import View from '../layout/view.vue';
+import Scroller from '../layout/scroller.vue';
 
 import Translate from '../components/translate.vue';
-import ViewScroller from '../components/view-scroller.vue';
 
 const id = 'home';
 </script>
 
 <template>
   <View :id="id">
-    <ViewScroller>
+    <Scroller>
       <template #content>
         <h1 class="text-8xl text-center dark:text-amber-50 font-popp font-bold capitalize">
           <Translate toTranslate="home.title" />
@@ -18,7 +18,7 @@ const id = 'home';
           <Translate toTranslate="home.para" /> ...
         </p>
       </template>
-    </ViewScroller>
+    </Scroller>
   </View>
 </template>
 

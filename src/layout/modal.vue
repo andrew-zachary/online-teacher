@@ -2,7 +2,7 @@
 import BtnIcon from './btn-icon.vue';
 import CloseIcon from '../assets/close.vue';
 
-const {toggler,clickHandler} = defineProps(['toggler', 'clickHandler']);
+const {toggler,togglerClickHandler} = defineProps(['toggler', 'togglerClickHandler']);
 </script>
 <template>
     <Teleport to="body">
@@ -17,7 +17,7 @@ const {toggler,clickHandler} = defineProps(['toggler', 'clickHandler']);
                 class="z-40 
                 absolute top-0 bottom-0 left-0 right-0
                 bg-ternary dark:bg-ternary-dark" 
-                @click="clickHandler"></div>
+                @click="togglerClickHandler"></div>
                 <div 
                 id="modal-box" 
                 class="z-50
@@ -27,7 +27,7 @@ const {toggler,clickHandler} = defineProps(['toggler', 'clickHandler']);
                     <div 
                     id="box-ctrl" 
                     class="flex justify-end">
-                        <BtnIcon :icon="CloseIcon" :clickHandler="clickHandler" />
+                        <BtnIcon :icon="CloseIcon" :clickHandler="togglerClickHandler" />
                     </div>
                     <div id="box-header">
                         <h1 class="text-5xl text-primary dark:text-primary-dark capitalize font-popp font-bold ">

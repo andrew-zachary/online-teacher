@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 import Modal from '../layout/modal.vue';
 import Btn from '../layout/btn.vue';
@@ -13,12 +13,17 @@ import GearIcon from '../assets/gear.vue';
 
 import { useAppStore } from '../stores/app';
 
+const openModal = ref(false);
 const appStore = useAppStore();
 
 const newSettings = reactive({
     langIndex: appStore.currentLang.index,
     darkModeChecked: false
 });
+
+const modalToggled = () => {
+    openModal.value = !openModal.value;
+}
 
 const langPicked = (pickedIndex) => {
     newSettings.langIndex = pickedIndex;
@@ -27,10 +32,15 @@ const langPicked = (pickedIndex) => {
 const modePicked = (checked) => {
     newSettings.darkModeChecked = checked;
 }
+
+const saveChanges = () => {
+    appStore.updateAppSettings({...newSettings});
+    modalToggled();
+}
 </script>
 <template>
-    <BtnIcon :icon="GearIcon" :clickHandler="appStore.toggleAppModalHandler" />
-    <Modal :toggler="appStore.toggleAppModal" :clickHandler="appStore.toggleAppModalHandler">
+    <BtnIcon :icon="GearIcon" :clickHandler="modalToggled" />
+    <Modal :toggler="openModal" :togglerClickHandler="modalToggled">
         <template #header>
             <Translate toTranslate="modal.settings.label" />
         </template>
@@ -52,7 +62,7 @@ const modePicked = (checked) => {
                     <LangSwitch @langPicked="langPicked" :currentLang="appStore.currentLang" :langs="appStore.langs" />
                 </div>
                 <div class="save-row mt-12 flex justify-end">
-                    <Btn text="modal.btns.save" :clickHandler="() => appStore.updateAppSettings({...newSettings})" />
+                    <Btn text="modal.btns.save" :clickHandler="saveChanges" />
                 </div>
             </div>
         </template>

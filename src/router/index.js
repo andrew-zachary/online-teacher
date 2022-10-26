@@ -4,7 +4,8 @@ import HomeView from '../views/HomeView.vue';
 import LessonsView from '../views/LessonsView.vue';
 import AccountView from '../views/AccountView.vue';
 import NewLessonView from '../views/NewLessonView.vue';
-import HelloView from '../views/HelloView.vue';
+import LinksView from '../views/LinksView.vue';
+import PostsView from '../views/PostsView.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
 
@@ -49,10 +50,15 @@ const router = createRouter({
       component: NewLessonView
     },
     {
-      path: '/hello',
-      name: 'hello',
-      component: HelloView
+      path: '/links',
+      name: 'links',
+      component: LinksView,
     },
+    {
+      path: '/posts',
+      name: 'posts',
+      component: PostsView
+    }
   ]
 });
 

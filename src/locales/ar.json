@@ -104,8 +104,17 @@
             "language": "اللغة",
             "dark_mode": "الوان هادئة"
         },
+        "lesson_created": {
+            "success": {
+                "title": "تم انشاء الدرس",
+                "msg": {
+                    "successfully": "الدرس الان متاح"
+                }
+            }
+        },
         "btns": {
-            "save": "حفظ"
+            "save": "حفظ",
+            "ok": "حسناً"
         }
     }
 }

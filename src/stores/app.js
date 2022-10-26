@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { defineStore } from 'pinia';
 import { useI18n } from 'vue-i18n';
 
@@ -14,6 +14,17 @@ export const useAppStore = defineStore('app', () => {
   const currentLang = ref(langs[defaultLangIndex]);
   const currentColorMode = ref('light');
   const togglePageLoader = ref(false);
+  const toggleNotificationModal = reactive({
+    open:false,
+    header:"",
+    msg:""
+  });
+
+  function toggleNotificationModalHandler(modalData) {
+    toggleNotificationModal.open = modalData.open;
+    toggleNotificationModal.header = modalData.header;
+    toggleNotificationModal.msg = modalData.msg;
+  }
 
   function togglePageLoaderHandler() {
     togglePageLoader.value = !togglePageLoader.value;
@@ -44,8 +55,10 @@ export const useAppStore = defineStore('app', () => {
     langs, 
     currentLang, 
     currentColorMode,
-    togglePageLoader, 
+    togglePageLoader,
+    toggleNotificationModal,
     updateAppSettings, 
-    togglePageLoaderHandler
+    togglePageLoaderHandler,
+    toggleNotificationModalHandler
   };
 });

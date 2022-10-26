@@ -1,17 +1,19 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import axiosClient from '../includes/axiosClient';
+import { useAppStore } from './app';
 
 export const useLessonsStore = defineStore('lessons', () => {
     const lessons = ref([]);
     const noMoreLessons = ref(false);
     const fetchingLessons = ref(false);
+    const appStore = useAppStore();
 
     const getLessons = async (page, limit) => {
         fetchingLessons.value = true;
 
         const res = await axiosClient.get(`/ot/articles/?page=${page}&limit=${limit}`);
-        storeLessons(res.data);
+        lessonsReceived(res.data);
 
         fetchingLessons.value = false;
     };
@@ -19,14 +21,23 @@ export const useLessonsStore = defineStore('lessons', () => {
     const createLesson = async (values) => {
         try {
             await axiosClient.post(`/ot/articles`, {...values});
-            lessons.value = [];
-            noMoreLessons.value = false;
+            lessonCreated();
         } catch (err) {
             console.log(err);
         }
     }
 
-    const storeLessons = (data) => {
+    const lessonCreated = () => {
+        lessons.value = [];
+        noMoreLessons.value = false;
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.lesson_created.success.title',
+            msg: 'modal.lesson_created.success.msg.successfully'
+        });
+    };
+
+    const lessonsReceived = (data) => {
         if(data.length === 0) {
             noMoreLessons.value = true;
         } else {

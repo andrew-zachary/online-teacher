@@ -104,8 +104,17 @@
             "language": "language",
             "dark_mode": "dark colors"
         },
+        "lesson_created": {
+            "success": {
+                "title": "lesson created",
+                "msg": {
+                    "successfully": "lesson is now available"
+                }
+            }
+        },
         "btns": {
-            "save": "save"
+            "save": "save",
+            "ok": "ok"
         }
     }
 }

@@ -6,12 +6,14 @@ import Footer from './layout/footer.vue';
 import PageLoader from './components/page-loader.vue';
 import Profile from './components/profile.vue';
 import NavSwitch from './components/nav-switch.vue';
+import NotificationModal from './components/notification-modal.vue'
 </script>
 
 <template>
   <div id="app-container" class="w-full relative">
     <Profile />
     <PageLoader />
+    <NotificationModal />
     <header>
       <NavSwitch />
     </header>

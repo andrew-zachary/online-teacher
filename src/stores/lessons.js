@@ -5,9 +5,20 @@ import { useAppStore } from './app';
 
 export const useLessonsStore = defineStore('lessons', () => {
     const lessons = ref([]);
+    const myLessons = ref([]);
     const noMoreLessons = ref(false);
+    const noMoreMyLessons = ref(false);
     const fetchingLessons = ref(false);
     const appStore = useAppStore();
+
+    const getMyLessons = async (page, limit) => {
+        fetchingLessons.value = true;
+
+        const res = await axiosClient.get(`/ot/articles/collections/?page=${page}&limit=${limit}`);
+        myLessonsReceived(res.data);
+
+        fetchingLessons.value = false;
+    };
 
     const getLessons = async (page, limit) => {
         fetchingLessons.value = true;
@@ -29,13 +40,23 @@ export const useLessonsStore = defineStore('lessons', () => {
 
     const lessonCreated = () => {
         lessons.value = [];
+        myLessons.value = [];
         noMoreLessons.value = false;
+        noMoreMyLessons.value = false;
         appStore.toggleNotificationModalHandler({
             open: true,
             header: 'modal.lesson_created.success.title',
             msg: 'modal.lesson_created.success.msg.successfully'
         });
     };
+
+    const myLessonsReceived = (data) => {
+        if(data.length === 0) {
+            noMoreMyLessons.value = true;
+        } else {
+            myLessons.value = myLessons.value.concat(data);
+        }
+    }
 
     const lessonsReceived = (data) => {
         if(data.length === 0) {
@@ -45,5 +66,13 @@ export const useLessonsStore = defineStore('lessons', () => {
         }
     }
 
-    return { lessons, noMoreLessons, fetchingLessons, getLessons, createLesson };
+    return { 
+        lessons,
+        myLessons,
+        noMoreLessons,
+        noMoreMyLessons,
+        fetchingLessons, 
+        getLessons, 
+        createLesson, 
+        getMyLessons };
 });

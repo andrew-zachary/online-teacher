@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { defineStore } from 'pinia';
 import axiosClient from '../includes/axiosClient';
 
@@ -8,12 +8,16 @@ export const useUserStore = defineStore('user', () => {
     const appStore = useAppStore();
 
     const isAuthed = ref(false);
+    const profileData = reactive({
+        _id: null
+    })
 
     const getProfile = async() => {
         appStore.togglePageLoaderHandler();
 
         try {
-            await axiosClient.get('/ot/users/profile');
+            const res = await axiosClient.get('/ot/users/profile');
+            profileData._id = res.data._id;
             isAuthed.value = true;
         } catch (err) {
             console.log(err.response.data);

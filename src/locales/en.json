@@ -72,6 +72,9 @@
             }
         }
     },
+    "posts": {
+        "title": "my posts"
+    },
     "new_lesson": {
         "title": "today we have",
         "forms": {

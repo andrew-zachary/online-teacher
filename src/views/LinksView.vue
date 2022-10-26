@@ -42,7 +42,7 @@ const id = "links";
     </View>
 </template>
 <style lang="scss">
-    #links {
+    #links ul {
 
         @include withRtl('padding', 0 0 0 2rem, 0 2rem 0 0);
     }

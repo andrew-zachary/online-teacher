@@ -13,12 +13,7 @@ export const useAppStore = defineStore('app', () => {
 
   const currentLang = ref(langs[defaultLangIndex]);
   const currentColorMode = ref('light');
-  const toggleAppModal = ref(false);
   const togglePageLoader = ref(false);
-
-  function toggleAppModalHandler() {
-    toggleAppModal.value = !toggleAppModal.value;
-  }
 
   function togglePageLoaderHandler() {
     togglePageLoader.value = !togglePageLoader.value;
@@ -43,18 +38,13 @@ export const useAppStore = defineStore('app', () => {
 
     // change global locale
     locale.value = currentLang.value.locale;
-
-    // close modal
-    toggleAppModal.value = !toggleAppModal.value;
   }
 
   return {
     langs, 
     currentLang, 
-    currentColorMode, 
-    toggleAppModal,
-    togglePageLoader,
-    toggleAppModalHandler, 
+    currentColorMode,
+    togglePageLoader, 
     updateAppSettings, 
     togglePageLoaderHandler
   };

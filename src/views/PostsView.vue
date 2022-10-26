@@ -4,18 +4,16 @@ import Scroller from '../layout/scroller.vue';
 
 import Translate from '../components/translate.vue';
 
-const id = "hello"
+const id = "posts";
 </script>
 <template>
     <View :id="id">
         <Scroller>
             <template #header>
-                <Translate toTranslate="hello.title" />
+                posts
             </template>
             <template #content>
-                <p class="mt-8 text-4xl font-popp font-normal capitalize">
-                    account settings ...
-                </p>
+                all posts
             </template>
         </Scroller>
     </View>

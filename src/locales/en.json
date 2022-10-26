@@ -59,8 +59,18 @@
             }
         }
     },
-    "hello": {
-        "title": "hello"
+    "links": {
+        "go_to": "go to",
+        "names": {
+            "posts": {
+                "title": "posts",
+                "desc": "browse your work and do edit"
+            },
+            "create_lesson": {
+                "title": "create lesson",
+                "desc": "you can create a new lesson anytime"
+            }
+        }
     },
     "new_lesson": {
         "title": "today we have",
@@ -91,8 +101,7 @@
         "my_account": "my account"
     },
     "authed_nav": {
-        "my_account": "my account",
-        "new_lesson": "new lesson",
+        "quick_links": "quick links",
         "lessons": "lessons"
     },
     "page_loader": {

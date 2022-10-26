@@ -17,13 +17,8 @@ const openMenu = ref(false);
         </div>
         <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark']">
             <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/hello">
-                    <Translate toTranslate="authed_nav.my_account" />
-                </RouterLink>
-            </li>
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/new-lesson">
-                    <Translate toTranslate="authed_nav.new_lesson" />
+                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/links">
+                    <Translate toTranslate="authed_nav.quick_links" />
                 </RouterLink>
             </li>
             <li>

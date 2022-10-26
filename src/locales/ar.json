@@ -59,8 +59,18 @@
             }
         }
     },
-    "hello": {
-        "title": "مرحباً"
+    "links": {
+        "go_to": "الذهاب الي",
+        "names": {
+            "posts": {
+                "title": "اعمالي",
+                "desc": "تصفح اعمالك و قم بعمل التعديلات"
+            },
+            "create_lesson": {
+                "title": "انشاء درس",
+                "desc": "تستطيع انشاء درس في اي وقت"
+            }
+        }
     },
     "new_lesson": {
         "title": "لدينا اليوم",
@@ -91,8 +101,7 @@
         "my_account": "حسابي"
     },
     "authed_nav": {
-        "my_account": "حسابي",
-        "new_lesson": "درس جديد",
+        "quick_links": "روابط سريعة",
         "lessons": "الدروس"
     },
     "page_loader": {

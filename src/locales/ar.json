@@ -72,6 +72,9 @@
             }
         }
     },
+    "posts": {
+        "title": "اعمالي"
+    },
     "new_lesson": {
         "title": "لدينا اليوم",
         "forms": {

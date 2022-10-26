@@ -59,7 +59,7 @@ onMounted(() => {
                             {{lesson.catId.title}}
                         </div>
                     </li>
-                    <li><Loader v-if="!lessonsStore.noMoreLessons" /></li>
+                    <li><Loader v-if="lessonsStore.lessons.length > 5 && !lessonsStore.noMoreLessons" /></li>
                 </ul>
             </template>
         </PaginateScroller>

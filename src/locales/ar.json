@@ -105,7 +105,8 @@
     },
     "authed_nav": {
         "quick_links": "روابط سريعة",
-        "lessons": "الدروس"
+        "lessons": "الدروس",
+        "logout": "الخروج"
     },
     "page_loader": {
         "msg": "انتظر من فضلك"

@@ -63,7 +63,7 @@
         "go_to": "go to",
         "names": {
             "posts": {
-                "title": "posts",
+                "title": "my posts",
                 "desc": "browse your work and do edit"
             },
             "create_lesson": {
@@ -105,7 +105,8 @@
     },
     "authed_nav": {
         "quick_links": "quick links",
-        "lessons": "lessons"
+        "lessons": "lessons",
+        "logout": "logout"
     },
     "page_loader": {
         "msg": "please wait"

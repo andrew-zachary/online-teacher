@@ -6,12 +6,13 @@ import Translate from '../components/translate.vue';
 import BarSolid from '../assets/bars-solid.vue';
 
 import BtnIcon from './btn-icon.vue';
+import BtnBorder from './btn-border.vue';
 
 const openMenu = ref(false);
 </script>
 
 <template>
-    <nav class="px-4 py-12 relative">
+    <nav class="px-4 py-12 relative flex items-center">
         <div id="nav-btn" class="w-full relative" @click="openMenu = !openMenu">
             <BtnIcon :icon="BarSolid" />
         </div>
@@ -27,6 +28,7 @@ const openMenu = ref(false);
                 </RouterLink>
             </li>
         </ul>
+        <BtnBorder text="authed_nav.logout" />
     </nav>
 </template>
 

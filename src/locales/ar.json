@@ -73,7 +73,8 @@
         }
     },
     "posts": {
-        "title": "اعمالي"
+        "title": "اعمالي",
+        "no_posts": "ليس لديك أي دروس"
     },
     "new_lesson": {
         "title": "لدينا اليوم",
@@ -128,6 +129,16 @@
         "logout": {
             "header": "خروج",
             "msg": "تأكيد الخروج"
+        },
+        "delete_post": {
+            "header": "حذف الدرس",
+            "msg": "تأكيد حذف الدرس",
+            "success": {
+                "title": "تم الحذف",
+                "msg": {
+                    "successfully": "تم حذف الدرس"
+                }
+            }
         },
         "btns": {
             "save": "حفظ",

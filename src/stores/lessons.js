@@ -11,6 +11,15 @@ export const useLessonsStore = defineStore('lessons', () => {
     const fetchingLessons = ref(false);
     const appStore = useAppStore();
 
+    const deletePost = async (id) => {
+        appStore.togglePageLoaderHandler();
+
+        const res = await axiosClient.delete(`ot/articles/${id}`);
+        postDeleted(res.data);
+
+        appStore.togglePageLoaderHandler();
+    };
+
     const getMyLessons = async (page, limit) => {
         fetchingLessons.value = true;
 
@@ -36,6 +45,16 @@ export const useLessonsStore = defineStore('lessons', () => {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    const postDeleted = (data) => {
+        lessons.value = lessons.value.filter(lesson => lesson._id !== data._id);
+        myLessons.value = myLessons.value.filter(lesson => lesson._id !== data._id);
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.delete_post.success.title',
+            msg: 'modal.delete_post.success.msg.successfully'
+        });
     }
 
     const lessonCreated = () => {
@@ -74,5 +93,7 @@ export const useLessonsStore = defineStore('lessons', () => {
         fetchingLessons, 
         getLessons, 
         createLesson, 
-        getMyLessons };
+        getMyLessons,
+        deletePost
+    };
 });

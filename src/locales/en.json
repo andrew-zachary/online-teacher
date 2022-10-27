@@ -73,7 +73,8 @@
         }
     },
     "posts": {
-        "title": "my posts"
+        "title": "my posts",
+        "no_posts": "you don't have posts"
     },
     "new_lesson": {
         "title": "today we have",
@@ -128,6 +129,16 @@
         "logout": {
             "header": "logout",
             "msg": "confirm logout"
+        },
+        "delete_post": {
+            "header": "delete post",
+            "msg": "confirm delete",
+            "success": {
+                "title": "deleted",
+                "msg": {
+                    "successfully": "your lesson was deleted"
+                }
+            }
         },
         "btns": {
             "save": "save",

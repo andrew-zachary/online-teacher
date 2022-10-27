@@ -2,11 +2,11 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-import Translate from '../components/translate.vue';
 import BarSolid from '../assets/bars-solid.vue';
+import Translate from '../components/translate.vue';
+import LogoutBtn from '../components/logout-btn.vue';
 
 import BtnIcon from './btn-icon.vue';
-import BtnBorder from './btn-border.vue';
 
 const openMenu = ref(false);
 </script>
@@ -28,8 +28,7 @@ const openMenu = ref(false);
                 </RouterLink>
             </li>
         </ul>
-        <BtnBorder text="authed_nav.logout" />
+        <LogoutBtn />
     </nav>
 </template>
-
 <style></style>

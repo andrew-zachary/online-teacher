@@ -127,7 +127,8 @@
         },
         "btns": {
             "save": "save",
-            "ok": "ok"
+            "ok": "ok",
+            "cancel": "cancel"
         }
     }
 }

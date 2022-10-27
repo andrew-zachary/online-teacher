@@ -1,4 +1,5 @@
 import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 import axiosClient from '../includes/axiosClient';
 
@@ -6,6 +7,7 @@ import { useAppStore } from './app';
 
 export const useUserStore = defineStore('user', () => {
     const appStore = useAppStore();
+    const router = useRouter();
 
     const isAuthed = ref(false);
     const profileData = reactive({
@@ -52,6 +54,7 @@ export const useUserStore = defineStore('user', () => {
                 app_key: import.meta.env.VITE_APP_KEY
             });
             isAuthed.value = true;
+            router.push({name: 'links'});
         } catch (err) {
             console.log(err.response.data);
         }
@@ -69,6 +72,7 @@ export const useUserStore = defineStore('user', () => {
                 app_key: import.meta.env.VITE_APP_KEY
             });
             isAuthed.value = true;
+            router.push({name: 'links'});
         } catch (err) {
             console.log(err.response.data);
         }

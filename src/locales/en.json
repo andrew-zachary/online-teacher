@@ -125,6 +125,10 @@
                 }
             }
         },
+        "logout": {
+            "header": "logout",
+            "msg": "confirm logout"
+        },
         "btns": {
             "save": "save",
             "ok": "ok",

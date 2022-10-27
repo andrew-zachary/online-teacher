@@ -26,6 +26,20 @@ export const useUserStore = defineStore('user', () => {
         appStore.togglePageLoaderHandler();
     };
 
+    const logout = async() => {
+        appStore.togglePageLoaderHandler();
+
+        try {
+            await axiosClient.get('auth/signout');
+            profileData._id = null;
+            isAuthed.value = false;
+        } catch (err) {
+            console.log(err.response.data);
+        }
+
+        appStore.togglePageLoaderHandler();
+    }
+
     const register = async ({firstName, lastName, email, password}) => {
         appStore.togglePageLoaderHandler();
 
@@ -62,5 +76,5 @@ export const useUserStore = defineStore('user', () => {
         appStore.togglePageLoaderHandler();
     };
 
-    return { isAuthed, login, register, getProfile };
+    return { isAuthed, login, register, getProfile, logout };
 });

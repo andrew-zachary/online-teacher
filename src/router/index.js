@@ -9,6 +9,8 @@ import PostsView from '../views/PostsView.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
 
+import { useUserStore } from '../stores/users';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -47,19 +49,42 @@ const router = createRouter({
     {
       path: '/new-lesson',
       name: 'new-lesson',
-      component: NewLessonView
+      component: NewLessonView,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/links',
       name: 'links',
       component: LinksView,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/posts',
       name: 'posts',
-      component: PostsView
+      component: PostsView,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  if(!to.meta.requireAuth) {
+    return next();
+  }
+
+  const userStore = useUserStore();
+
+  if(userStore.isAuthed) {
+    next();
+  } else {
+    next({name: 'home'});
+  }
 });
 
 export default router;

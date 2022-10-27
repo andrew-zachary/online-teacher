@@ -19,11 +19,24 @@ export const useAppStore = defineStore('app', () => {
     header:"",
     msg:""
   });
+  const toggleConfirmationModal = reactive({
+    open:false,
+    header:"",
+    msg:"",
+    to_confirm: null
+  });
 
   function toggleNotificationModalHandler(modalData) {
     toggleNotificationModal.open = modalData.open;
     toggleNotificationModal.header = modalData.header;
     toggleNotificationModal.msg = modalData.msg;
+  }
+
+  function toggleConfirmationModalHandler(modalData) {
+    toggleConfirmationModal.open = modalData.open;
+    toggleConfirmationModal.header = modalData.header;
+    toggleConfirmationModal.msg = modalData.msg;
+    toggleConfirmationModal.to_confirm = modalData.to_confirm;
   }
 
   function togglePageLoaderHandler() {
@@ -57,8 +70,10 @@ export const useAppStore = defineStore('app', () => {
     currentColorMode,
     togglePageLoader,
     toggleNotificationModal,
+    toggleConfirmationModal,
     updateAppSettings, 
     togglePageLoaderHandler,
-    toggleNotificationModalHandler
+    toggleNotificationModalHandler,
+    toggleConfirmationModalHandler
   };
 });

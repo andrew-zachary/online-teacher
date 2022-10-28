@@ -16,7 +16,7 @@ const pagination = reactive({
     limit: 10
 })
 const lessonsStore = useLessonsStore();
-const id = 'posts';
+const id = 'posts-list';
 
 const paginateLessons = () => {
     if(!lessonsStore.noMoreMyLessons && !lessonsStore.fetchingLessons) {

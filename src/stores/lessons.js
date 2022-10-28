@@ -1,15 +1,34 @@
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { defineStore } from 'pinia';
 import axiosClient from '../includes/axiosClient';
 import { useAppStore } from './app';
 
 export const useLessonsStore = defineStore('lessons', () => {
+    const lesson = ref({});
     const lessons = ref([]);
     const myLessons = ref([]);
     const noMoreLessons = ref(false);
     const noMoreMyLessons = ref(false);
     const fetchingLessons = ref(false);
     const appStore = useAppStore();
+
+    const updatePost = async (id, values) => {
+        try {
+            const res = await axiosClient.put(`ot/articles/${id}`, {...values});
+            postUpdated(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const getLesson = async (id) => {
+        try {
+            const res = await axiosClient.get(`ot/articles/${id}`);
+            lessonReceived(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const deletePost = async (id) => {
         appStore.togglePageLoaderHandler();
@@ -45,6 +64,32 @@ export const useLessonsStore = defineStore('lessons', () => {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    const postUpdated = async (data) => {
+        lessons.value = lessons.value.map(lesson => {
+            if(lesson._id === data._id) {
+                return data;
+            } else {
+                return lesson;
+            }
+        });
+        myLessons.value = myLessons.value.map(lesson => {
+            if(lesson._id === data._id) {
+                return data;
+            } else {
+                return lesson;
+            }
+        });
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.update_post.success.title',
+            msg: 'modal.update_post.success.msg.successfully'
+        });
+    }
+
+    const lessonReceived = async (data) => {
+        lesson.value = {...data, cat_id: data.catId._id};
     }
 
     const postDeleted = (data) => {
@@ -85,15 +130,18 @@ export const useLessonsStore = defineStore('lessons', () => {
         }
     }
 
-    return { 
+    return {
+        lesson,
         lessons,
         myLessons,
         noMoreLessons,
         noMoreMyLessons,
         fetchingLessons, 
-        getLessons, 
+        getLessons,
+        getLesson,
         createLesson, 
         getMyLessons,
-        deletePost
+        deletePost,
+        updatePost
     };
 });

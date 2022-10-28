@@ -7,8 +7,11 @@ const {clickHandler, icon} = defineProps(['clickHandler', 'icon']);
     </button>
 </template>
 <style scoped lang="scss">
-    svg {
-        width: 4rem;
-        fill: var(--ternary);
+    button {
+        @include withRtl('transform', scale(1, 1), scale(-1, 1));
+        svg {
+            width: 4rem;
+            fill: var(--ternary);
+        }
     }
 </style>

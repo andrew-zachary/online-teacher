@@ -1,9 +1,29 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import View from '../layout/view.vue';
+import Scroller from '../layout/scroller.vue';
 
-const route = useRoute();
+import Translate from '../components/translate.vue';
+import EditLessonForm from '../components/edit-lesson-form.vue';
+import BackBtn from '../components/back-btn.vue';
+
+const id = "edit-lesson";
 </script>
 <template>
-    <h1>{{route.params.id}}</h1>
+    <View :id="id">
+        <Scroller>
+            <template #header>
+                <Translate toTranslate="edit_lesson.title" />
+            </template>
+            <template #content>
+                <BackBtn />
+                <EditLessonForm />
+            </template>
+        </Scroller>
+    </View>
 </template>
-<style></style>
+<style lang="scss">
+    #edit-lesson {
+        max-width: 41.2rem;
+        margin: 0 auto;
+    }
+</style>

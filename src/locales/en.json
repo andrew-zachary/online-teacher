@@ -98,6 +98,28 @@
             }
         }
     },
+    "edit_lesson": {
+        "title": "edit",
+        "forms": {
+            "edit": {
+                "title": "title",
+                "body": "body",
+                "cat_id": "category",
+                "btn": "update",
+                "errors": {
+                    "title": {
+                        "required": "title is required"
+                    },
+                    "body": {
+                        "required": "body is required"
+                    },
+                    "cat_id": {
+                        "required": "category is required"
+                    }
+                }
+            }
+        }
+    },
     "nav": {
         "home": "home",
         "lessons": "lessons",
@@ -137,6 +159,16 @@
                 "title": "deleted",
                 "msg": {
                     "successfully": "your lesson was deleted"
+                }
+            }
+        },
+        "update_post": {
+            "header": "update post",
+            "msg": "confirm update",
+            "success": {
+                "title": "updated",
+                "msg": {
+                    "successfully": "your post was updated"
                 }
             }
         },

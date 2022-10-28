@@ -98,6 +98,28 @@
             }
         }
     },
+    "edit_lesson": {
+        "title": "تعديل",
+        "forms": {
+            "edit": {
+                "title": "العنوان",
+                "body": "المحتوي",
+                "cat_id": "النوعية",
+                "btn": "حفظ",
+                "errors": {
+                    "title": {
+                        "required": "العنوان مطلوب"
+                    },
+                    "body": {
+                        "required": "المحتوي مطلوب"
+                    },
+                    "cat_id": {
+                        "required": "النوعية مطلوبة"
+                    }
+                }
+            }
+        }
+    },
     "nav": {
         "home": "ابدا",
         "lessons": "الدروس",
@@ -137,6 +159,16 @@
                 "title": "تم الحذف",
                 "msg": {
                     "successfully": "تم حذف الدرس"
+                }
+            }
+        },
+        "update_post": {
+            "header": "تعديل الدرس",
+            "msg": "تأكيد تعديل الدرس",
+            "success": {
+                "title": "تم التعديل",
+                "msg": {
+                    "successfully": "تم تعديل الدرس"
                 }
             }
         },

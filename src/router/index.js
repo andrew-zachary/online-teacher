@@ -6,6 +6,8 @@ import AccountView from '../views/AccountView.vue';
 import NewLessonView from '../views/NewLessonView.vue';
 import LinksView from '../views/LinksView.vue';
 import PostsView from '../views/PostsView.vue';
+import MyPostsView from '../views/MyPostsView.vue';
+import MyPostEdit from '../views/MyPostEdit.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
 
@@ -64,11 +66,20 @@ const router = createRouter({
     },
     {
       path: '/posts',
-      name: 'posts',
       component: PostsView,
       meta: {
         requireAuth: true
-      }
+      },
+      children: [
+        {
+          path: '',
+          component: MyPostsView,
+        },
+        {
+          path: ':id',
+          component: MyPostEdit
+        }
+      ]
     }
   ]
 });

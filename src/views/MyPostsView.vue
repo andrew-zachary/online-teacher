@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted,reactive} from 'vue';
+import {onBeforeMount} from 'vue';
 
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
@@ -11,22 +11,17 @@ import editPost from '../components/edit-post.vue';
 
 import { useLessonsStore } from '../stores/lessons.js';
 
-const pagination = reactive({
-    page: 1,
-    limit: 10
-})
 const lessonsStore = useLessonsStore();
 const id = 'posts-list';
 
 const paginateLessons = () => {
-    if(!lessonsStore.noMoreMyLessons && !lessonsStore.fetchingLessons) {
-        lessonsStore.getMyLessons(pagination.page, pagination.limit);
-        pagination.page++;
+    if(!lessonsStore.myPosts.noMore && !lessonsStore.fetching) {
+        lessonsStore.getMyPosts();
     }
 }
 
-onMounted(() => {
-    if(lessonsStore.myLessons.length === 0) {
+onBeforeMount(() => {
+    if(lessonsStore.myPosts.items.length === 0) {
         paginateLessons();
     }
 });
@@ -39,13 +34,13 @@ onMounted(() => {
                 <Translate toTranslate="posts.title" />
             </template>
             <template #content>
-                <h3 class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold text-center" v-if="lessonsStore.myLessons.length === 0">
+                <h3 class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold text-center" v-if="lessonsStore.myPosts.items.length === 0">
                     <Translate toTranslate="posts.no_posts" />
                 </h3>
                 <ul class="px-6">
                     <li
                     class="lesson-item"
-                    v-for="lesson of lessonsStore.myLessons"
+                    v-for="lesson of lessonsStore.myPosts.items"
                     :key="lesson._id">
                         <h1 class="text-4xl capitalize font-popp font-bold">
                             <a href="#">{{lesson.title}}</a>
@@ -69,7 +64,7 @@ onMounted(() => {
                             <deletePost :post-id="lesson._id" />
                         </div>
                     </li>
-                    <li><Loader v-if="lessonsStore.myLessons.length > 5 && !lessonsStore.noMoreMyLessons" /></li>
+                    <li><Loader v-if="lessonsStore.myPosts.items.length > 5 && !lessonsStore.myPosts.noMore" /></li>
                 </ul>
             </template>
         </PaginateScroller>

@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted,reactive} from 'vue';
+import {onBeforeMount} from 'vue';
 
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
@@ -9,22 +9,17 @@ import PaginateScroller from '../components/paginate-scroller.vue';
 
 import { useLessonsStore } from '../stores/lessons.js';
 
-const pagination = reactive({
-    page: 1,
-    limit: 10
-})
 const lessonsStore = useLessonsStore();
 const id = 'lessons';
 
 const paginateLessons = () => {
-    if(!lessonsStore.noMoreLessons && !lessonsStore.fetchingLessons) {
-        lessonsStore.getLessons(pagination.page, pagination.limit);
-        pagination.page++;
+    if(!lessonsStore.lessons.noMore && !lessonsStore.fetching) {
+        lessonsStore.getLessons();
     }
 }
 
-onMounted(() => {
-    if(lessonsStore.lessons.length === 0) {
+onBeforeMount(() => {
+    if(lessonsStore.lessons.items.length === 0) {
         paginateLessons();
     }
 });
@@ -40,7 +35,7 @@ onMounted(() => {
                 <ul class="px-6">
                     <li
                     class="lesson-item"
-                    v-for="lesson of lessonsStore.lessons"
+                    v-for="lesson of lessonsStore.lessons.items"
                     :key="lesson._id">
                         <h1 class="text-4xl capitalize font-popp font-bold">
                             <a href="#">{{lesson.title}}</a>
@@ -59,7 +54,7 @@ onMounted(() => {
                             {{lesson.catId.title}}
                         </div>
                     </li>
-                    <li><Loader v-if="lessonsStore.lessons.length > 5 && !lessonsStore.noMoreLessons" /></li>
+                    <li><Loader v-if="lessonsStore.lessons.items.length > 5 && !lessonsStore.lessons.noMore" /></li>
                 </ul>
             </template>
         </PaginateScroller>

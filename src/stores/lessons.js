@@ -1,15 +1,31 @@
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import axiosClient from '../includes/axiosClient';
 import { useAppStore } from './app';
 
+const initMyPosts = {
+    items: [],
+    noMore: false,
+    next_page: 1,
+    limit: 10
+}
+
+const initLessons = {
+    items: [],
+    noMore: false,
+    next_page: 1,
+    limit: 10
+}
+
+const initLesson = {};
+
 export const useLessonsStore = defineStore('lessons', () => {
-    const lesson = ref({});
-    const lessons = ref([]);
-    const myLessons = ref([]);
-    const noMoreLessons = ref(false);
-    const noMoreMyLessons = ref(false);
-    const fetchingLessons = ref(false);
+
+    const myPosts = ref({...initMyPosts});
+    const lessons = ref({...initLessons});
+    const lesson = ref(initLesson);
+    const fetching = ref(false);
+
     const appStore = useAppStore();
 
     const updatePost = async (id, values) => {
@@ -39,22 +55,22 @@ export const useLessonsStore = defineStore('lessons', () => {
         appStore.togglePageLoaderHandler();
     };
 
-    const getMyLessons = async (page, limit) => {
-        fetchingLessons.value = true;
+    const getMyPosts = async () => {
+        fetching.value = true;
 
-        const res = await axiosClient.get(`/ot/articles/collections/?page=${page}&limit=${limit}`);
-        myLessonsReceived(res.data);
+        const res = await axiosClient.get(`/ot/articles/collections/?page=${myPosts.value.next_page}&limit=${myPosts.value.limit}`);
+        myPostsReceived(res.data);
 
-        fetchingLessons.value = false;
+        fetching.value = false;
     };
 
-    const getLessons = async (page, limit) => {
-        fetchingLessons.value = true;
+    const getLessons = async () => {
+        fetching.value = true;
 
-        const res = await axiosClient.get(`/ot/articles/?page=${page}&limit=${limit}`);
+        const res = await axiosClient.get(`/ot/articles/?page=${lessons.value.next_page}&limit=${lessons.value.limit}`);
         lessonsReceived(res.data);
 
-        fetchingLessons.value = false;
+        fetching.value = false;
     };
 
     const createLesson = async (values) => {
@@ -67,14 +83,14 @@ export const useLessonsStore = defineStore('lessons', () => {
     }
 
     const postUpdated = async (data) => {
-        lessons.value = lessons.value.map(lesson => {
+        lessons.value.items = lessons.value.items.map(lesson => {
             if(lesson._id === data._id) {
                 return data;
             } else {
                 return lesson;
             }
         });
-        myLessons.value = myLessons.value.map(lesson => {
+        myPosts.value.items = myPosts.value.items.map(lesson => {
             if(lesson._id === data._id) {
                 return data;
             } else {
@@ -93,8 +109,8 @@ export const useLessonsStore = defineStore('lessons', () => {
     }
 
     const postDeleted = (data) => {
-        lessons.value = lessons.value.filter(lesson => lesson._id !== data._id);
-        myLessons.value = myLessons.value.filter(lesson => lesson._id !== data._id);
+        lessons.value.items = lessons.value.items.filter(lesson => lesson._id !== data._id);
+        myPosts.value.items = myPosts.value.items.filter(lesson => lesson._id !== data._id);
         appStore.toggleNotificationModalHandler({
             open: true,
             header: 'modal.delete_post.success.title',
@@ -103,10 +119,10 @@ export const useLessonsStore = defineStore('lessons', () => {
     }
 
     const lessonCreated = () => {
-        lessons.value = [];
-        myLessons.value = [];
-        noMoreLessons.value = false;
-        noMoreMyLessons.value = false;
+
+        myPosts.value = initMyPosts;
+        lessons.value = initLessons;
+
         appStore.toggleNotificationModalHandler({
             open: true,
             header: 'modal.lesson_created.success.title',
@@ -114,33 +130,33 @@ export const useLessonsStore = defineStore('lessons', () => {
         });
     };
 
-    const myLessonsReceived = (data) => {
+    const myPostsReceived = (data) => {
+        myPosts.value.next_page += 1;
         if(data.length === 0) {
-            noMoreMyLessons.value = true;
+            myPosts.value.noMore = true;
         } else {
-            myLessons.value = myLessons.value.concat(data);
+            myPosts.value.items = myPosts.value.items.concat(data);
         }
     }
 
     const lessonsReceived = (data) => {
+        lessons.value.next_page += 1;
         if(data.length === 0) {
-            noMoreLessons.value = true;
+            lessons.value.noMore = true;
         } else {
-            lessons.value = lessons.value.concat(data);
+            lessons.value.items = lessons.value.items.concat(data);
         }
     }
 
     return {
         lesson,
         lessons,
-        myLessons,
-        noMoreLessons,
-        noMoreMyLessons,
-        fetchingLessons, 
+        myPosts,
+        fetching, 
         getLessons,
         getLesson,
         createLesson, 
-        getMyLessons,
+        getMyPosts,
         deletePost,
         updatePost
     };

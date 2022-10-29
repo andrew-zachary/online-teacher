@@ -29,21 +29,29 @@ export const useLessonsStore = defineStore('lessons', () => {
     const appStore = useAppStore();
 
     const updatePost = async (id, values) => {
+        appStore.togglePageLoaderHandler();
+
         try {
             const res = await axiosClient.put(`ot/articles/${id}`, {...values});
             postUpdated(res.data);
         } catch (err) {
             console.log(err);
         }
+
+        appStore.togglePageLoaderHandler();
     }
 
     const getLesson = async (id) => {
+        appStore.togglePageLoaderHandler();
+
         try {
             const res = await axiosClient.get(`ot/articles/${id}`);
             lessonReceived(res.data);
         } catch (err) {
             console.log(err);
         }
+
+        appStore.togglePageLoaderHandler();
     }
 
     const deletePost = async (id) => {
@@ -74,12 +82,16 @@ export const useLessonsStore = defineStore('lessons', () => {
     };
 
     const createLesson = async (values) => {
+        appStore.togglePageLoaderHandler();
+
         try {
             await axiosClient.post(`/ot/articles`, {...values});
             lessonCreated();
         } catch (err) {
             console.log(err);
         }
+
+        appStore.togglePageLoaderHandler();
     }
 
     const postUpdated = async (data) => {

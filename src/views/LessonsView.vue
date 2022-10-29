@@ -32,6 +32,12 @@ onBeforeMount(() => {
                 <Translate toTranslate="lessons.title" />
             </template>
             <template #content>
+                <h3 
+                class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold 
+                text-center" 
+                v-if="lessonsStore.fetching">
+                    <Translate toTranslate="lessons.searching" /> ...
+                </h3>
                 <ul class="px-6">
                     <li
                     class="lesson-item"

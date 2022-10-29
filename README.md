@@ -19,7 +19,7 @@ When you learn something with the intention to teach it later, you learn it more
 <ul>
 <li>User login/register.</li>
 <li>CRUD lessons</li>
-<li>Browse all lessons</li>
+<li>Browse other lessons</li>
 <li>RTL and dark-mode theme support.</li>
 <li>UI Modals, Spinner, Forms with validation</li>
 </ul>

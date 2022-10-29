@@ -4,7 +4,8 @@
         "para": "تعلّم وعلّم"
     },
     "lessons": {
-        "title": "الدروس"
+        "title": "الدروس",
+        "searching": "جاري البحث"
     },
     "tell_you": {
         "title": "بالتأكيد",
@@ -74,7 +75,8 @@
     },
     "posts": {
         "title": "اعمالي",
-        "no_posts": "ليس لديك أي دروس"
+        "no_posts": "ليس لديك أي دروس",
+        "searching": "جاري البحث"
     },
     "new_lesson": {
         "title": "لدينا اليوم",

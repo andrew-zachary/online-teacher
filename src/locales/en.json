@@ -4,7 +4,8 @@
         "para": "learn and teach"
     },
     "lessons": {
-        "title": "lessons"
+        "title": "lessons",
+        "searching": "searching"
     },
     "tell_you": {
         "title": "sure",
@@ -74,7 +75,8 @@
     },
     "posts": {
         "title": "my posts",
-        "no_posts": "you don't have posts"
+        "no_posts": "you don't have posts",
+        "searching": "searching"
     },
     "new_lesson": {
         "title": "today we have",

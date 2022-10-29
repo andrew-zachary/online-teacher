@@ -34,7 +34,14 @@ onBeforeMount(() => {
                 <Translate toTranslate="posts.title" />
             </template>
             <template #content>
-                <h3 class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold text-center" v-if="lessonsStore.myPosts.items.length === 0">
+                <h3 v-if="lessonsStore.fetching"
+                class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold 
+                text-center">
+                    <Translate toTranslate="posts.searching" /> ...
+                </h3>
+                <h3 v-else-if="lessonsStore.myPosts.items.length === 0 && !lessonsStore.fetching"
+                class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold 
+                text-center">
                     <Translate toTranslate="posts.no_posts" />
                 </h3>
                 <ul class="px-6">

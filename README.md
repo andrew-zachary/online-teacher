@@ -1,29 +1,25 @@
-# online-teacher
+# Online Teacher
 
-This template should help get you started developing with Vue 3 in Vite.
+## Learn And Teach ...
 
-## Recommended IDE Setup
+When you learn something with the intention to teach it later, you learn it more deeply. Online Teacher will help you to exchange your experiences with everyone.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Demo
+<a href="online-teacher.netlify.app">https://online-teacher.netlify.app</a>
 
-## Customize configuration
+## Technical Details
+<ul>
+<li>Vue 3</li>
+<li>Pinia to manage app state.</li>
+<li>Localization with vue-i18n.</li>
+<li>Building and Validating forms with vee-validate.</li>
+</ul>
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## App Features
+<ul>
+<li>User login/register.</li>
+<li>CRUD lessons</li>
+<li>Browse all lessons</li>
+<li>RTL and dark-mode theme support.</li>
+<li>UI Modals, Spinner, Forms with validation</li>
+</ul>

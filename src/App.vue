@@ -22,7 +22,7 @@ import ConfirmationModal from './components/confirmation-modal.vue';
     <main>
       <RouterView v-slot="{Component}">
         <transition name="height-adapt" mode="out-in">
-          <component :is="Component"></component>
+          <Component :is="Component"></Component>
         </transition>
       </RouterView>
     </main>

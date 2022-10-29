@@ -46,13 +46,10 @@ const submit = (values) => {
             <vee-field name="cat_id" v-slot="{field, errors}">
                 <select name="cat_id" id="cat_id" class="p-4 text-3xl font-mont capitalize" v-bind="field">
                     <option value="" disabled><Translate :to-translate="preTranslate('cat_id')" /></option>
-                    <option value="62f3a65aadbbad238ad2dc53">cat 1 update</option>
-                    <option value="62f3a662adbbad238ad2dc55">cat 2</option>
-                    <option value="62f3a667adbbad238ad2dc57">cat 3</option>
-                    <option value="62f3a66badbbad238ad2dc59">cat 4</option>
-                    <option value="62f3a673adbbad238ad2dc5b">cat 5</option>
-                    <option value="62f3a67cadbbad238ad2dc5d">cat 6</option>
-                    <option value="62f3a697adbbad238ad2dc61">all</option>
+                    <option value="62f3a662adbbad238ad2dc55">cat 1</option>
+                    <option value="62f3a667adbbad238ad2dc57">cat 2</option>
+                    <option value="62f3a66badbbad238ad2dc59">cat 3</option>
+                    <option value="635d2309c5ff6fee5b850ed3">cat 4</option>
                 </select>
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                     <Translate :to-translate="preTranslate(errors[0])" />

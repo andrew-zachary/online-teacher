@@ -39,7 +39,7 @@ const saveChanges = () => {
 }
 </script>
 <template>
-    <BtnIcon :icon="GearIcon" :clickHandler="modalToggled" />
+    <BtnIcon :icon="GearIcon" @click="modalToggled" />
     <Modal :toggler="openModal" :togglerClickHandler="modalToggled">
         <template #header>
             <Translate toTranslate="modal.settings.label" />
@@ -62,7 +62,7 @@ const saveChanges = () => {
                     <LangSwitch @langPicked="langPicked" :currentLang="appStore.currentLang" :langs="appStore.langs" />
                 </div>
                 <div class="save-row mt-12 flex justify-end">
-                    <Btn text="modal.btns.save" :clickHandler="saveChanges" />
+                    <Btn text="modal.btns.save" @click="saveChanges" />
                 </div>
             </div>
         </template>

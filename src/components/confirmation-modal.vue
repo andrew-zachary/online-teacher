@@ -22,8 +22,8 @@ const confirmAction = () => {
                 <Translate :to-translate="appStore.toggleConfirmationModal.msg" />
             </p>
             <div class="save-row mt-12 flex justify-around">
-                <Btn text="modal.btns.cancel" :clickHandler="() => appStore.toggleConfirmationModalHandler({open:false})" />
-                <Btn text="modal.btns.ok" :clickHandler="confirmAction" />
+                <Btn text="modal.btns.cancel" @click="() => appStore.toggleConfirmationModalHandler({open:false})" />
+                <Btn text="modal.btns.ok" @click="confirmAction" />
             </div>
         </template>
     </Modal>

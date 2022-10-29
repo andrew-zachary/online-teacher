@@ -27,7 +27,7 @@ onBeforeMount(() => {
 })
 </script>
 <template>
-    <vee-form id="edit-lesson" @submit="submit" :initialValues="{...lessonsStore.lesson}" :validationSchema="schema" class="px-6">
+    <vee-form id="edit-lesson-form" @submit="submit" :initialValues="{...lessonsStore.lesson}" :validationSchema="schema" class="px-6">
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="title">
                 <Translate :to-translate="preTranslate('title')" />
@@ -72,4 +72,9 @@ onBeforeMount(() => {
         </div>
     </vee-form>
 </template>
-<style></style>
+<style lang="scss">
+    #edit-lesson-form {
+        max-width: 41.2rem;
+        margin: 0 auto;
+    }
+</style>

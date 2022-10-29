@@ -5,7 +5,7 @@ import { RouterView } from 'vue-router';
 <template>
     <div id="posts">
         <RouterView v-slot="{Component}">
-            <transition name="posts-edit" mode="out-in">
+            <transition name="fade-in-out" mode="out-in">
                 <component :is="Component"></component>
             </transition>
         </RouterView>
@@ -13,13 +13,13 @@ import { RouterView } from 'vue-router';
 </template>
 
 <style lang="scss">
-.posts-edit-enter-from, .posts-edit-leave-to {
+.fade-in-out-enter-from, .fade-in-out-leave-to {
     opacity: 0;
 }
-.posts-edit-enter-active, .posts-edit-leave-active {
-    transition: all 0.5s ease-out;
+.fade-in-out-enter-active, .fade-in-out-leave-active {
+    transition: all 0.3s ease-out;
 }
-.posts-edit-enter-to, .posts-edit-leave-from {
+.fade-in-out-enter-to, .fade-in-out-leave-from {
     opacity: 1;
 }
 </style>

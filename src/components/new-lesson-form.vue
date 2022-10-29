@@ -19,7 +19,7 @@ const submit = (values) => {
 };
 </script>
 <template>
-    <vee-form id="new-lesson" @submit="submit" :validationSchema="schema" class="px-6">
+    <vee-form id="new-lesson-form" @submit="submit" :validationSchema="schema" class="px-6">
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="title">
                 <Translate :to-translate="preTranslate('title')" />
@@ -64,4 +64,9 @@ const submit = (values) => {
         </div>
     </vee-form>
 </template>
-<style></style>
+<style lang="scss">
+    #new-lesson-form {
+        max-width: 41.2rem;
+        margin: 0 auto;
+    }
+</style>

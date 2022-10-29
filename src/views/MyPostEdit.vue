@@ -1,7 +1,7 @@
 <script setup>
 import View from '../layout/view.vue';
-import Scroller from '../layout/scroller.vue';
 
+import Scroller from '../components/scroller.vue';
 import Translate from '../components/translate.vue';
 import EditLessonForm from '../components/edit-lesson-form.vue';
 import BackBtn from '../components/back-btn.vue';
@@ -21,9 +21,4 @@ const id = "edit-lesson";
         </Scroller>
     </View>
 </template>
-<style lang="scss">
-    #edit-lesson {
-        max-width: 41.2rem;
-        margin: 0 auto;
-    }
-</style>
+<style></style>

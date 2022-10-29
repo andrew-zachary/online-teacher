@@ -39,16 +39,16 @@ onBeforeMount(() => {
                 </h3>
                 <ul class="px-6">
                     <li
-                    class="lesson-item"
-                    v-for="lesson of lessonsStore.myPosts.items"
-                    :key="lesson._id">
+                    class="post-item"
+                    v-for="post of lessonsStore.myPosts.items"
+                    :key="post._id">
                         <h1 class="text-4xl capitalize font-popp font-bold">
-                            <a href="#">{{lesson.title}}</a>
+                            <a href="#">{{post.title}}</a>
                         </h1>
                         <h2 
                         class="mt-2
                         text-2xl capitalize font-mont">
-                            {{lesson.excerpt}}
+                            {{post.excerpt}}
                         </h2>
                         <div 
                         class="text-2xl text-secondary capitalize font-mont font-bold
@@ -57,11 +57,11 @@ onBeforeMount(() => {
                         bg-quaternary dark:bg-quaternary-dark
                         inline-block
                         cursor-pointer">
-                            {{lesson.catId.title}}
+                            {{post.catId.title}}
                         </div>
                         <div class="post-ctrls flex justify-end mt-12">
-                            <editPost :post-id="lesson._id" />
-                            <deletePost :post-id="lesson._id" />
+                            <editPost :post-id="post._id" />
+                            <deletePost :post-id="post._id" />
                         </div>
                     </li>
                     <li><Loader v-if="lessonsStore.myPosts.items.length > 5 && !lessonsStore.myPosts.noMore" /></li>
@@ -72,7 +72,7 @@ onBeforeMount(() => {
 </template>
 
 <style scoped lang="scss">
-    .lesson-item {
+    .post-item {
         margin-bottom: 3rem;
         border-bottom: 0.1rem solid var(--primary);
         padding-bottom: 0.5rem;

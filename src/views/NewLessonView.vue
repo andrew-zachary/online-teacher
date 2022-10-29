@@ -1,7 +1,7 @@
 <script setup>
 import View from '../layout/view.vue';
-import Scroller from '../layout/scroller.vue';
 
+import Scroller from '../components/scroller.vue';
 import Translate from '../components/translate.vue';
 import NewLessonForm from '../components/new-lesson-form.vue';
 
@@ -19,9 +19,4 @@ const id = "new-lesson"
         </Scroller>
     </View>
 </template>
-<style lang="scss">
-    #new-lesson {
-        max-width: 41.2rem;
-        margin: 0 auto;
-    }
-</style>
+<style></style>

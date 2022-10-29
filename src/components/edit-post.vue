@@ -10,7 +10,7 @@ const {postId} = defineProps(['postId']);
 <template>
     <BtnIcon 
     :icon="Edit" 
-    :click-handler="() => router.push(`/posts/${postId}`)"
+    @click="() => router.push(`/posts/${postId}`)"
     />
 </template>
 <style></style>

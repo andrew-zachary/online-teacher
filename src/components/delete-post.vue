@@ -17,7 +17,7 @@ const deletePost = () => {
 <template>
     <BtnIcon 
     :icon="Trash" 
-    :click-handler="() => appStore.toggleConfirmationModalHandler({
+    @click="() => appStore.toggleConfirmationModalHandler({
         open:true,
         header:'modal.delete_post.header',
         msg:'modal.delete_post.msg',

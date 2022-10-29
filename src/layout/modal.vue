@@ -27,7 +27,7 @@ const {toggler,togglerClickHandler} = defineProps(['toggler', 'togglerClickHandl
                     <div 
                     id="box-ctrl" 
                     class="flex justify-end">
-                        <BtnIcon :icon="CloseIcon" :clickHandler="togglerClickHandler" />
+                        <BtnIcon :icon="CloseIcon" @click="togglerClickHandler" />
                     </div>
                     <div id="box-header">
                         <h1 class="text-5xl text-primary dark:text-primary-dark capitalize font-popp font-bold ">

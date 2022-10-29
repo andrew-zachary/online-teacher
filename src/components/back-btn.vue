@@ -7,6 +7,6 @@ import ArrowLeft from '../assets/arrow-left.vue';
 const router = useRouter();
 </script>
 <template>
-    <BtnIcon :icon="ArrowLeft" :click-handler="router.back" />
+    <BtnIcon :icon="ArrowLeft" @click="router.back" />
 </template>
 <style></style>

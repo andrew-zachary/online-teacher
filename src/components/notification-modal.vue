@@ -18,7 +18,7 @@ const appStore = useAppStore();
                 <Translate :to-translate="appStore.toggleNotificationModal.msg" />
             </p>
             <div class="save-row mt-12 flex justify-end">
-                <Btn text="modal.btns.ok" :clickHandler="() => appStore.toggleNotificationModalHandler({open:false})" />
+                <Btn text="modal.btns.ok" @click="() => appStore.toggleNotificationModalHandler({open:false})" />
             </div>
         </template>
     </Modal>

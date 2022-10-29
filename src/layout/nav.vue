@@ -2,8 +2,9 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-import Translate from '../components/translate.vue';
 import BarSolid from '../assets/bars-solid.vue';
+
+import Translate from '../components/translate.vue';
 
 import BtnIcon from './btn-icon.vue';
 
@@ -12,8 +13,8 @@ const openMenu = ref(false);
 
 <template>
     <nav class="px-4 py-12 relative">
-        <div id="nav-btn" class="w-full relative" @click="openMenu = !openMenu">
-            <BtnIcon :icon="BarSolid" />
+        <div id="nav-btn" class="w-full relative">
+            <BtnIcon :icon="BarSolid" @click="openMenu = !openMenu" />
         </div>
         <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark']">
             <li>

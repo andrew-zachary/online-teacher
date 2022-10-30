@@ -1,9 +1,11 @@
 <script setup>
-import { onBeforeMount, onMounted } from 'vue';
+import { onBeforeMount } from 'vue';
 import { useRoute } from 'vue-router';
 
 import Btn from '../layout/btn.vue';
+
 import Translate from './translate.vue';
+import CategoriesList from './categories-list.vue';
 
 import { useLessonsStore } from '../stores/lessons';
 
@@ -52,16 +54,7 @@ onBeforeMount(() => {
         </div>
         <div class="mt-8">
             <vee-field name="cat_id" v-slot="{field, errors}">
-                <select name="cat_id" id="cat_id" class="p-4 text-3xl font-mont capitalize" v-bind="field">
-                    <option value="" disabled><Translate :to-translate="preTranslate('cat_id')" /></option>
-                    <option value="62f3a662adbbad238ad2dc55">cat 1</option>
-                    <option value="62f3a667adbbad238ad2dc57">cat 2</option>
-                    <option value="62f3a66badbbad238ad2dc59">cat 3</option>
-                    <option value="635d2309c5ff6fee5b850ed3">cat 4</option>
-                </select>
-                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                    <Translate :to-translate="preTranslate(errors[0])" />
-                </div>
+                <CategoriesList :field="field" :errors="errors" :pre-translate="preTranslate" />
             </vee-field>
         </div>
         <div id="login-ctrl" class="w-full mt-8 flex justify-end">

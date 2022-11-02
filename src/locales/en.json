@@ -84,7 +84,7 @@
             "create": {
                 "title": "title",
                 "body": "body",
-                "cat_id": "category",
+                "cat_id": "select category",
                 "btn": "publish",
                 "errors": {
                     "title": {
@@ -106,7 +106,7 @@
             "edit": {
                 "title": "title",
                 "body": "body",
-                "cat_id": "category",
+                "cat_id": "select category",
                 "btn": "update",
                 "errors": {
                     "title": {

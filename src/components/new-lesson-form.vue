@@ -9,6 +9,7 @@ import { useLessonsStore } from '../stores/lessons';
 const lessonsStore = useLessonsStore();
 const schema = {
     title: 'required',
+    excerpt: 'required',
     body: 'required',
     cat_id: 'required'
 };
@@ -28,6 +29,17 @@ const submit = (values) => {
             </label>
             <vee-field name="title" v-slot="{field, errors}">
                 <input name="title" type="text" class="mt-4 p-4 font-popp" v-bind="field" />
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
+            </vee-field>
+        </div>
+        <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
+            <label for="excerpt">
+                <Translate :to-translate="preTranslate('excerpt')" />
+            </label>
+            <vee-field name="excerpt" v-slot="{field, errors}">
+                <input name="excerpt" type="text" class="mt-4 p-4 font-popp" v-bind="field" />
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                     <Translate :to-translate="preTranslate(errors[0])" />
                 </div>

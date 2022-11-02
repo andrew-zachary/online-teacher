@@ -83,6 +83,7 @@
         "forms": {
             "create": {
                 "title": "title",
+                "excerpt": "excerpt",
                 "body": "body",
                 "cat_id": "select category",
                 "btn": "publish",
@@ -95,6 +96,9 @@
                     },
                     "cat_id": {
                         "required": "category is required"
+                    },
+                    "excerpt": {
+                        "required": "excerpt is required"
                     }
                 }
             }
@@ -105,6 +109,7 @@
         "forms": {
             "edit": {
                 "title": "title",
+                "excerpt": "excerpt",
                 "body": "body",
                 "cat_id": "select category",
                 "btn": "update",
@@ -117,6 +122,9 @@
                     },
                     "cat_id": {
                         "required": "category is required"
+                    },
+                    "excerpt": {
+                        "required": "excerpt is required"
                     }
                 }
             }

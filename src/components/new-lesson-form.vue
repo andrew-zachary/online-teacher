@@ -46,7 +46,16 @@ const submit = (values) => {
         </div>
         <div class="mt-8">
             <vee-field name="cat_id" v-slot="{field, errors}">
-                <CategoriesList :field="field" :errors="errors" :pre-translate="preTranslate" />
+                <CategoriesList v-bind="field">
+                    <template #pleaseSelect>
+                        <option value="" disabled>
+                            <Translate :to-translate="preTranslate('cat_id')" />
+                        </option>
+                    </template>
+                </CategoriesList>
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
             </vee-field>
         </div>
         <div id="login-ctrl" class="w-full mt-8 flex justify-end">

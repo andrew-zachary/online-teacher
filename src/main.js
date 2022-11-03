@@ -15,8 +15,9 @@ import router from './router';
 import './styles/base.scss';
 
 // create, init, mount
+const pinia = createPinia();
 const app = createApp(App);
-app.use(createPinia());
+app.use(pinia);
 app.use(createI18n({
     legacy: false, 
     locale: 'en',

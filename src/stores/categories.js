@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import axiosClient from '../includes/axiosClient';
+
+import { apiCall } from '../includes/helpers';
 
 const initCategories = {
     items: []
@@ -11,12 +12,11 @@ export const useCategoriesStore = defineStore('categories', () => {
     const cats = ref({...initCategories});
 
     const getAllCategories = async () => {
-        try {
-            const res = await axiosClient.get(`ot/cats`);
-            categoriesReceived(res.data);
-        } catch (err) {
-            console.log(err);
-        }
+        await apiCall({
+            method: 'get',
+            path: 'ot/cats',
+            success: categoriesReceived
+        });
     };
 
     const categoriesReceived = (data) => {

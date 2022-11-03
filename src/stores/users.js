@@ -1,7 +1,8 @@
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
-import axiosClient from '../includes/axiosClient';
+
+import { apiCall } from '../includes/helpers';
 
 import { useAppStore } from './app';
 
@@ -15,70 +16,72 @@ export const useUserStore = defineStore('user', () => {
     })
 
     const getProfile = async() => {
-        appStore.togglePageLoaderHandler();
-
-        try {
-            const res = await axiosClient.get('/ot/users/profile');
-            profileData._id = res.data._id;
-            isAuthed.value = true;
-        } catch (err) {
-            console.log(err.response.data);
-        }
-
-        appStore.togglePageLoaderHandler();
+        await apiCall({
+            method: 'get',
+            path: '/ot/users/profile',
+            success: profileReceived,
+            loading: appStore.togglePageLoaderHandler
+        })
     };
 
     const logout = async() => {
-        appStore.togglePageLoaderHandler();
-
-        try {
-            await axiosClient.get('auth/signout');
-            profileData._id = null;
-            isAuthed.value = false;
-        } catch (err) {
-            console.log(err.response.data);
-        }
-
-        appStore.togglePageLoaderHandler();
+        await apiCall({
+            method: 'get',
+            path: 'auth/signout',
+            success: loggedout,
+            loading: appStore.togglePageLoaderHandler
+        });
     }
 
     const register = async ({firstName, lastName, email, password}) => {
-        appStore.togglePageLoaderHandler();
-
-        try {
-            await axiosClient.post('auth/signup', {
+        await apiCall({
+            method: 'post',
+            path: 'auth/signup',
+            body: {
                 firstName,
                 lastName,
                 email,
                 password,
                 app_key: import.meta.env.VITE_APP_KEY
-            });
-            isAuthed.value = true;
-            router.push({name: 'links'});
-        } catch (err) {
-            console.log(err.response.data);
-        }
-
-        appStore.togglePageLoaderHandler();
+            },
+            success: registered,
+            loading: appStore.togglePageLoaderHandler
+        });
     };
 
     const login = async ({email, password}) => {
-        appStore.togglePageLoaderHandler();
-
-        try {
-            await axiosClient.post('auth/signin', {
+        await apiCall({
+            method: 'post',
+            path: 'auth/signin',
+            body: {
                 email,
                 password,
                 app_key: import.meta.env.VITE_APP_KEY
-            });
-            isAuthed.value = true;
-            router.push({name: 'links'});
-        } catch (err) {
-            console.log(err.response.data);
-        }
-
-        appStore.togglePageLoaderHandler();
+            },
+            success: loggedin,
+            loading: appStore.togglePageLoaderHandler
+        })
     };
+
+    const profileReceived = (data) => {
+        profileData._id = data._id;
+        isAuthed.value = true;
+    }
+
+    const loggedout = () => {
+        profileData._id = null;
+        isAuthed.value = false;
+    }
+
+    const registered = () => {
+        isAuthed.value = true;
+        router.push({name: 'links'});
+    }
+
+    const loggedin = () => {
+        isAuthed.value = true;
+        router.push({name: 'links'});
+    }
 
     return { isAuthed, login, register, getProfile, logout };
 });

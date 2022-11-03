@@ -1,7 +1,9 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import axiosClient from '../includes/axiosClient';
+
 import { useAppStore } from './app';
+
+import { apiCall } from '../includes/helpers';
 
 const initMyPosts = {
     items: [],
@@ -29,45 +31,45 @@ export const useLessonsStore = defineStore('lessons', () => {
     const appStore = useAppStore();
 
     const updatePost = async (id, values) => {
-        appStore.togglePageLoaderHandler();
-
-        try {
-            const res = await axiosClient.put(`ot/articles/${id}`, {...values});
-            postUpdated(res.data);
-        } catch (err) {
-            console.log(err);
-        }
-
-        appStore.togglePageLoaderHandler();
+        await apiCall({
+            method: 'put',
+            path: 'ot/articles',
+            params: {id},
+            body: {...values},
+            success: postUpdated,
+            loading: appStore.togglePageLoaderHandler
+        });
     }
 
     const getLesson = async (id) => {
-        appStore.togglePageLoaderHandler();
-
-        try {
-            const res = await axiosClient.get(`ot/articles/${id}`);
-            lessonReceived(res.data);
-        } catch (err) {
-            console.log(err);
-        }
-
-        appStore.togglePageLoaderHandler();
+        await apiCall({
+            method: 'get',
+            path: 'ot/articles',
+            params: {id},
+            success: lessonReceived,
+            loading: appStore.togglePageLoaderHandler
+        });
     }
 
     const deletePost = async (id) => {
-        appStore.togglePageLoaderHandler();
-
-        const res = await axiosClient.delete(`ot/articles/${id}`);
-        postDeleted(res.data);
-
-        appStore.togglePageLoaderHandler();
+        await apiCall({
+            method: 'delete',
+            path: 'ot/articles',
+            params: {id},
+            success: postDeleted,
+            loading: appStore.togglePageLoaderHandler
+        });
     };
 
     const getMyPosts = async () => {
         fetching.value = true;
 
-        const res = await axiosClient.get(`/ot/articles/collections/?page=${myPosts.value.next_page}&limit=${myPosts.value.limit}`);
-        myPostsReceived(res.data);
+        await apiCall({
+            method: 'get',
+            path: 'ot/articles/collections',
+            query: {page: myPosts.value.next_page, limit: myPosts.value.limit},
+            success: myPostsReceived
+        })
 
         fetching.value = false;
     };
@@ -75,23 +77,24 @@ export const useLessonsStore = defineStore('lessons', () => {
     const getLessons = async () => {
         fetching.value = true;
 
-        const res = await axiosClient.get(`/ot/articles/?page=${lessons.value.next_page}&limit=${lessons.value.limit}`);
-        lessonsReceived(res.data);
+        await apiCall({
+            method: 'get',
+            path: 'ot/articles',
+            query: {page: lessons.value.next_page, limit: lessons.value.limit},
+            success: lessonsReceived
+        });
 
         fetching.value = false;
     };
 
     const createLesson = async (values) => {
-        appStore.togglePageLoaderHandler();
-
-        try {
-            await axiosClient.post(`/ot/articles`, {...values});
-            lessonCreated();
-        } catch (err) {
-            console.log(err);
-        }
-
-        appStore.togglePageLoaderHandler();
+        await apiCall({
+            method: 'post',
+            path: 'ot/articles',
+            body: {...values},
+            success: lessonCreated,
+            loading: appStore.togglePageLoaderHandler
+        });
     }
 
     const postUpdated = async (data) => {

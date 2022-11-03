@@ -6,6 +6,7 @@ import Btn from '../layout/btn.vue';
 
 import Translate from './translate.vue';
 import CategoriesList from './categories-list.vue';
+import LanguagesList from './languages-list.vue';
 
 import { useLessonsStore } from '../stores/lessons';
 
@@ -15,7 +16,8 @@ const schema = {
     title: 'required',
     excerpt: 'required',
     body: 'required',
-    cat_id: 'required'
+    cat_id: 'required',
+    lang: 'required'
 };
 
 const preTranslate = (target) => {
@@ -73,6 +75,20 @@ onBeforeMount(() => {
                         </option>
                     </template>
                 </CategoriesList>
+                <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
+                    <Translate :to-translate="preTranslate(errors[0])" />
+                </div>
+            </vee-field>
+        </div>
+        <div class="mt-8">
+            <vee-field name="lang" v-slot="{field, errors}">
+                <LanguagesList v-bind="field">
+                    <template #pleaseSelect>
+                        <option value="" disabled>
+                            <Translate :to-translate="preTranslate('lang')" />
+                        </option>
+                    </template>
+                </LanguagesList>
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                     <Translate :to-translate="preTranslate(errors[0])" />
                 </div>

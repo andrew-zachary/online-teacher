@@ -41,8 +41,7 @@ export const useUserStore = defineStore('user', () => {
                 firstName,
                 lastName,
                 email,
-                password,
-                app_key: import.meta.env.VITE_APP_KEY
+                password
             },
             success: registered,
             loading: appStore.togglePageLoaderHandler
@@ -55,8 +54,7 @@ export const useUserStore = defineStore('user', () => {
             path: 'auth/signin',
             body: {
                 email,
-                password,
-                app_key: import.meta.env.VITE_APP_KEY
+                password
             },
             success: loggedin,
             loading: appStore.togglePageLoaderHandler

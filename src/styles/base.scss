@@ -53,3 +53,29 @@ form {
 .font-popp {
   @include withRtl('font-family', 'Poppins', 'Vazirmatn');
 }
+
+// scroller global style
+#section-scroller {
+  padding-bottom: 8rem;
+  overflow-y: auto;
+  opacity: 1;
+  max-height: calc(100vh - 15rem);
+  width: 100%;
+
+  header {
+    h1 {
+      @include withRtl(padding, 0 0 0 0.4rem, 0 0.4rem 0 0);
+    }
+  }
+}
+div[data-simplebar=init] {
+  .simplebar-track.simplebar-vertical {
+      @include withRtl(right, 0, unset);
+      @include withRtl(left, unset, 0);
+  }
+}
+.simplebar-scrollbar::before {
+  background-color: var(--quaternary)!important;
+  opacity: 1!important;
+  width: 0.4rem!important;
+}

@@ -18,7 +18,7 @@ onMounted(() => {
     <View :id="id">
         <Scroller>
             <template #content>
-                <div id="tabs-box" class="mx-auto">
+                <div id="tabs-box" class="mx-auto px-6">
                     <div id="tabs-header" class="flex justify-around">
                         <RouterLink :to="{name:'login'}" activeClass="active-link" class="w-full p-4 text-center text-3xl font-popp capitalize"><Translate toTranslate="account.tabs.login" /></RouterLink>
                         <RouterLink :to="{name:'register'}" activeClass="active-link" class="w-full p-4 text-center text-3xl font-popp capitalize"><Translate toTranslate="account.tabs.register" /></RouterLink>

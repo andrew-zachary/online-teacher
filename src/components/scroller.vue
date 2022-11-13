@@ -23,24 +23,4 @@ onBeforeUnmount(() => {
         <slot name="content"></slot>
     </div>
 </template>
-<style lang="scss">
-    #section-scroller {
-        overflow-y: auto;
-        opacity: 1;
-        max-height: calc(100vh - 12.57rem);
-        width: 100%;
-
-        @include withRtl('padding', 0 0 6rem 1rem, 0 1rem 6rem 0);
-    }
-    div[data-simplebar=init] {
-        .simplebar-track.simplebar-vertical {
-            @include withRtl(right, 0, unset);
-            @include withRtl(left, unset, 0);
-        }
-    }
-    .simplebar-scrollbar::before {
-        background-color: var(--quaternary)!important;
-        opacity: 1!important;
-        width: 0.4rem!important;
-    }
-</style>
+<style></style>

@@ -1,5 +1,6 @@
 <script setup>
-import {onBeforeMount} from 'vue';
+import { onBeforeMount } from 'vue';
+import { RouterLink } from 'vue-router';
 
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
@@ -44,7 +45,7 @@ onBeforeMount(() => {
                     v-for="lesson of lessonsStore.lessons.items"
                     :key="lesson._id">
                         <h1 class="text-4xl capitalize font-popp font-bold">
-                            <a href="#">{{lesson.title}}</a>
+                            <RouterLink :to="`/lessons/${lesson._id}`">{{lesson.title}}</RouterLink>
                         </h1>
                         <h2 
                         class="mt-2

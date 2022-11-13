@@ -15,6 +15,7 @@ onBeforeUnmount(() => {
 </script>
 <template>
     <div ref="scroller" id="section-scroller">
+        <slot name="nav-btns"></slot>
         <header>
             <h1 class="mb-14 text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
                 <slot name="header"></slot>

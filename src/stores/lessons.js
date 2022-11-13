@@ -42,6 +42,9 @@ export const useLessonsStore = defineStore('lessons', () => {
     }
 
     const getLesson = async (id) => {
+
+        if (id === lesson.value._id) return lesson.value;
+
         await apiCall({
             method: 'get',
             path: 'ot/articles',

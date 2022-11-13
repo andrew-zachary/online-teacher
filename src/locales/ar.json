@@ -170,6 +170,16 @@
             "header": "خروج",
             "msg": "تأكيد الخروج"
         },
+        "login": {
+            "errors": {
+                "wrong_email_password": "عنوان البريد أو كلمة المرور خطأ"
+            }
+        },
+        "register": {
+            "errors": {
+                "email_already_taken": "البريد الالكتروني تم استخدامه"
+            }
+        },
         "delete_post": {
             "header": "حذف الدرس",
             "msg": "تأكيد حذف الدرس",
@@ -189,6 +199,9 @@
                     "successfully": "تم تعديل الدرس"
                 }
             }
+        },
+        "headers": {
+            "error": "حدث خطأ"
         },
         "btns": {
             "save": "حفظ",

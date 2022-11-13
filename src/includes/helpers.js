@@ -1,6 +1,14 @@
 import axiosClient from '../includes/axiosClient';
 
-export const apiCall = async ({method, path, params = null, query = null, body = null, success, loading} = {}) => {
+export const apiCall = async ({
+    method,
+    path, 
+    params = null, 
+    query = null, 
+    body = null,
+    success,
+    fail,
+    loading} = {}) => {
     
     let apiCallString = `${path}`;
 
@@ -22,7 +30,7 @@ export const apiCall = async ({method, path, params = null, query = null, body =
         const res = await axiosClient[method](apiCallString, {...body});
         success(res.data);
     } catch (err) {
-        console.log(err);
+        if (fail) fail.handler({open: true, header: fail.header, msg: fail.msg[err.response.data]});
     }
 
     if(loading) loading();

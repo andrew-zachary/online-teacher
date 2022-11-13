@@ -44,6 +44,13 @@ export const useUserStore = defineStore('user', () => {
                 password
             },
             success: registered,
+            fail: {
+                header: 'modal.headers.error',
+                msg: {
+                    'email_already_taken': 'modal.register.errors.email_already_taken'
+                },
+                handler: appStore.toggleNotificationModalHandler
+            },
             loading: appStore.togglePageLoaderHandler
         });
     };
@@ -57,6 +64,13 @@ export const useUserStore = defineStore('user', () => {
                 password
             },
             success: loggedin,
+            fail: {
+                header: 'modal.headers.error',
+                msg: {
+                    'wrong_email_password': 'modal.login.errors.wrong_email_password'
+                },
+                handler: appStore.toggleNotificationModalHandler
+            },
             loading: appStore.togglePageLoaderHandler
         })
     };

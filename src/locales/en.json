@@ -170,6 +170,16 @@
             "header": "logout",
             "msg": "confirm logout"
         },
+        "login": {
+            "errors": {
+                "wrong_email_password": "wrong email or password"
+            }
+        },
+        "register": {
+            "errors": {
+                "email_already_taken": "email already taken"
+            }
+        },
         "delete_post": {
             "header": "delete post",
             "msg": "confirm delete",
@@ -189,6 +199,9 @@
                     "successfully": "your post was updated"
                 }
             }
+        },
+        "headers": {
+            "error": "error"
         },
         "btns": {
             "save": "save",

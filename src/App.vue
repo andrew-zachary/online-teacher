@@ -11,7 +11,7 @@ import ConfirmationModal from './components/confirmation-modal.vue';
 </script>
 
 <template>
-  <div id="app-container" class="w-full relative">
+  <div id="app-container" class="w-full h-full">
     <Profile />
     <PageLoader />
     <NotificationModal />
@@ -26,8 +26,8 @@ import ConfirmationModal from './components/confirmation-modal.vue';
         </transition>
       </RouterView>
     </main>
-    <Footer />
   </div>
+  <Footer />
 </template>
 
 <style></style>

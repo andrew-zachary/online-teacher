@@ -27,6 +27,7 @@ const id = 'tell-you';
     
     p {
       line-height: 2.6rem;
+      @include withRtl(padding, 0 0 0 0.4rem, 0 0.4rem 0 0);
     }
   }
 </style>

@@ -16,7 +16,7 @@ const openMenu = ref(false);
         <div id="nav-btn" class="w-full relative">
             <BtnIcon :icon="BarSolid" @click="openMenu = !openMenu" />
         </div>
-        <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark']">
+        <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark left-0']">
             <li>
                 <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/"><Translate toTranslate="nav.home" /></RouterLink>
             </li>

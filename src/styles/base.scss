@@ -17,7 +17,7 @@
 }
 
 html {
-  min-height: 100vh;
+  min-height: 100%;
   font-size: 62.5%;
 
   &.is-rtl {
@@ -26,10 +26,14 @@ html {
 }
 
 body {
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   background-color: var(--secondary);
   color: var(--ternary);
+}
+
+main {
+  height: calc(100% - 125.7px);
 }
 
 form {
@@ -57,14 +61,11 @@ form {
 
 // scroller global style
 #section-scroller {
-  padding-bottom: 8rem;
-  @media screen and (min-width: 768px) {
-    padding-bottom: 6rem;
-  }
-
   overflow-y: auto;
   opacity: 1;
+  padding-bottom: 6rem;
   max-height: calc(100vh - 125.7px);
+  height: 100%;
   width: 100%;
 
   header {

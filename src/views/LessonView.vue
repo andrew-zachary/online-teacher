@@ -27,7 +27,7 @@ onBeforeMount(() => {
                 {{lessonsStore.lesson.title}}
             </template>
             <template #content>
-                <div id="single-lesson">
+                <div id="single-lesson" class="p-4">
                     <h3 
                     class="mt-4 text-3xl font-mont">{{lessonsStore.lesson.excerpt}}</h3>
                     <p
@@ -37,8 +37,4 @@ onBeforeMount(() => {
         </Scroller>
     </View>
 </template>
-<style lang="scss">
-    #single-lesson {
-        @include withRtl(padding, 0 0 0 1rem, 0 1rem 0 0);
-    }
-</style>
+<style></style>

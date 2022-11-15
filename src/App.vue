@@ -11,7 +11,7 @@ import ConfirmationModal from './components/confirmation-modal.vue';
 </script>
 
 <template>
-  <div id="app-container" class="w-full h-full">
+  <div id="app-container" class="h-full">
     <Profile />
     <PageLoader />
     <NotificationModal />
@@ -21,7 +21,7 @@ import ConfirmationModal from './components/confirmation-modal.vue';
     </header>
     <main>
       <RouterView v-slot="{Component}">
-        <transition name="height-adapt" mode="out-in">
+        <transition name="fade" mode="out-in">
           <Component :is="Component"></Component>
         </transition>
       </RouterView>

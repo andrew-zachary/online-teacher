@@ -4,7 +4,7 @@ import Settings from '../components/settings.vue';
 
 </script>
 <template>
-    <footer class="absolute bottom-0">
+    <footer class="absolute bottom-8">
         <Settings />
     </footer>
 </template>

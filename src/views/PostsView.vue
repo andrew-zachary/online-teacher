@@ -3,13 +3,11 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-    <div id="posts">
-        <RouterView v-slot="{Component}">
-            <transition name="fade-in-out" mode="out-in">
-                <component :is="Component"></component>
-            </transition>
-        </RouterView>
-    </div>
+    <RouterView v-slot="{Component}">
+        <transition name="fade-in-out" mode="out-in">
+            <component :is="Component"></component>
+        </transition>
+    </RouterView>
 </template>
 
 <style lang="scss">

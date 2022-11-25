@@ -32,10 +32,6 @@ body {
   color: var(--ternary);
 }
 
-main {
-  height: calc(100% - 125.7px);
-}
-
 main > section, #section-scroller {
   height: 100%;
 }

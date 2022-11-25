@@ -11,11 +11,11 @@ import ConfirmationModal from './components/confirmation-modal.vue';
 </script>
 
 <template>
+  <Profile />
+  <PageLoader />
+  <NotificationModal />
+  <ConfirmationModal />
   <div id="app-container" class="h-full">
-    <Profile />
-    <PageLoader />
-    <NotificationModal />
-    <ConfirmationModal />
     <header>
       <NavSwitch />
     </header>
@@ -30,4 +30,9 @@ import ConfirmationModal from './components/confirmation-modal.vue';
   <Footer />
 </template>
 
-<style></style>
+<style lang="scss">
+  #app-container {
+    display: grid;
+    grid-template-rows: max-content minmax(0, 1fr);
+  }
+</style>

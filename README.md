@@ -9,7 +9,7 @@ When you learn something with the intention to teach it later, you learn it more
 
 ## Technical Details
 <ul>
-<li>Vue 3</li>
+<li>SPA with Vue3 and vue-router</li>
 <li>Pinia to manage app state.</li>
 <li>Localization with vue-i18n.</li>
 <li>Building and Validating forms with vee-validate.</li>
@@ -21,5 +21,5 @@ When you learn something with the intention to teach it later, you learn it more
 <li>CRUD lessons</li>
 <li>Browse other lessons</li>
 <li>RTL and dark-mode theme support.</li>
-<li>UI Modals, Spinner, Forms with validation</li>
+<li>UI Modals, Loading Spinners, Forms with validation</li>
 </ul>

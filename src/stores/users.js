@@ -12,8 +12,10 @@ export const useUserStore = defineStore('user', () => {
 
     const isAuthed = ref(false);
     const profileData = reactive({
-        _id: null
-    })
+        _id: null,
+        name: null,
+        email: null
+    });
 
     const getProfile = async() => {
         await apiCall({
@@ -77,11 +79,15 @@ export const useUserStore = defineStore('user', () => {
 
     const profileReceived = (data) => {
         profileData._id = data._id;
+        profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
+        profileData.email = data.authId.email;
         isAuthed.value = true;
     }
 
     const loggedout = () => {
         profileData._id = null;
+        profileData.name = null;
+        profileData.email = null;
         isAuthed.value = false;
     }
 
@@ -95,5 +101,5 @@ export const useUserStore = defineStore('user', () => {
         router.push({name: 'links'});
     }
 
-    return { isAuthed, login, register, getProfile, logout };
+    return { isAuthed, login, register, getProfile, logout, profileData };
 });

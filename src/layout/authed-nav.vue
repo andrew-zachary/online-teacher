@@ -28,6 +28,11 @@ const openMenu = ref(false);
                     <Translate toTranslate="authed_nav.lessons" />
                 </RouterLink>
             </li>
+            <li>
+                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/account-settings">
+                    <Translate toTranslate="authed_nav.my_account" />
+                </RouterLink>
+            </li>
         </ul>
         <LogoutBtn />
     </nav>

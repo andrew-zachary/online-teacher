@@ -138,6 +138,9 @@
             }
         }
     },
+    "account_settings": {
+        "title": "settings"
+    },
     "nav": {
         "home": "home",
         "lessons": "lessons",
@@ -147,7 +150,8 @@
     "authed_nav": {
         "quick_links": "quick links",
         "lessons": "lessons",
-        "logout": "logout"
+        "logout": "logout",
+        "my_account": "my account"
     },
     "page_loader": {
         "msg": "please wait"

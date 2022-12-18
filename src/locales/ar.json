@@ -138,6 +138,9 @@
             }
         }
     },
+    "account_settings": {
+        "title": "الاعدادت"
+    },
     "nav": {
         "home": "ابدا",
         "lessons": "الدروس",
@@ -147,7 +150,8 @@
     "authed_nav": {
         "quick_links": "روابط سريعة",
         "lessons": "الدروس",
-        "logout": "الخروج"
+        "logout": "الخروج",
+        "my_account": "حسابي"
     },
     "page_loader": {
         "msg": "انتظر من فضلك"

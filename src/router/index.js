@@ -9,6 +9,7 @@ import LinksView from '../views/LinksView.vue';
 import PostsView from '../views/PostsView.vue';
 import MyPostsView from '../views/MyPostsView.vue';
 import MyPostEdit from '../views/MyPostEdit.vue';
+import AccountSettingsView from '../views/AccountSettingsView.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
 
@@ -85,6 +86,13 @@ const router = createRouter({
           component: MyPostEdit
         }
       ]
+    },
+    {
+      path: '/account-settings',
+      component: AccountSettingsView,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 });

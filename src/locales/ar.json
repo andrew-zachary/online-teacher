@@ -14,7 +14,9 @@
     "account": {
         "tabs": {
             "login": "الدخول",
-            "register": "التسجيل"
+            "register": "التسجيل",
+            "email": "البريد الالكتروني",
+            "password": "كلمة المرور"
         },
         "forms": {
             "login": {
@@ -51,6 +53,29 @@
                     },
                     "password": {
                         "required": "كلمة المرور مطلوبة"
+                    },
+                    "confirm_password": {
+                        "required": "تاكيد كلمة المرور مطلوب",
+                        "confirmed": "كلمة المرور غير متطابقة"
+                    }
+                }
+            },
+            "email_verification": {
+                "yes": "البريد الإلكتروني مفعل",
+                "not_verified": "البريد الإلكتروني غير مفعل",
+                "btn": "ارسل بريد التفعيل"
+            },
+            "change_password": {
+                "current_password": "كلمة المرور الحالية",
+                "new_password": "كلمة المرور الجديدة",
+                "confirm_password": "تاكيد كلمة المرور",
+                "btn": "تغير كلمة المرور",
+                "errors": {
+                    "current_password": {
+                        "required": "كلمة المرور الحالية مطلوبة"
+                    },
+                    "new_password": {
+                        "required": "كلمة المرور الجديدة مطلوبة"
                     },
                     "confirm_password": {
                         "required": "تاكيد كلمة المرور مطلوب",

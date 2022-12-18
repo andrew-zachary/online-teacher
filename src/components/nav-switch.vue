@@ -24,6 +24,7 @@ nav {
         height: 0vh;
         position: absolute;
         top: 0;
+        left: 0;
         opacity: 0;
         z-index: 10;
         overflow: hidden;
@@ -39,6 +40,7 @@ nav {
             height: unset!important;
             position: unset!important;
             top: unset!important;
+            left: unset!important;
             opacity: unset!important;
             z-index: unset!important;
         }

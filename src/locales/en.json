@@ -14,7 +14,9 @@
     "account": {
         "tabs": {
             "login": "login",
-            "register": "register"
+            "register": "register",
+            "email": "email",
+            "password": "password"
         },
         "forms": {
             "login": {
@@ -51,6 +53,29 @@
                     },
                     "password": {
                         "required": "password is required"
+                    },
+                    "confirm_password": {
+                        "required": "confirm password is required",
+                        "confirmed": "passwords do not match"
+                    }
+                }
+            },
+            "email_verification": {
+                "yes": "verified",
+                "not_verified": "not verified",
+                "btn": "send verification mail"
+            },
+            "change_password": {
+                "current_password": "current password",
+                "new_password": "new password",
+                "confirm_password": "confirm password",
+                "btn": "change password",
+                "errors": {
+                    "current_password": {
+                        "required": "current password is required"
+                    },
+                    "new_password": {
+                        "required": "new password is required"
                     },
                     "confirm_password": {
                         "required": "confirm password is required",

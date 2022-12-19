@@ -77,6 +77,34 @@ export const useUserStore = defineStore('user', () => {
         })
     };
 
+    const changePassword = async ({oldPassword, newPassword}) => {
+        await apiCall({
+            method: 'post',
+            path: 'auth/change-password',
+            body: {
+                oldPassword,
+                newPassword
+            },
+            success: passwordChanged,
+            fail: {
+                header: 'modal.headers.error',
+                msg: {
+                    'wrong_password': 'modal.change_password.errors.wrong_password'
+                },
+                handler: appStore.toggleNotificationModalHandler
+            },
+            loading: appStore.togglePageLoaderHandler
+        });
+    };
+
+    const passwordChanged = () => {
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.change_password.success.title',
+            msg: 'modal.change_password.success.body'
+        })
+    }
+
     const profileReceived = (data) => {
         profileData._id = data._id;
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
@@ -101,5 +129,5 @@ export const useUserStore = defineStore('user', () => {
         router.push({name: 'links'});
     }
 
-    return { isAuthed, login, register, getProfile, logout, profileData };
+    return { isAuthed, login, register, getProfile, logout, profileData, changePassword };
 });

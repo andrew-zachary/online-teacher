@@ -229,6 +229,15 @@
                 }
             }
         },
+        "change_password": {
+            "success": {
+                "title": "password changed",
+                "body": "password changed successfully"
+            },
+            "errors": {
+                "wrong_password": "wrong password"
+            }
+        },
         "headers": {
             "error": "error"
         },
@@ -236,6 +245,6 @@
             "save": "save",
             "ok": "ok",
             "cancel": "cancel"
-        }
+        },
     }
 }

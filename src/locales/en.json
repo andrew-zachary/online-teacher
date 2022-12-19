@@ -238,6 +238,12 @@
                 "wrong_password": "wrong password"
             }
         },
+        "verification_mail_sent": {
+            "success": {
+                "title": "verification email sent",
+                "body": "verification email sent successfully"
+            }
+        },
         "headers": {
             "error": "error"
         },
@@ -245,6 +251,6 @@
             "save": "save",
             "ok": "ok",
             "cancel": "cancel"
-        },
+        }
     }
 }

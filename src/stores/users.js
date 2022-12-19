@@ -97,37 +97,60 @@ export const useUserStore = defineStore('user', () => {
         });
     };
 
+    const sendVerificationMail = async () => {
+        await apiCall({
+            method: 'get',
+            path: 'auth/verify-email',
+            success: verificationMailSent,
+            loading: appStore.togglePageLoaderHandler
+        });
+    };
+
+    const verificationMailSent = () => {
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.verification_mail_sent.success.title',
+            msg: 'modal.verification_mail_sent.success.body'
+        });
+    };
+
     const passwordChanged = () => {
         appStore.toggleNotificationModalHandler({
             open: true,
             header: 'modal.change_password.success.title',
             msg: 'modal.change_password.success.body'
-        })
-    }
+        });
+    };
 
     const profileReceived = (data) => {
         profileData._id = data._id;
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
         isAuthed.value = true;
-    }
+    };
 
     const loggedout = () => {
         profileData._id = null;
         profileData.name = null;
         profileData.email = null;
         isAuthed.value = false;
-    }
+    };
 
-    const registered = () => {
+    const registered = (data) => {
         isAuthed.value = true;
+        profileData._id = data._id;
+        profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
+        profileData.email = data.authId.email;
         router.push({name: 'links'});
-    }
+    };
 
-    const loggedin = () => {
+    const loggedin = (data) => {
         isAuthed.value = true;
+        profileData._id = data._id;
+        profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
+        profileData.email = data.authId.email;
         router.push({name: 'links'});
-    }
+    };
 
-    return { isAuthed, login, register, getProfile, logout, profileData, changePassword };
+    return { isAuthed, login, register, getProfile, logout, profileData, changePassword, sendVerificationMail };
 });

@@ -61,8 +61,8 @@
                 }
             },
             "email_verification": {
-                "yes": "البريد الإلكتروني مفعل",
-                "not_verified": "البريد الإلكتروني غير مفعل",
+                "yes": "مفعل",
+                "not_verified": "غير مفعل",
                 "btn": "ارسل بريد التفعيل"
             },
             "change_password": {
@@ -236,6 +236,12 @@
             },
             "errors": {
                 "wrong_password": "كلمة المرور خطأ"
+            }
+        },
+        "verification_mail_sent": {
+            "success": {
+                "title": "تم ارسال بريد التفعيل",
+                "body": "تم ارسال بريد التفعيل بنجاح"
             }
         },
         "headers": {

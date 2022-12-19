@@ -22,6 +22,9 @@ const changePassword = (values) => {
         newPassword: values['new_password'],
     })
 };
+const sendVerificationMail = () => {
+    userStore.sendVerificationMail();
+}
 </script>
 <template>
     <View :id="id">
@@ -41,7 +44,8 @@ const changePassword = (values) => {
                         text-4xl text-secondary font-popp font-regular capitalize 
                         bg-quaternary dark:bg-quaternary-dark 
                         w-full max-w-sm
-                        flex flex-col items-center">
+                        flex flex-col items-center"
+                        @click="sendVerificationMail">
                             <span>
                                 <Translate :to-translate="userStore.profileData.email.verified? 'account.forms.email_verification.yes' : 'account.forms.email_verification.not_verified'" />
                             </span>

@@ -7,8 +7,8 @@ export const apiCall = async ({
     query = null, 
     body = null,
     success,
-    fail,
-    loading} = {}) => {
+    fail = null,
+    loading = null} = {}) => {
     
     let apiCallString = `${path}`;
 

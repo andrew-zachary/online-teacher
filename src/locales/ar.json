@@ -229,6 +229,15 @@
                 }
             }
         },
+        "change_password": {
+            "success": {
+                "title": "تم تغير كلمة المرور",
+                "body": "تم تغير كلمة المرور بنجاح"
+            },
+            "errors": {
+                "wrong_password": "كلمة المرور خطأ"
+            }
+        },
         "headers": {
             "error": "حدث خطأ"
         },

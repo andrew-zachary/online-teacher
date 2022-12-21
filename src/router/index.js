@@ -10,10 +10,9 @@ import PostsView from '../views/PostsView.vue';
 import MyPostsView from '../views/MyPostsView.vue';
 import MyPostEdit from '../views/MyPostEdit.vue';
 import AccountSettingsView from '../views/AccountSettingsView.vue';
+import VerifyEmailView from '../views/VerifyEmailView.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
-
-import { useUserStore } from '../stores/users';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,18 +92,24 @@ const router = createRouter({
       meta: {
         requireAuth: true
       }
+    },
+    {
+      path: '/verify-email/:email/:token/:lang',
+      name: 'verification',
+      component: VerifyEmailView,
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, _, next) => {
   if(!to.meta.requireAuth) {
     return next();
   }
 
-  const userStore = useUserStore();
-
-  if(userStore.isAuthed) {
+  if(localStorage.getItem('isAuthed')) {
     next();
   } else {
     next({name: 'home'});

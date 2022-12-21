@@ -14,7 +14,12 @@ export const apiCall = async ({
 
     if(loading) loading();
 
-    if(params) apiCallString += `/${params.id}`;
+    if(params) {
+
+        Object.entries(params).forEach(([_, value]) => {
+            apiCallString += `/${value}`;
+        });
+    }
 
     if(query) {
 
@@ -23,10 +28,10 @@ export const apiCall = async ({
         Object.entries(query).forEach(([key, value]) => {
             apiCallString += `${key}=${value}&`
         });
-
     }
 
     try {
+        
         const res = await axiosClient[method](apiCallString, {...body});
         success(res.data);
     } catch (err) {

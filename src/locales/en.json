@@ -166,6 +166,11 @@
     "account_settings": {
         "title": "settings"
     },
+    "verifying": {
+        "title": "email verification",
+        "header": "done successfully",
+        "btn": "continue"
+    },
     "nav": {
         "home": "home",
         "lessons": "lessons",
@@ -240,8 +245,17 @@
         },
         "verification_mail_sent": {
             "success": {
-                "title": "verification email sent",
-                "body": "verification email sent successfully"
+                "title": "verification mail sent",
+                "body": "verification mail sent successfully"
+            }
+        },
+        "email_verification": {
+            "success": {
+                "title": "email verified",
+                "body": "email was verified successfully"
+            },
+            "errors": {
+                "email_already_verified": "email already verified"
             }
         },
         "headers": {

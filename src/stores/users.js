@@ -23,7 +23,7 @@ export const useUserStore = defineStore('user', () => {
             path: '/ot/users/profile',
             success: profileReceived,
             loading: appStore.togglePageLoaderHandler
-        })
+        });
     };
 
     const logout = async() => {
@@ -106,6 +106,32 @@ export const useUserStore = defineStore('user', () => {
         });
     };
 
+    const verifyEmail = async (email, token) => {
+        await apiCall({
+            method: 'get',
+            path: 'auth/verify-email',
+            params: {email, token},
+            success: emailVerified,
+            fail: {
+                header: 'modal.headers.error',
+                msg: {
+                    'email_already_verified': 'modal.email_verification.errors.email_already_verified'
+                },
+                handler: appStore.toggleNotificationModalHandler
+            },
+            loading: appStore.togglePageLoaderHandler
+        });
+    };
+
+    const emailVerified = () => {
+        profileData.email.verified = true;
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.email_verification.success.title',
+            msg: 'modal.email_verification.success.body'
+        });
+    };
+
     const verificationMailSent = () => {
         appStore.toggleNotificationModalHandler({
             open: true,
@@ -126,6 +152,7 @@ export const useUserStore = defineStore('user', () => {
         profileData._id = data._id;
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
+        localStorage.setItem('isAuthed', true);
         isAuthed.value = true;
     };
 
@@ -134,23 +161,26 @@ export const useUserStore = defineStore('user', () => {
         profileData.name = null;
         profileData.email = null;
         isAuthed.value = false;
+        localStorage.removeItem('isAuthed');
     };
 
     const registered = (data) => {
-        isAuthed.value = true;
         profileData._id = data._id;
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
+        isAuthed.value = true;
+        localStorage.setItem('isAuthed', true);
         router.push({name: 'links'});
     };
 
     const loggedin = (data) => {
-        isAuthed.value = true;
         profileData._id = data._id;
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
+        isAuthed.value = true;
+        localStorage.setItem('isAuthed', true);
         router.push({name: 'links'});
     };
 
-    return { isAuthed, login, register, getProfile, logout, profileData, changePassword, sendVerificationMail };
+    return { isAuthed, login, register, getProfile, logout, profileData, changePassword, sendVerificationMail, verifyEmail };
 });

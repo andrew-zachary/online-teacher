@@ -1,9 +1,10 @@
 <script setup>
 import View from '../layout/view.vue';
+import Btn from '../layout/btn.vue';
 
 import Scroller from '../components/scroller.vue';
 import Translate from '../components/translate.vue';
-import Btn from '../layout/btn.vue';
+
 import { useUserStore } from '../stores/users';
 
 const id = "accoutn-settings";
@@ -24,7 +25,7 @@ const changePassword = (values) => {
 };
 const sendVerificationMail = () => {
     userStore.sendVerificationMail();
-}
+};
 </script>
 <template>
     <View :id="id">
@@ -33,26 +34,35 @@ const sendVerificationMail = () => {
                 <Translate toTranslate="account_settings.title" />
             </template>
             <template #content>
-                <div id="settings-box" class="px-8 text-4xl">
+                <div v-if="userStore.profileData._id" id="settings-box" class="px-8 text-4xl">
                     <section id="mail-settings">
                         <h1 class="font-bold font-popp text-primary dark:text-primary-dark capitalize">
                             <Translate to-translate="account.tabs.email" />
                         </h1>
-                        <p>{{ userStore.profileData.email.address }}</p>
+                        <p class="w-full max-w-sm break-words text-3xl">
+                            <span>{{ userStore.profileData.email.address }}</span>
+                        </p>
                         <button class="py-4
                         rounded-xl 
                         text-4xl text-secondary font-popp font-regular capitalize 
                         bg-quaternary dark:bg-quaternary-dark 
                         w-full max-w-sm
                         flex flex-col items-center"
+                        v-if="!userStore.profileData.email.verified"
                         @click="sendVerificationMail">
                             <span>
-                                <Translate :to-translate="userStore.profileData.email.verified? 'account.forms.email_verification.yes' : 'account.forms.email_verification.not_verified'" />
+                                <Translate :to-translate="'account.forms.email_verification.not_verified'" />
                             </span>
                             <span class="text-2xl text-secondary bg-quaternary dark:bg-quaternary-dark">
                                 <Translate to-translate="account.forms.email_verification.btn" />
                             </span>
                         </button>
+                        <div v-else class="py-4
+                        border border-quaternary
+                        text-4xl font-popp font-regular capitalize text-center
+                        w-full max-w-sm">
+                            <Translate :to-translate="'account.forms.email_verification.yes'" />
+                        </div>
                     </section>
                     <section id="password-settings" class="mt-14">
                         <h1 class="font-bold font-popp text-primary dark:text-primary-dark capitalize">
@@ -104,7 +114,7 @@ const sendVerificationMail = () => {
 </template>
 <style lang="scss">
     #mail-settings {
-        p, button {
+        p, button, div {
             @include withRtl('margin', 2rem 0 0 2rem, 2rem 2rem 0 0);
         }
     }

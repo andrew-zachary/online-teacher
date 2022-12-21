@@ -7,8 +7,8 @@ export const useAppStore = defineStore('app', () => {
   const { locale } = useI18n({ useScope: 'global' });
 
   const langs = [
-      {index:0, locale:'en', name: 'english', dir:'ltr'},
-      {index:1, locale:'ar', name: 'العربية', dir:'rtl'}
+    {index:0, locale:'en', name: 'english', dir:'ltr'},
+    {index:1, locale:'ar', name: 'العربية', dir:'rtl'}
   ];
 
   const currentLang = ref(langs[defaultLangIndex]);
@@ -46,7 +46,9 @@ export const useAppStore = defineStore('app', () => {
   function updateAppSettings(newSettings) {
     // update current language, color mode
     currentLang.value = langs[newSettings.langIndex];
-    currentColorMode.value = newSettings.darkModeChecked?'dark':'light';
+    if(newSettings.darkModeChecked) {
+      currentColorMode.value = newSettings.darkModeChecked?'dark':'light';
+    }
     
     // adjust ui
     if(currentLang.value.dir === 'rtl') {

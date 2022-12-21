@@ -166,6 +166,11 @@
     "account_settings": {
         "title": "الاعدادت"
     },
+    "verifying": {
+        "title": "تفعيل البريد الالكتروني",
+        "header": "تم بنجاح",
+        "btn": "استكمال"
+    },
     "nav": {
         "home": "ابدا",
         "lessons": "الدروس",
@@ -242,6 +247,15 @@
             "success": {
                 "title": "تم ارسال بريد التفعيل",
                 "body": "تم ارسال بريد التفعيل بنجاح"
+            }
+        },
+        "email_verification": {
+            "success": {
+                "title": "تم تفعيل البريد",
+                "body": "تم تفعيل البريد بنجاح"
+            },
+            "errors": {
+                "email_already_verified": "البريد الالكتروني مفعل من قبل"
             }
         },
         "headers": {

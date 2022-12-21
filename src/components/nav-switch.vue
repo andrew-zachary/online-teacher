@@ -7,8 +7,8 @@ import AuthedNav from '../layout/authed-nav.vue'
 const userStore = useUserStore();
 </script>
 <template>
-    <Nav v-if="userStore.isAuthed === false"></Nav>
-    <AuthedNav v-if="userStore.isAuthed === true"></AuthedNav>
+    <AuthedNav v-if="userStore.isAuthed"></AuthedNav>
+    <Nav v-else></Nav>
 </template>
 <style lang="scss">
 nav {

@@ -10,7 +10,7 @@ export const useUserStore = defineStore('user', () => {
     const appStore = useAppStore();
     const router = useRouter();
 
-    const isAuthed = ref(false);
+    const isAuthed = ref(null);
     const profileData = reactive({
         _id: null,
         name: null,
@@ -152,7 +152,6 @@ export const useUserStore = defineStore('user', () => {
         profileData._id = data._id;
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
-        localStorage.setItem('isAuthed', true);
         isAuthed.value = true;
     };
 
@@ -161,7 +160,6 @@ export const useUserStore = defineStore('user', () => {
         profileData.name = null;
         profileData.email = null;
         isAuthed.value = false;
-        localStorage.removeItem('isAuthed');
     };
 
     const registered = (data) => {
@@ -169,7 +167,6 @@ export const useUserStore = defineStore('user', () => {
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
         isAuthed.value = true;
-        localStorage.setItem('isAuthed', true);
         router.push({name: 'links'});
     };
 
@@ -178,7 +175,6 @@ export const useUserStore = defineStore('user', () => {
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
         isAuthed.value = true;
-        localStorage.setItem('isAuthed', true);
         router.push({name: 'links'});
     };
 

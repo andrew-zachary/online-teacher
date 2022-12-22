@@ -45,25 +45,31 @@ export const useAppStore = defineStore('app', () => {
 
   function updateAppSettings(newSettings) {
     // update current language, color mode
-    currentLang.value = langs[newSettings.langIndex];
-    if(newSettings.darkModeChecked) {
-      currentColorMode.value = newSettings.darkModeChecked?'dark':'light';
-    }
-    
-    // adjust ui
-    if(currentLang.value.dir === 'rtl') {
-      document.querySelector('html').classList.add('is-rtl');
-    } else {
-      document.querySelector('html').classList.remove('is-rtl');
-    }
-    if(currentColorMode.value === 'dark') {
-      document.querySelector('html').classList.add('dark');
-    } else {
-      document.querySelector('html').classList.remove('dark');
+
+    if(newSettings.langIndex !== null) {
+
+      currentLang.value = newSettings.lang;
+
+      if(currentLang.value.dir === 'rtl') {
+        document.querySelector('html').classList.add('is-rtl');
+      } else {
+        document.querySelector('html').classList.remove('is-rtl');
+      }
+
+      locale.value = currentLang.value.locale;
     }
 
-    // change global locale
-    locale.value = currentLang.value.locale;
+    if(newSettings.darkModeChecked !== null) {
+
+      currentColorMode.value = newSettings.darkModeChecked?'dark':'light';
+
+      if(currentColorMode.value === 'dark') {
+        document.querySelector('html').classList.add('dark');
+      } else {
+        document.querySelector('html').classList.remove('dark');
+      }
+    }
+
   }
 
   return {

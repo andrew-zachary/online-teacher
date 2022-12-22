@@ -164,7 +164,11 @@
         }
     },
     "account_settings": {
-        "title": "settings"
+        "title": "settings",
+        "language": "language",
+        "dark_mode": "dark colors",
+        "save": "save",
+        "preferences": "preferences"
     },
     "verifying": {
         "title": "email verification",

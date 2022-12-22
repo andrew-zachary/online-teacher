@@ -1,13 +1,14 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 
 import Modal from '../layout/modal.vue';
 import Btn from '../layout/btn.vue';
 import BtnIcon from '../layout/btn-icon.vue';
 
 import LangSwitch from './lang-switch.vue';
-import ColorSwitch from './color-switch.vue';
 import Translate from './translate.vue';
+
+import ColorSwitch from './color-switch.vue';
 
 import GearIcon from '../assets/gear.vue';
 
@@ -15,28 +16,31 @@ import { useAppStore } from '../stores/app';
 
 const openModal = ref(false);
 const appStore = useAppStore();
-
 const newSettings = reactive({
-    langIndex: appStore.currentLang.index,
-    darkModeChecked: false
+    lang: appStore.currentLang,
+    darkModeChecked: appStore.currentColorMode === 'dark'
 });
-
 const modalToggled = () => {
     openModal.value = !openModal.value;
 }
-
-const langPicked = (pickedIndex) => {
-    newSettings.langIndex = pickedIndex;
+const langPicked = (lang) => {
+    newSettings.lang = lang;
 }
-
 const modePicked = (checked) => {
     newSettings.darkModeChecked = checked;
 }
-
 const saveChanges = () => {
     appStore.updateAppSettings({...newSettings});
     modalToggled();
 }
+
+watch([
+    () => appStore.currentLang,
+    () => appStore.currentColorMode
+], ([lang, currentColorMode]) => {
+    newSettings.lang = lang;
+    newSettings.darkModeChecked = currentColorMode === 'light' ? false : true;
+});
 </script>
 <template>
     <BtnIcon :icon="GearIcon" @click="modalToggled" />
@@ -62,7 +66,7 @@ const saveChanges = () => {
                     <LangSwitch @langPicked="langPicked" :currentLang="appStore.currentLang" :langs="appStore.langs" />
                 </div>
                 <div class="save-row mt-12 flex justify-end">
-                    <Btn text="modal.btns.save" @click="saveChanges" />
+                    <Btn text="modal.btns.ok" @click="saveChanges" />
                 </div>
             </div>
         </template>

@@ -164,7 +164,11 @@
         }
     },
     "account_settings": {
-        "title": "الاعدادت"
+        "title": "الاعدادت",
+        "language": "اللغة",
+        "dark_mode": "الوان هادئة",
+        "save": "حفظ",
+        "preferences": "تفضيلات"
     },
     "verifying": {
         "title": "تفعيل البريد الالكتروني",

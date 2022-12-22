@@ -2,7 +2,7 @@ import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { defineStore } from 'pinia';
 
-import { apiCall } from '../includes/helpers';
+import { apiCall, calcAppPrefs } from '../includes/helpers';
 
 import { useAppStore } from './app';
 
@@ -123,6 +123,23 @@ export const useUserStore = defineStore('user', () => {
         });
     };
 
+    const update_preferences = async (newSettings) => {
+        await apiCall({
+            method: 'put',
+            path: '/ot/users/profile/app',
+            body: {
+                mode: newSettings.darkModeChecked ? 'dark' : 'light',
+                lang: newSettings.lang.locale
+            },
+            success: preferencesUpdated,
+            loading: appStore.togglePageLoaderHandler
+        });
+    };
+
+    const preferencesUpdated = async (data) => {
+        appStore.updateAppSettings(calcAppPrefs(data));
+    };
+
     const emailVerified = () => {
         profileData.email.verified = true;
         appStore.toggleNotificationModalHandler({
@@ -153,6 +170,7 @@ export const useUserStore = defineStore('user', () => {
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
         isAuthed.value = true;
+        appStore.updateAppSettings(calcAppPrefs(data.appPreferences));
     };
 
     const loggedout = () => {
@@ -178,5 +196,5 @@ export const useUserStore = defineStore('user', () => {
         router.push({name: 'links'});
     };
 
-    return { isAuthed, login, register, getProfile, logout, profileData, changePassword, sendVerificationMail, verifyEmail };
+    return { isAuthed, login, register, getProfile, logout, profileData, changePassword, sendVerificationMail, verifyEmail, update_preferences};
 });

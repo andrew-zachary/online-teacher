@@ -1,5 +1,7 @@
 import axiosClient from '../includes/axiosClient';
 
+import { useAppStore } from '../stores/app';
+
 export const apiCall = async ({
     method,
     path, 
@@ -39,4 +41,11 @@ export const apiCall = async ({
     }
 
     if(loading) loading();
+}
+
+export const calcAppPrefs = (data) => {
+    const appStore = useAppStore();
+    const lang = appStore.langs.filter(lang => lang.locale === data.lang)[0];
+    const darkModeChecked = data.mode === 'dark';
+    return {lang, darkModeChecked};
 }

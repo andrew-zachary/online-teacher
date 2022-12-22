@@ -14,6 +14,8 @@ import VerifyEmailView from '../views/VerifyEmailView.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
 
+import { useUserStore } from '../stores/users';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -109,7 +111,13 @@ router.beforeEach(async (to, _, next) => {
     return next();
   }
 
-  if(localStorage.getItem('isAuthed')) {
+  const userStore = useUserStore();
+
+  if(userStore.isAuthed === null) {
+    await userStore.getProfile();
+  }
+
+  if(userStore.isAuthed) {
     next();
   } else {
     next({name: 'home'});

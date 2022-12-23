@@ -1,14 +1,27 @@
 <script setup>
+import { ref } from 'vue';
+
 import {useUserStore} from '../stores/users'; 
 
-import Nav from '../layout/nav.vue'
-import AuthedNav from '../layout/authed-nav.vue'
+import BarSolid from '../assets/bars-solid.vue';
+
+import BtnIcon from '../layout/btn-icon.vue';
+import Nav from '../layout/nav.vue';
 
 const userStore = useUserStore();
+const openMenu = ref(false);
+const openMenuHandler = () => {
+    openMenu.value = !openMenu.value;
+}
 </script>
 <template>
-    <AuthedNav v-if="userStore.isAuthed"></AuthedNav>
-    <Nav v-else></Nav>
+    <nav class="px-4 py-12 relative flex items-center">
+        <div id="nav-btn" class="w-full relative">
+            <BtnIcon :icon="BarSolid" @click="openMenu = !openMenu" />
+        </div>
+        <slot name="authed" v-if="userStore.isAuthed" :openMenu="openMenu" :openMenuHandler="openMenuHandler"></slot>
+        <slot name="unAuthed" v-else :openMenu="openMenu" :openMenuHandler="openMenuHandler"></slot>
+    </nav>
 </template>
 <style lang="scss">
 nav {

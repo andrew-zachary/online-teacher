@@ -1,36 +1,24 @@
 <script setup>
-import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-
-import BarSolid from '../assets/bars-solid.vue';
 
 import Translate from '../components/translate.vue';
 
-import BtnIcon from './btn-icon.vue';
-
-const openMenu = ref(false);
+const { openMenu } = defineProps(['openMenu']);
 </script>
 
 <template>
-    <nav class="px-4 py-12 relative">
-        <div id="nav-btn" class="w-full relative">
-            <BtnIcon :icon="BarSolid" @click="openMenu = !openMenu" />
-        </div>
-        <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark left-0']">
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/"><Translate toTranslate="nav.home" /></RouterLink>
-            </li>
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/account"><Translate toTranslate="nav.my_account" /></RouterLink>
-            </li>
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/lessons"><Translate toTranslate="nav.lessons" /></RouterLink>
-            </li>
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/tell-you"><Translate toTranslate="nav.tell_you" /></RouterLink>
-            </li>
-        </ul>
-    </nav>
+    <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark']">    
+        <li>
+            <RouterLink @click="$emit('openMenuToggle')" activeClass="active-link" class="text-3xl font-mont capitalize" to="/"><Translate toTranslate="nav.home" /></RouterLink>
+        </li>
+        <li>
+            <RouterLink @click="$emit('openMenuToggle')" activeClass="active-link" class="text-3xl font-mont capitalize" to="/account"><Translate toTranslate="nav.my_account" /></RouterLink>
+        </li>
+        <li>
+            <RouterLink @click="$emit('openMenuToggle')" activeClass="active-link" class="text-3xl font-mont capitalize" to="/lessons"><Translate toTranslate="nav.lessons" /></RouterLink>
+        </li>
+        <li>
+            <RouterLink @click="$emit('openMenuToggle')" activeClass="active-link" class="text-3xl font-mont capitalize" to="/tell-you"><Translate toTranslate="nav.tell_you" /></RouterLink>
+        </li>
+    </ul>
 </template>
-
-<style></style>

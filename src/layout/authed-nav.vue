@@ -1,40 +1,27 @@
 <script setup>
-import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-import BarSolid from '../assets/bars-solid.vue';
-
 import Translate from '../components/translate.vue';
-import LogoutBtn from '../components/logout-btn.vue';
 
-import BtnIcon from './btn-icon.vue';
-
-const openMenu = ref(false);
+const { openMenu } = defineProps(['openMenu']);
 </script>
 
 <template>
-    <nav class="px-4 py-12 relative flex items-center">
-        <div id="nav-btn" class="w-full relative">
-            <BtnIcon :icon="BarSolid" @click="openMenu = !openMenu" />
-        </div>
-        <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark']">
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/links">
-                    <Translate toTranslate="authed_nav.quick_links" />
-                </RouterLink>
-            </li>
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/lessons">
-                    <Translate toTranslate="authed_nav.lessons" />
-                </RouterLink>
-            </li>
-            <li>
-                <RouterLink @click="openMenu = !openMenu" activeClass="active-link" class="text-3xl font-mont capitalize" to="/account-settings">
-                    <Translate toTranslate="authed_nav.my_account" />
-                </RouterLink>
-            </li>
-        </ul>
-        <LogoutBtn />
-    </nav>
+    <ul :class="[{'animate': openMenu}, 'w-full bg-secondary dark:bg-secondary-dark']">
+        <li>
+            <RouterLink @click="$emit('openMenuToggle')" activeClass="active-link" class="text-3xl font-mont capitalize" to="/links">
+                <Translate toTranslate="authed_nav.quick_links" />
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink @click="$emit('openMenuToggle')" activeClass="active-link" class="text-3xl font-mont capitalize" to="/lessons">
+                <Translate toTranslate="authed_nav.lessons" />
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink @click="$emit('openMenuToggle')" activeClass="active-link" class="text-3xl font-mont capitalize" to="/account-settings">
+                <Translate toTranslate="authed_nav.my_account" />
+            </RouterLink>
+        </li>
+    </ul>
 </template>
-<style></style>

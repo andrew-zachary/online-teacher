@@ -46,6 +46,10 @@ const submit = (values) => {
             <Btn type="submit" :text="preTranslate('btn')" />
         </div>
     </vee-form>
-    <RouterLink :to="{name: 'forgot-password'}">forgot password</RouterLink>
+    <div id="forgot-password-ctrl" class="text-3xl flex justify-center mt-12">
+        <RouterLink class="font-popp font-regular border-b border-black display-block" :to="{name: 'forgot-password'}">
+            <Translate to-translate="forgot_password.btn" />
+        </RouterLink>
+    </div>
 </template>
 <style></style>

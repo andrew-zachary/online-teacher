@@ -131,7 +131,7 @@ export const useUserStore = defineStore('user', () => {
                 mode: newSettings.darkModeChecked ? 'dark' : 'light',
                 lang: newSettings.lang.locale
             },
-            success: preferencesUpdated,
+            success: preferences_updated,
             loading: appStore.togglePageLoaderHandler
         });
     };
@@ -144,6 +144,34 @@ export const useUserStore = defineStore('user', () => {
             success: forgot_password_mail_sent,
             loading: appStore.togglePageLoaderHandler
         });
+    };
+
+    const reset_password = async ({params:{email, expTimestamp, token}, body:{newPassword}}) => {
+        await apiCall({
+            method: 'post',
+            path: '/auth/reset-password',
+            params: { email, expTimestamp, token },
+            body: { newPassword },
+            success: password_was_reset,
+            loading: appStore.togglePageLoaderHandler
+        });
+    };
+
+    const password_was_reset = async () => {
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.reset_password.success.title',
+            msg: 'modal.reset_password.success.body'
+        });
+    }
+
+    const preferences_updated = async (data) => {
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.preferences_updated.success.title',
+            msg: 'modal.preferences_updated.success.body'
+        });
+        appStore.updateAppSettings(calcAppPrefs(data));
     };
 
     const forgot_password_mail_sent = async () => {
@@ -210,7 +238,7 @@ export const useUserStore = defineStore('user', () => {
         router.push({name: 'links'});
     };
 
-    return { 
+    return {
         isAuthed, 
         login, 
         register, 
@@ -221,6 +249,7 @@ export const useUserStore = defineStore('user', () => {
         sendVerificationMail, 
         verifyEmail, 
         update_preferences,
-        send_forgot_password_mail
+        send_forgot_password_mail,
+        reset_password
     };
 });

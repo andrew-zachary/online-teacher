@@ -19,6 +19,20 @@
             "password": "password"
         },
         "forms": {
+            "reset_password": {
+                "password": "password",
+                "confirm_password": "confirm password",
+                "btn": "reset password",
+                "errors": {
+                    "password": {
+                        "required": "password is required"
+                    },
+                    "confirm_password": {
+                        "required": "confirm password is required",
+                        "confirmed": "passwords do not match"
+                    }
+                }
+            },
             "forgot_password": {
                 "email": "email",
                 "btn": "send recovery mail",
@@ -173,8 +187,12 @@
             }
         }
     },
+    "reset_password": {
+        "title": "reset password"
+    },
     "forgot_password": {
-        "title": "forgot password"
+        "title": "forgot password",
+        "btn": "forgot password"
     },
     "account_settings": {
         "title": "settings",
@@ -204,6 +222,18 @@
         "msg": "please wait"
     },
     "modal": {
+        "preferences_updated": {
+            "success": {
+                "title": "preferences update",
+                "body": "preferences were updated successfully"
+            }
+        },
+        "reset_password": {
+            "success": {
+                "title": "password reset",
+                "body": "password was reset successfully"
+            }
+        },
         "forgot_password": {
             "success": {
                 "title": "mail sent",

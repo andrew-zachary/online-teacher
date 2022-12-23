@@ -18,10 +18,10 @@ const router = useRouter();
 
 onBeforeMount(async () => {
     appStore.updateAppSettings({
-        langIndex: route.params.lang === 'en' ? 0 : 1
+        lang: appStore.langs.filter(lang => lang.locale === route.params.lang)[0]
     });
     await userStore.verifyEmail(route.params.email, route.params.token);
-})
+});
 </script>
 <template>
     <View :id="id">

@@ -23,7 +23,7 @@ onMounted(() => {
                         <RouterLink :to="{name:'login'}" activeClass="active-link" class="w-full p-4 text-center text-3xl font-popp capitalize"><Translate toTranslate="account.tabs.login" /></RouterLink>
                         <RouterLink :to="{name:'register'}" activeClass="active-link" class="w-full p-4 text-center text-3xl font-popp capitalize"><Translate toTranslate="account.tabs.register" /></RouterLink>
                     </div>
-                    <div id="tabs-content" class="p-4">
+                    <div id="tabs-content">
                         <RouterView />
                     </div>
                 </div>
@@ -31,7 +31,7 @@ onMounted(() => {
         </Scroller>
     </View>
 </template>
-<style scoped lang="scss">
+<style lang="scss">
     #tabs-box {
         max-width: 37.5rem;
 
@@ -49,7 +49,12 @@ onMounted(() => {
             }
         }
         #tabs-content {
-            border: 0.1rem solid var(--quaternary);
+
+            form {
+
+                padding: 1rem;
+                border: 0.1rem solid var(--quaternary);
+            }
         }
     }
 </style>

@@ -18,7 +18,6 @@ const pickingLang = (lang) => {
 
 watch(() => appStore.currentLang, (lang) => {
     pickedLang.value = lang;
-    console.log(pickedLang.value);
 });
 </script>
 <template>

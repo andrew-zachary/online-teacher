@@ -15,7 +15,7 @@ const openMenuHandler = () => {
 }
 </script>
 <template>
-    <nav class="px-4 py-12 relative flex items-center">
+    <nav class="p-4 pt-12 relative flex items-center">
         <div id="nav-btn" class="w-full relative">
             <BtnIcon :icon="BarSolid" @click="openMenu = !openMenu" />
         </div>

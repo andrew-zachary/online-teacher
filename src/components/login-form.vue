@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 import Btn from '../layout/btn.vue';
 import Translate from './translate.vue';
 
@@ -9,7 +11,6 @@ const schema = {
     email: 'required|email',
     password: 'required'
 };
-
 const preTranslate = (target) => {
     return `account.forms.login.${target}`;
 }
@@ -45,5 +46,6 @@ const submit = (values) => {
             <Btn type="submit" :text="preTranslate('btn')" />
         </div>
     </vee-form>
+    <RouterLink :to="{name: 'forgot-password'}">forgot password</RouterLink>
 </template>
 <style></style>

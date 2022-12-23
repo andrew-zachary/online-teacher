@@ -136,8 +136,22 @@ export const useUserStore = defineStore('user', () => {
         });
     };
 
-    const preferencesUpdated = async (data) => {
-        appStore.updateAppSettings(calcAppPrefs(data));
+    const send_forgot_password_mail = async ({email}) => {
+        await apiCall({
+            method: 'post',
+            path: '/auth/forgot-password',
+            body: { email },
+            success: forgot_password_mail_sent,
+            loading: appStore.togglePageLoaderHandler
+        });
+    };
+
+    const forgot_password_mail_sent = async () => {
+        appStore.toggleNotificationModalHandler({
+            open: true,
+            header: 'modal.forgot_password.success.title',
+            msg: 'modal.forgot_password.success.body'
+        });
     };
 
     const emailVerified = () => {
@@ -196,5 +210,17 @@ export const useUserStore = defineStore('user', () => {
         router.push({name: 'links'});
     };
 
-    return { isAuthed, login, register, getProfile, logout, profileData, changePassword, sendVerificationMail, verifyEmail, update_preferences};
+    return { 
+        isAuthed, 
+        login, 
+        register, 
+        getProfile, 
+        logout, 
+        profileData, 
+        changePassword, 
+        sendVerificationMail, 
+        verifyEmail, 
+        update_preferences,
+        send_forgot_password_mail
+    };
 });

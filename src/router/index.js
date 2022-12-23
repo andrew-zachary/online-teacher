@@ -13,6 +13,7 @@ import AccountSettingsView from '../views/AccountSettingsView.vue';
 import VerifyEmailView from '../views/VerifyEmailView.vue';
 import LoginForm from '../components/login-form.vue';
 import RegisterForm from '../components/register-form.vue';
+import ForgotPasswordForm from '../components/forgot-password-form.vue';
 
 import { useUserStore } from '../stores/users';
 
@@ -47,8 +48,13 @@ const router = createRouter({
           path: '/account/login',
           name: 'login',
           component: LoginForm
-        }
+        },
       ]
+    },
+    {
+      path: '/help/forgot-password',
+      name: 'forgot-password',
+      component: ForgotPasswordForm
     },
     {
       path: '/tell-you',

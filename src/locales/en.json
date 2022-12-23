@@ -19,6 +19,16 @@
             "password": "password"
         },
         "forms": {
+            "forgot_password": {
+                "email": "email",
+                "btn": "send recovery mail",
+                "errors": {
+                    "email": {
+                        "required": "email is required",
+                        "email": "email is not valid"
+                    }
+                }
+            },
             "login": {
                 "email": "email",
                 "password": "password",
@@ -163,6 +173,9 @@
             }
         }
     },
+    "forgot_password": {
+        "title": "forgot password"
+    },
     "account_settings": {
         "title": "settings",
         "language": "language",
@@ -191,6 +204,12 @@
         "msg": "please wait"
     },
     "modal": {
+        "forgot_password": {
+            "success": {
+                "title": "mail sent",
+                "body": "password recovery mail was sent"
+            }
+        },
         "settings": {
             "label": "settings",
             "language": "language",

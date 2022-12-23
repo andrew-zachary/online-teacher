@@ -46,7 +46,7 @@ export const useAppStore = defineStore('app', () => {
   function updateAppSettings(newSettings) {
     // update current language, color mode
 
-    if(newSettings.langIndex !== null) {
+    if(newSettings.lang !== null) {
 
       currentLang.value = newSettings.lang;
 

@@ -19,6 +19,20 @@
             "password": "كلمة المرور"
         },
         "forms": {
+            "reset_password": {
+                "password": "كلمة المرور",
+                "confirm_password": "تأكيد كلمة المرور",
+                "btn": "تغير كلمة المرور",
+                "errors": {
+                    "password": {
+                        "required": "كلمة المرور مطلوبة"
+                    },
+                    "confirm_password": {
+                        "required": "تاكيد كلمة المرور مطلوب",
+                        "confirmed": "كلمة المرور غير متطابقة"
+                    }
+                }
+            },
             "forgot_password": {
                 "email": "البريد الالكتروني",
                 "btn": "ارسل بريد استعادة كلمة المرور",
@@ -173,8 +187,12 @@
             }
         }
     },
+    "reset_password": {
+        "title": "اعادة تعين كلمة المرور"
+    },
     "forgot_password": {
-        "title": "نسيت كلمة المرور"
+        "title": "نسيت كلمة المرور",
+        "btn": "نسيت كلمة المرور"
     },
     "account_settings": {
         "title": "الاعدادت",
@@ -204,6 +222,18 @@
         "msg": "انتظر من فضلك"
     },
     "modal": {
+        "preferences_updated": {
+            "success": {
+                "title": "تحديث التفضيلات",
+                "body": "تم تحديث التفضيلات بنجاح"
+            }
+        },
+        "reset_password": {
+            "success": {
+                "title": "تم تغير كلمة المرور",
+                "body": "تم تغير كلمة المرور بنجاح"
+            }
+        },
         "forgot_password": {
             "success": {
                 "title": "تم ارسال البريد",

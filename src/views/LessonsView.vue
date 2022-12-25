@@ -39,7 +39,7 @@ onBeforeMount(() => {
                 v-if="lessonsStore.fetching">
                     <Translate toTranslate="lessons.searching" /> ...
                 </h3>
-                <ul class="px-6">
+                <ul class="w-full px-6">
                     <li
                     class="lesson-item"
                     v-for="lesson of lessonsStore.lessons.items"

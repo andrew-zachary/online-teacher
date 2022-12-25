@@ -235,6 +235,7 @@ export const useUserStore = defineStore('user', () => {
         profileData.name = data.authId.firstName + ' ' + data.authId.lastName;
         profileData.email = data.authId.email;
         isAuthed.value = true;
+        appStore.updateAppSettings(calcAppPrefs(data.appPreferences));
         router.push({name: 'links'});
     };
 

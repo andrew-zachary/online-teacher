@@ -17,7 +17,7 @@ import Nav from './layout/nav.vue';
   <PageLoader />
   <NotificationModal />
   <ConfirmationModal />
-  <div id="app-container" class="h-full">
+  <div id="app-container" class="w-full h-full">
     <header>
       <NavSwitch>
         <template #authed="{openMenu, openMenuHandler}">

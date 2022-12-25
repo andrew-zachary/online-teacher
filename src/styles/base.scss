@@ -32,6 +32,10 @@ body {
   color: var(--ternary);
 }
 
+#app {
+  max-height: 76.8rem;
+}
+
 main > section, #section-scroller {
   height: 100%;
 }
@@ -72,6 +76,10 @@ form {
       @include withRtl(padding, 0 0 0 0.4rem, 0 0.4rem 0 0);
     }
   }
+}
+.simplebar-content-wrapper {
+  display: grid;
+  align-items: center;
 }
 div[data-simplebar=init] {
   .simplebar-track.simplebar-vertical {

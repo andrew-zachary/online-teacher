@@ -142,6 +142,13 @@ export const useUserStore = defineStore('user', () => {
             path: '/auth/forgot-password',
             body: { email },
             success: forgot_password_mail_sent,
+            fail: {
+                header: 'modal.headers.error',
+                msg: {
+                    'no_user_exist': 'modal.forgot_password.errors.no_user_exist'
+                },
+                handler: appStore.toggleNotificationModalHandler
+            },
             loading: appStore.togglePageLoaderHandler
         });
     };

@@ -238,6 +238,9 @@
             "success": {
                 "title": "mail sent",
                 "body": "password recovery mail was sent"
+            },
+            "errors": {
+                "no_user_exist": "this email does not exist"
             }
         },
         "settings": {

@@ -54,7 +54,7 @@ onBeforeMount(async () => {
                             <Translate :to-translate="preTranslate('password')" />
                         </label>
                         <vee-field name="password" v-slot="{ field, errors }">
-                            <input name="password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                            <input name="password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                             <div v-if="errors.length"
                                 class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                                 <Translate :to-translate="preTranslate(errors[0])" />
@@ -66,7 +66,7 @@ onBeforeMount(async () => {
                             <Translate :to-translate="preTranslate('confirm_password')" />
                         </label>
                         <vee-field name="confirm_password" v-slot="{ field, errors }" :validateOnInput="true">
-                            <input name="confirm_password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                            <input name="confirm_password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                             <div v-if="errors.length"
                                 class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                                 <Translate :to-translate="preTranslate(errors[0])" />

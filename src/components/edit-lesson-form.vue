@@ -60,7 +60,7 @@ onBeforeMount(() => {
                 <Translate :to-translate="preTranslate('body')" />
             </label>
             <vee-field name="body" v-slot="{field, errors}">
-                <textarea name="body" rows="4" cols="50" class="mt-4 p-4 font-popp" v-bind="field" />
+                <textarea name="body" rows="4" cols="50" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                     <Translate :to-translate="preTranslate(errors[0])" />
                 </div>

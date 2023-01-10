@@ -25,7 +25,7 @@ const submit = (values) => {
                 <Translate :to-translate="preTranslate('email')" />
             </label>
             <vee-field name="email" v-slot="{field, errors}" :validateOnInput="true">
-                <input name="email" type="text" class="mt-4 p-4 font-popp" v-bind="field" />
+                <input name="email" type="text" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                     <Translate :to-translate="preTranslate(errors[0])" />
                 </div>
@@ -36,7 +36,7 @@ const submit = (values) => {
                 <Translate :to-translate="preTranslate('password')" />
             </label>
             <vee-field name="password" v-slot="{field, errors}">
-                <input name="password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                <input name="password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                     <Translate :to-translate="preTranslate(errors[0])" />
                 </div>

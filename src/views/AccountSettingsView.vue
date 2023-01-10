@@ -103,7 +103,7 @@ watch([
                                     <Translate :to-translate="preTranslate('current_password')" />
                                 </label>
                                 <vee-field name="current_password" v-slot="{field, errors}">
-                                    <input name="current_password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                                    <input name="current_password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                                     <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                                         <Translate :to-translate="preTranslate(errors[0])" />
                                     </div>
@@ -114,7 +114,7 @@ watch([
                                     <Translate :to-translate="preTranslate('new_password')" />
                                 </label>
                                 <vee-field name="new_password" v-slot="{field, errors}">
-                                    <input name="new_password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                                    <input name="new_password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                                     <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                                         <Translate :to-translate="preTranslate(errors[0])" />
                                     </div>
@@ -125,7 +125,7 @@ watch([
                                     <Translate :to-translate="preTranslate('confirm_password')" />
                                 </label>
                                 <vee-field name="confirm_password" v-slot="{field, errors}" :validateOnInput="true">
-                                    <input name="confirm_password" type="password" class="mt-4 p-4 font-popp" v-bind="field" />
+                                    <input name="confirm_password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                                     <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
                                         <Translate :to-translate="preTranslate(errors[0])" />
                                     </div>

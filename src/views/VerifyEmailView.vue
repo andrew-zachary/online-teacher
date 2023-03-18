@@ -6,15 +6,16 @@ import View from '../layout/view.vue';
 
 import { useUserStore } from '../stores/users';
 import { useAppStore } from '../stores/app';
+import { useTranslate } from '../composables/useTranslate';
 
 import Scroller from '../components/scroller.vue';
-import Translate from '../components/translate.vue';
 
 const id = "accoutn-settings";
 const userStore = useUserStore();
 const appStore = useAppStore();
 const route = useRoute();
 const router = useRouter();
+const { doTranslate } = useTranslate();
 
 onBeforeMount(async () => {
     appStore.updateAppSettings({
@@ -27,12 +28,12 @@ onBeforeMount(async () => {
     <View :id="id">
         <Scroller>
             <template #header>
-                <Translate to-translate="verifying.title" />
+                {{ doTranslate( "verifying.title" ) }}
             </template>
             <template #content>
                 <div id="verifying-box" class="px-8 text-5xl">
                     <h1 class="font-bold font-popp text-primary dark:text-primary-dark capitalize">
-                        <Translate to-translate="verifying.header" />
+                        {{ doTranslate( "verifying.header" ) }}
                     </h1>
                     <button class="py-4
                     mt-12
@@ -43,7 +44,7 @@ onBeforeMount(async () => {
                     flex flex-col items-center"
                     @click="router.push('/lessons')">
                         <span>
-                            <Translate to-translate="verifying.btn" />
+                            {{ doTranslate( "verifying.btn" ) }}
                         </span>
                     </button>
                 </div>

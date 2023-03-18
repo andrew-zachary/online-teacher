@@ -5,13 +5,14 @@ import { RouterLink } from 'vue-router';
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
 
-import Translate from '../components/translate.vue';
 import PaginateScroller from '../components/paginate-scroller.vue';
 
 import { useLessonsStore } from '../stores/lessons.js';
+import { useTranslate } from '../composables/useTranslate';
 
 const lessonsStore = useLessonsStore();
 const id = 'lessons';
+const { doTranslate } = useTranslate();
 
 const paginateLessons = () => {
     if(!lessonsStore.lessons.noMore && !lessonsStore.fetching) {
@@ -30,14 +31,14 @@ onBeforeMount(() => {
     <View :id="id">
         <PaginateScroller @atBottom="paginateLessons">
             <template #header>
-                <Translate toTranslate="lessons.title" />
+                {{ doTranslate( "lessons.title" ) }}
             </template>
             <template #content>
                 <h3 
                 class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold 
                 text-center" 
                 v-if="lessonsStore.fetching">
-                    <Translate toTranslate="lessons.searching" /> ...
+                    {{ doTranslate( "lessons.searching" ) }} ...
                 </h3>
                 <ul class="w-full px-6">
                     <li

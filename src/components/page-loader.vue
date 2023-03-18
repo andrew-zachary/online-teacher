@@ -1,10 +1,11 @@
 <script setup>
 import Loader from '../layout/loader.vue';
 
-import Translate from './translate.vue';
-
 import {useAppStore} from '../stores/app';
+import { useTranslate } from '../composables/useTranslate';
+
 const appStore = useAppStore();
+const { doTranslate } = useTranslate();
 </script>
 <template>
     <Teleport to="body">
@@ -16,7 +17,7 @@ const appStore = useAppStore();
         flex flex-col items-center justify-center"
         v-if="appStore.togglePageLoader">
             <h1 class="text-4xl capitalize font-mont text-ternary dark:text-amber-50">
-                <Translate to-translate="page_loader.msg" />
+                {{ doTranslate( "page_loader.msg" ) }}
             </h1>
             <Loader v-if="appStore.togglePageLoader" />
         </div>

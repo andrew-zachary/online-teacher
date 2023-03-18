@@ -5,16 +5,17 @@ import View from '../layout/view.vue';
 import Btn from '../layout/btn.vue';
 
 import Scroller from '../components/scroller.vue';
-import Translate from '../components/translate.vue';
 import ColorSwitch from '../components/color-switch.vue';
 import LangSwitch from '../components/lang-switch.vue';
 
 import { useUserStore } from '../stores/users';
 import { useAppStore } from '../stores/app';
+import { useTranslate } from '../composables/useTranslate';
 
 const id = "accoutn-settings";
 const userStore = useUserStore();
 const appStore = useAppStore();
+const { doTranslate } = useTranslate();
 const preTranslate = (target) => {
     return `account.forms.change_password.${target}`;
 };
@@ -58,13 +59,13 @@ watch([
     <View :id="id">
         <Scroller>
             <template #header>
-                <Translate toTranslate="account_settings.title" />
+                {{ doTranslate( "account_settings.title" ) }}
             </template>
             <template #content>
                 <div v-if="userStore.profileData._id" id="settings-box" class="px-8 text-4xl">
                     <section id="mail-settings">
                         <h1 class="font-bold font-popp text-primary dark:text-primary-dark capitalize">
-                            <Translate to-translate="account.tabs.email" />
+                            {{ doTranslate( "account.tabs.email" ) }}
                         </h1>
                         <div id="mail-settings-box" class="max-w-3xl mx-auto">
                             <p class="w-full max-w-sm break-words text-3xl">
@@ -79,55 +80,55 @@ watch([
                             v-if="!userStore.profileData.email.verified"
                             @click="sendVerificationMail">
                                 <span>
-                                    <Translate :to-translate="'account.forms.email_verification.not_verified'" />
+                                    {{ doTranslate( "account.forms.email_verification.not_verified" ) }}
                                 </span>
                                 <span class="text-2xl text-secondary bg-quaternary dark:bg-quaternary-dark">
-                                    <Translate to-translate="account.forms.email_verification.btn" />
+                                    {{ doTranslate( "account.forms.email_verification.btn" ) }}
                                 </span>
                             </button>
                             <div v-else class="py-4
                             border border-quaternary
                             text-4xl font-popp font-regular capitalize text-center
                             w-full max-w-sm">
-                                <Translate :to-translate="'account.forms.email_verification.yes'" />
+                                {{ doTranslate( "account.forms.email_verification.yes" ) }}
                             </div>
                         </div>
                     </section>
                     <section id="password-settings" class="mt-14">
                         <h1 class="font-bold font-popp text-primary dark:text-primary-dark capitalize">
-                            <Translate to-translate="account.tabs.password" />
+                            {{ doTranslate( "account.tabs.password" ) }}
                         </h1>
                         <vee-form class="max-w-3xl mx-auto" @submit="changePassword" :validationSchema="newPasswordSchema">
                             <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
                                 <label for="current_password">
-                                    <Translate :to-translate="preTranslate('current_password')" />
+                                    {{ doTranslate( preTranslate('current_password') ) }}
                                 </label>
                                 <vee-field name="current_password" v-slot="{field, errors}">
                                     <input name="current_password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                                     <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                                        <Translate :to-translate="preTranslate(errors[0])" />
+                                        {{ doTranslate( preTranslate(errors[0]) ) }}
                                     </div>
                                 </vee-field>
                             </div>
                             <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
                                 <label for="new_password">
-                                    <Translate :to-translate="preTranslate('new_password')" />
+                                    {{ doTranslate( preTranslate('new_password') ) }}
                                 </label>
                                 <vee-field name="new_password" v-slot="{field, errors}">
                                     <input name="new_password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                                     <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                                        <Translate :to-translate="preTranslate(errors[0])" />
+                                        {{ doTranslate( preTranslate(errors[0]) ) }}
                                     </div>
                                 </vee-field>
                             </div>
                             <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
                                 <label for="confirm_password">
-                                    <Translate :to-translate="preTranslate('confirm_password')" />
+                                    {{ doTranslate( preTranslate('confirm_password') ) }}
                                 </label>
                                 <vee-field name="confirm_password" v-slot="{field, errors}" :validateOnInput="true">
                                     <input name="confirm_password" type="password" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                                     <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                                        <Translate :to-translate="preTranslate(errors[0])" />
+                                        {{ doTranslate( preTranslate(errors[0]) ) }}
                                     </div>
                                 </vee-field>
                             </div>
@@ -138,18 +139,18 @@ watch([
                     </section>
                     <section id="preferences-settings" class="mt-14">
                         <h1 class="font-bold font-popp text-primary dark:text-primary-dark capitalize">
-                            <Translate toTranslate="account_settings.preferences" />
+                            {{ doTranslate( "account_settings.preferences" ) }}
                         </h1>
                         <div id="preferences-settings-box" class="max-w-3xl mx-auto">
                             <div class="ctrl-row">
                                 <div class="font-bold">
-                                    <Translate toTranslate="account_settings.dark_mode" />
+                                    {{ doTranslate( "account_settings.dark_mode" ) }}
                                 </div>
                                 <ColorSwitch @modePicked="modePicked" :currentColorMode="appStore.currentColorMode" />
                             </div>
                             <div class="ctrl-row">
                                 <div class="font-bold">
-                                    <Translate toTranslate="account_settings.language" />
+                                    {{ doTranslate( "account_settings.language" ) }}
                                 </div>
                                 <LangSwitch @langPicked="langPicked" :currentLang="newSettings.lang" :langs="appStore.langs" />
                             </div>

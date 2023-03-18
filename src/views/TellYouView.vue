@@ -1,18 +1,19 @@
 <script setup>
 import View from '../layout/view.vue';
 
-import Translate from '../components/translate.vue';
+import { useTranslate } from '../composables/useTranslate';
 
 const id = 'tell-you';
+const { doTranslate } = useTranslate();
 </script>
 
 <template>
   <View :id="id" class="flex flex-col justify-center">
     <h1 class="mb-14 text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
-      <Translate toTranslate="tell_you.title" />
+      {{ doTranslate( "tell_you.title" ) }}
     </h1>
     <p class="text-3xl font-mont font-normal">
-      <Translate toTranslate="tell_you.para" />
+      {{ doTranslate( "tell_you.para" ) }}
     </p>
   </View>
 </template>

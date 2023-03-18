@@ -1,21 +1,22 @@
 <script setup>
 import { useAppStore } from '../stores/app';
 
-import Translate from './translate.vue';
+import { useTranslate } from '../composables/useTranslate';
 
 import Modal from '../layout/modal.vue';
 import Btn from '../layout/btn.vue';
 
 const appStore = useAppStore();
+const { doTranslate } = useTranslate();
 </script>
 <template>
     <Modal :toggler="appStore.toggleNotificationModal.open" :toggler-click-handler="() => appStore.toggleNotificationModalHandler({open:false})">
         <template #header>
-            <Translate :to-translate="appStore.toggleNotificationModal.header" />
+            {{ doTranslate( "appStore.toggleNotificationModal.header" ) }}
         </template>
         <template #content>
             <p class="text-4xl font-mont font-bold text-center">
-                <Translate :to-translate="appStore.toggleNotificationModal.msg" />
+                {{ doTranslate( "appStore.toggleNotificationModal.msg" ) }}
             </p>
             <div class="save-row mt-12 flex justify-end">
                 <Btn text="modal.btns.ok" @click="() => appStore.toggleNotificationModalHandler({open:false})" />

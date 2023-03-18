@@ -1,7 +1,8 @@
 <script setup>
-import Translate from '../components/translate.vue';
+import { useTranslate } from '../composables/useTranslate';
 
-const {clickHandler, text} = defineProps(['clickHandler', 'text']);
+const { clickHandler, text } = defineProps(['clickHandler', 'text']);
+const { doTranslate } = useTranslate();
 </script>
 <template>
     <button
@@ -11,7 +12,7 @@ const {clickHandler, text} = defineProps(['clickHandler', 'text']);
     text-quaternary dark:text-quaternary-dark
     rounded-full"
     @click="clickHandler">
-        <Translate :toTranslate="text" />
+        {{ doTranslate( text ) }}
     </button>
 </template>
 <style></style>

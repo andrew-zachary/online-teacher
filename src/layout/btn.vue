@@ -1,7 +1,8 @@
 <script setup>
-import Translate from '../components/translate.vue';
+import { useTranslate } from '../composables/useTranslate';
 
-const {text} = defineProps(['text']);
+const { text } = defineProps(['text']);
+const { doTranslate } = useTranslate();
 </script>
 <template>
     <button 
@@ -9,7 +10,7 @@ const {text} = defineProps(['text']);
     rounded-xl 
     text-3xl text-secondary font-popp font-regular capitalize
     bg-quaternary dark:bg-quaternary-dark">
-        <Translate :toTranslate="text" />
+        {{ doTranslate( text ) }}
     </button>
 </template>
 <style></style>

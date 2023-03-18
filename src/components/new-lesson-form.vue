@@ -1,13 +1,14 @@
 <script setup>
 import Btn from '../layout/btn.vue';
 
-import Translate from './translate.vue';
 import CategoriesList from './categories-list.vue';
 import LanguagesList from './languages-list.vue';
 
 import { useLessonsStore } from '../stores/lessons';
+import { useTranslate } from '../composables/useTranslate';
 
 const lessonsStore = useLessonsStore();
+const { doTranslate } = useTranslate();
 const schema = {
     title: 'required',
     excerpt: 'required',
@@ -27,34 +28,34 @@ const submit = (values) => {
     <vee-form id="new-lesson-form" @submit="submit" :validationSchema="schema" class="px-6">
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="title">
-                <Translate :to-translate="preTranslate('title')" />
+                {{ doTranslate( preTranslate('title') ) }}
             </label>
             <vee-field name="title" v-slot="{field, errors}">
                 <input name="title" type="text" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                    <Translate :to-translate="preTranslate(errors[0])" />
+                    {{ doTranslate( preTranslate(errors[0]) ) }}
                 </div>
             </vee-field>
         </div>
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="excerpt">
-                <Translate :to-translate="preTranslate('excerpt')" />
+                {{ doTranslate( preTranslate('excerpt') ) }}
             </label>
             <vee-field name="excerpt" v-slot="{field, errors}">
                 <input name="excerpt" type="text" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                    <Translate :to-translate="preTranslate(errors[0])" />
+                    {{ doTranslate( preTranslate(errors[0]) ) }}
                 </div>
             </vee-field>
         </div>
         <div class="mt-8 flex flex-col text-3xl capitalize font-mont">
             <label for="body">
-                <Translate :to-translate="preTranslate('body')" />
+                {{ doTranslate( preTranslate('body') ) }}
             </label>
             <vee-field name="body" v-slot="{field, errors}">
                 <textarea name="body" rows="4" cols="50" class="w-full mt-4 p-4 font-popp" v-bind="field" />
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                    <Translate :to-translate="preTranslate(errors[0])" />
+                    {{ doTranslate( preTranslate(errors[0]) ) }}
                 </div>
             </vee-field>
         </div>
@@ -63,12 +64,12 @@ const submit = (values) => {
                 <CategoriesList v-bind="field">
                     <template #pleaseSelect>
                         <option value="" disabled>
-                            <Translate :to-translate="preTranslate('cat_id')" />
+                            {{ doTranslate( preTranslate('cat_id') ) }}
                         </option>
                     </template>
                 </CategoriesList>
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                    <Translate :to-translate="preTranslate(errors[0])" />
+                    {{ doTranslate( preTranslate(errors[0]) ) }}
                 </div>
             </vee-field>
         </div>
@@ -77,12 +78,12 @@ const submit = (values) => {
                 <LanguagesList v-bind="field">
                     <template #pleaseSelect>
                         <option value="" disabled>
-                            <Translate :to-translate="preTranslate('lang')" />
+                            {{ doTranslate( preTranslate('lang') ) }}
                         </option>
                     </template>
                 </LanguagesList>
                 <div v-if="errors.length" class="mt-2 text-2xl text-red-600 dark:text-red-400 font-popp font-medium">
-                    <Translate :to-translate="preTranslate(errors[0])" />
+                    {{ doTranslate( preTranslate(errors[0]) ) }}
                 </div>
             </vee-field>
         </div>

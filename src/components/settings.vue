@@ -6,16 +6,17 @@ import Btn from '../layout/btn.vue';
 import BtnIcon from '../layout/btn-icon.vue';
 
 import LangSwitch from './lang-switch.vue';
-import Translate from './translate.vue';
 
 import ColorSwitch from './color-switch.vue';
 
 import GearIcon from '../assets/gear.vue';
 
 import { useAppStore } from '../stores/app';
+import { useTranslate } from '../composables/useTranslate';
 
 const openModal = ref(false);
 const appStore = useAppStore();
+const { doTranslate } = useTranslate();
 const newSettings = reactive({
     lang: appStore.currentLang,
     darkModeChecked: appStore.currentColorMode === 'dark'
@@ -46,7 +47,7 @@ watch([
     <BtnIcon :icon="GearIcon" @click="modalToggled" />
     <Modal :toggler="openModal" :togglerClickHandler="modalToggled">
         <template #header>
-            <Translate toTranslate="modal.settings.label" />
+            {{ doTranslate( "modal.settings.label" ) }}
         </template>
         <template #content>
             <div 
@@ -55,13 +56,13 @@ watch([
             flex flex-col">
                 <div class="ctrl-row">
                     <div class="font-bold">
-                        <Translate toTranslate="modal.settings.dark_mode" />
+                        {{ doTranslate( "modal.settings.dark_mode" ) }}
                     </div>
                     <ColorSwitch @modePicked="modePicked" :currentColorMode="appStore.currentColorMode" />
                 </div>
                 <div class="ctrl-row">
                     <div class="font-bold">
-                        <Translate toTranslate="modal.settings.language" />
+                        {{ doTranslate( "modal.settings.language" ) }}
                     </div>
                     <LangSwitch @langPicked="langPicked" :currentLang="appStore.currentLang" :langs="appStore.langs" />
                 </div>

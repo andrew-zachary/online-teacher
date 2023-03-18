@@ -6,11 +6,11 @@ let scrollerObj = null;
 const scroller = ref(null);
 
 onMounted(() => {
-    scrollerObj = new SimpleBar(scroller.value);
+    // scrollerObj = new SimpleBar(scroller.value);
 });
 
 onBeforeUnmount(() => {
-    scrollerObj.unMount();
+    // scrollerObj.unMount();
 });
 </script>
 <template>

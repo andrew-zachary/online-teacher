@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount} from 'vue';
+import { ref } from 'vue';
 
-let scrollerObj = null;
+import { useSimpleBar } from '../composables/useSimpleBar';
 
 const emit = defineEmits(['atBottom']);
 const scroller = ref(null);
@@ -10,16 +10,8 @@ const scrollingHandler = (e) => {
         emit('atBottom');
     }
 };
+useSimpleBar({elementRef: scroller, onScrollEvent:scrollingHandler});
 
-onMounted(() => {
-    scrollerObj = new SimpleBar(scroller.value);
-    scrollerObj.getScrollElement().addEventListener('scroll', scrollingHandler);
-});
-
-onBeforeUnmount(() => {
-    scrollerObj.getScrollElement().removeEventListener('scroll', scrollingHandler);
-    scrollerObj.unMount();
-});
 </script>
 <template>
     <div ref="scroller" id="section-scroller">

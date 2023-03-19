@@ -36,11 +36,15 @@ export const apiCall = async ({
         
         const res = await axiosClient[method](apiCallString, {...body});
         success(res.data);
+
     } catch (err) {
+
         if (fail) fail.handler({open: true, header: fail.header, msg: fail.msg[err.response.data]});
+
     }
 
     if(loading) loading();
+    
 }
 
 export const calcAppPrefs = (data) => {

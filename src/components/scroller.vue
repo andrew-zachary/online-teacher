@@ -1,17 +1,11 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount} from 'vue';
+import { ref } from 'vue';
 
-let scrollerObj = null;
+import { useSimpleBar } from '../composables/useSimpleBar';
 
 const scroller = ref(null);
+useSimpleBar({elementRef: scroller});
 
-onMounted(() => {
-    scrollerObj = new SimpleBar(scroller.value);
-});
-
-onBeforeUnmount(() => {
-    scrollerObj.unMount();
-});
 </script>
 <template>
     <div ref="scroller" id="section-scroller">

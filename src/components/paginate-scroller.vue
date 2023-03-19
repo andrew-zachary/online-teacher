@@ -12,13 +12,13 @@ const scrollingHandler = (e) => {
 };
 
 onMounted(() => {
-    // scrollerObj = new SimpleBar(scroller.value);
-    // scrollerObj.getScrollElement().addEventListener('scroll', scrollingHandler);
+    scrollerObj = new SimpleBar(scroller.value);
+    scrollerObj.getScrollElement().addEventListener('scroll', scrollingHandler);
 });
 
 onBeforeUnmount(() => {
-    // scrollerObj.getScrollElement().removeEventListener('scroll', scrollingHandler);
-    // scrollerObj.unMount();
+    scrollerObj.getScrollElement().removeEventListener('scroll', scrollingHandler);
+    scrollerObj.unMount();
 });
 </script>
 <template>

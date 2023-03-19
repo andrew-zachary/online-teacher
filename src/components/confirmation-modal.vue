@@ -16,11 +16,11 @@ const confirmAction = () => {
 <template>
     <Modal :toggler="appStore.toggleConfirmationModal.open" :toggler-click-handler="() => appStore.toggleConfirmationModalHandler({open:false})">
         <template #header>
-            {{ doTranslate("appStore.toggleConfirmationModal.header") }}
+            {{ doTranslate(appStore.toggleConfirmationModal.header) }}
         </template>
         <template #content>
             <p class="text-4xl font-mont font-bold text-center">
-                {{ doTranslate("appStore.toggleConfirmationModal.msg") }}
+                {{ doTranslate(appStore.toggleConfirmationModal.msg) }}
             </p>
             <div class="save-row mt-12 flex justify-around">
                 <Btn text="modal.btns.cancel" @click="() => appStore.toggleConfirmationModalHandler({open:false})" />

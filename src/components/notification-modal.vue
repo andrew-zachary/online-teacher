@@ -12,11 +12,11 @@ const { doTranslate } = useTranslate();
 <template>
     <Modal :toggler="appStore.toggleNotificationModal.open" :toggler-click-handler="() => appStore.toggleNotificationModalHandler({open:false})">
         <template #header>
-            {{ doTranslate( "appStore.toggleNotificationModal.header" ) }}
+            {{ doTranslate( appStore.toggleNotificationModal.header ) }}
         </template>
         <template #content>
             <p class="text-4xl font-mont font-bold text-center">
-                {{ doTranslate( "appStore.toggleNotificationModal.msg" ) }}
+                {{ doTranslate( appStore.toggleNotificationModal.msg ) }}
             </p>
             <div class="save-row mt-12 flex justify-end">
                 <Btn text="modal.btns.ok" @click="() => appStore.toggleNotificationModalHandler({open:false})" />

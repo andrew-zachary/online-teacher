@@ -16,9 +16,7 @@ useSimpleBar({elementRef: scroller, onScrollEvent:scrollingHandler});
 <template>
     <div ref="scroller" id="section-scroller">
         <header>
-            <h1 class="mb-14 text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
-                <slot name="header"></slot>
-            </h1>
+            <slot name="header"></slot>
         </header>
         <slot name="content"></slot>
     </div>

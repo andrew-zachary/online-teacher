@@ -1,18 +1,31 @@
 <script setup>
-import { onBeforeMount } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { RouterLink } from 'vue-router';
+
+import searchIcon from '../assets/search.vue';
 
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
+import BtnIcon from '../layout/btn-icon.vue';
+import Btn from '../layout/btn.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
 
 import { useLessonsStore } from '../stores/lessons.js';
 import { useTranslate } from '../composables/useTranslate';
 
+const toggleSearch = ref(false);
 const lessonsStore = useLessonsStore();
 const id = 'lessons';
 const { doTranslate } = useTranslate();
+
+const doSearch = () => {
+    console.log('test');
+}
+
+const showSearchBar = () => {
+    toggleSearch.value = !toggleSearch.value;
+}
 
 const paginateLessons = () => {
     if(!lessonsStore.lessons.noMore && !lessonsStore.fetching) {
@@ -31,7 +44,18 @@ onBeforeMount(() => {
     <View :id="id">
         <PaginateScroller @atBottom="paginateLessons">
             <template #header>
-                {{ doTranslate( "lessons.title" ) }}
+                <div class="flex items-center" v-show="!toggleSearch">
+                    <h1 class="text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
+                        {{ doTranslate( "lessons.title" ) }}
+                    </h1>
+                    <BtnIcon :icon="searchIcon" @click="showSearchBar" />
+                </div>
+                <div v-show="toggleSearch" class="p-6">
+                    <form class="flex" @submit.prevent="doSearch">
+                        <input type="text" placeholder="search for ..." class="p-4 w-full text-3xl capitalize font-mont" />
+                        <Btn text="Go" type="submit" class="rounded-none" />
+                    </form>
+                </div>
             </template>
             <template #content>
                 <h3 

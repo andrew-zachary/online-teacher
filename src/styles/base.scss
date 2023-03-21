@@ -40,7 +40,7 @@ main > section, #section-scroller {
   height: 100%;
 }
 
-form {
+form, .has-inputs {
   input, textarea, select {
     border: 0.1rem solid var(--quaternary);
     background-color: var(--secondary);

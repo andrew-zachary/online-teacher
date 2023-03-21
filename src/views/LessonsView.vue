@@ -7,7 +7,6 @@ import searchIcon from '../assets/search.vue';
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
 import BtnIcon from '../layout/btn-icon.vue';
-import Btn from '../layout/btn.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
 
@@ -50,11 +49,9 @@ onBeforeMount(() => {
                     </h1>
                     <BtnIcon :icon="searchIcon" @click="showSearchBar" />
                 </div>
-                <div v-show="toggleSearch" class="p-6">
-                    <form class="flex" @submit.prevent="doSearch">
-                        <input type="text" placeholder="search for ..." class="p-4 w-full text-3xl capitalize font-mont" />
-                        <Btn text="Go" type="submit" class="rounded-none" />
-                    </form>
+                <div v-show="toggleSearch" class="has-inputs p-6 flex">                    
+                    <input type="text" placeholder="search for ..." class="p-4 w-full text-3xl capitalize font-mont" />
+                    <searchIcon class="h-full" />
                 </div>
             </template>
             <template #content>
@@ -94,6 +91,12 @@ onBeforeMount(() => {
 </template>
 
 <style scoped lang="scss">
+    .has-inputs {
+        
+        svg {
+            max-width: 4.45rem;
+        }
+    }
     .lesson-item {
         margin-bottom: 3rem;
         border-bottom: 0.1rem solid var(--primary);

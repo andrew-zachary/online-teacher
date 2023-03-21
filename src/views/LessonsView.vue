@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, ref } from 'vue';
+import { onMounted, onBeforeMount, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 import closeIcon from '../assets/close.vue';
@@ -48,6 +48,13 @@ const paginateLessons = () => {
 
     }
 }
+
+onMounted(() => {
+
+    toggleSearch.value = lessonsStore.lessons.searchStr !== '';
+    searchInput.value.value = lessonsStore.lessons.searchStr;
+
+});
 
 onBeforeMount(() => {
 

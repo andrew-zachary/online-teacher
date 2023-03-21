@@ -2,11 +2,13 @@
 import { onBeforeMount, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
+import closeIcon from '../assets/close.vue';
 import searchIcon from '../assets/search.vue';
 
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
 import BtnIcon from '../layout/btn-icon.vue';
+import BtnSolidWithSlot from '../layout/btn-solid-with-slot.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
 
@@ -19,11 +21,18 @@ const searchInput = ref(null);
 const lessonsStore = useLessonsStore();
 const id = 'lessons';
 const { doTranslate } = useTranslate();
+
 const doSearch = useDebounceFn(() => {
 
     lessonsStore.getLessons({search: searchInput.value.value});
 
 }, 1000);
+const resetSearch = () => {
+
+    searchInput.value.value = '';
+    lessonsStore.getLessons({search: searchInput.value.value});
+
+}
 
 const showSearchBar = () => {
 
@@ -61,14 +70,16 @@ onBeforeMount(() => {
                     </h1>
                     <BtnIcon :icon="searchIcon" @click="showSearchBar" />
                 </div>
-                <div v-show="toggleSearch" class="has-inputs p-6 flex">                    
+                <div v-show="toggleSearch" class="has-inputs p-6 flex items-center">                    
                     <input
                         type="text" 
                         placeholder="search for ..." 
                         class="p-4 w-full text-3xl capitalize font-mont" 
                         ref="searchInput" 
                         @input="doSearch"/>
-                    <searchIcon class="h-full" />
+                    <BtnSolidWithSlot class="rounded-none self-stretch">
+                        <closeIcon class="h-full" @click="resetSearch" />
+                    </BtnSolidWithSlot>
                 </div>
             </template>
             <template #content>
@@ -89,16 +100,7 @@ onBeforeMount(() => {
                         <h2 
                         class="mt-2
                         text-2xl capitalize font-mont">{{lesson.excerpt}}</h2>
-                        <div 
-                        class="text-2xl text-secondary capitalize font-mont font-bold
-                        mt-6 py-1 px-2 
-                        rounded-lg
-                        bg-quaternary dark:bg-quaternary-dark
-                        inline-block
-                        cursor-pointer
-                        ">
-                            {{lesson.catId.title}}
-                        </div>
+                        <BtnSolidWithSlot class="mt-4">{{lesson.catId.title}}</BtnSolidWithSlot>
                     </li>
                     <li><Loader v-if="lessonsStore.lessons.items.length > 5 && !lessonsStore.lessons.noMore" /></li>
                 </ul>

@@ -16,7 +16,8 @@ const initLessons = {
     items: [],
     noMore: false,
     next_page: 1,
-    limit: 10
+    limit: 10,
+    searchStr: ''
 }
 
 const initLesson = {};
@@ -77,17 +78,38 @@ export const useLessonsStore = defineStore('lessons', () => {
         fetching.value = false;
     };
 
-    const getLessons = async () => {
+    const getLessons = async ({search} = {search: ''}) => {
+
         fetching.value = true;
+
+        // is this a new search
+        if(search.length > 0 && lessons.value.searchStr !== search) {
+
+            lessons.value.next_page = 1;
+            lessons.value.noMore = false;
+            lessons.value.items = [];
+            lessons.value.searchStr = search;
+
+        } 
+        // is this a recovering from a search
+        else if(search.length === 0 && lessons.value.searchStr !== '') {
+
+            lessons.value.next_page = 1;
+            lessons.value.noMore = false;
+            lessons.value.items = [];
+            lessons.value.searchStr = '';
+
+        }
 
         await apiCall({
             method: 'get',
             path: 'ot/articles',
-            query: {page: lessons.value.next_page, limit: lessons.value.limit},
+            query: {page: lessons.value.next_page, limit: lessons.value.limit, s: lessons.value.searchStr},
             success: lessonsReceived
         });
 
         fetching.value = false;
+
     };
 
     const createLesson = async (values) => {
@@ -158,12 +180,19 @@ export const useLessonsStore = defineStore('lessons', () => {
     }
 
     const lessonsReceived = (data) => {
+
         lessons.value.next_page += 1;
+
         if(data.length === 0) {
+
             lessons.value.noMore = true;
+
         } else {
+
             lessons.value.items = lessons.value.items.concat(data);
+
         }
+
     }
 
     return {

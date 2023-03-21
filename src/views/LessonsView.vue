@@ -10,32 +10,44 @@ import BtnIcon from '../layout/btn-icon.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
 
+import { useDebounceFn } from '@vueuse/core';
 import { useLessonsStore } from '../stores/lessons.js';
 import { useTranslate } from '../composables/useTranslate';
 
 const toggleSearch = ref(false);
+const searchInput = ref(null);
 const lessonsStore = useLessonsStore();
 const id = 'lessons';
 const { doTranslate } = useTranslate();
+const doSearch = useDebounceFn(() => {
 
-const doSearch = () => {
-    console.log('test');
-}
+    lessonsStore.getLessons({search: searchInput.value.value});
+
+}, 1000);
 
 const showSearchBar = () => {
+
     toggleSearch.value = !toggleSearch.value;
+
 }
 
 const paginateLessons = () => {
+
     if(!lessonsStore.lessons.noMore && !lessonsStore.fetching) {
-        lessonsStore.getLessons();
+
+        lessonsStore.getLessons({search: searchInput.value.value});
+
     }
 }
 
 onBeforeMount(() => {
+
     if(lessonsStore.lessons.items.length === 0) {
-        paginateLessons();
+        
+        lessonsStore.getLessons();
+
     }
+
 });
 </script>
 
@@ -50,7 +62,12 @@ onBeforeMount(() => {
                     <BtnIcon :icon="searchIcon" @click="showSearchBar" />
                 </div>
                 <div v-show="toggleSearch" class="has-inputs p-6 flex">                    
-                    <input type="text" placeholder="search for ..." class="p-4 w-full text-3xl capitalize font-mont" />
+                    <input
+                        type="text" 
+                        placeholder="search for ..." 
+                        class="p-4 w-full text-3xl capitalize font-mont" 
+                        ref="searchInput" 
+                        @input="doSearch"/>
                     <searchIcon class="h-full" />
                 </div>
             </template>

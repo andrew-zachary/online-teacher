@@ -41,7 +41,7 @@
             class="p-4 w-full text-3xl capitalize font-mont" 
             ref="searchInput" 
             @input="emits('emitDoSearch', searchInput.value)"/>
-        <BtnSolidWithSlot class="rounded-none self-stretch" @click="clearInputAndReset" :disabled="previousSearchStr === ''">
+        <BtnSolidWithSlot class="self-stretch !rounded-none" @click="clearInputAndReset" :disabled="previousSearchStr === ''">
             <closeIcon class="h-full" />
         </BtnSolidWithSlot>
     </div>

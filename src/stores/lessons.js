@@ -9,7 +9,8 @@ const initMyPosts = {
     items: [],
     noMore: false,
     next_page: 1,
-    limit: 10
+    limit: 10,
+    searchStr: ''
 }
 
 const initLessons = {
@@ -65,17 +66,38 @@ export const useLessonsStore = defineStore('lessons', () => {
         });
     };
 
-    const getMyPosts = async () => {
+    const getMyPosts = async ({search} = {search: ''}) => {
+
         fetching.value = true;
+
+        // is this a new search
+        if(search.length > 0 && myPosts.value.searchStr !== search) {
+
+            myPosts.value.next_page = 1;
+            myPosts.value.noMore = false;
+            myPosts.value.items = [];
+            myPosts.value.searchStr = search;
+
+        } 
+        // is this a recovering from a search
+        else if(search.length === 0 && myPosts.value.searchStr !== '') {
+
+            myPosts.value.next_page = 1;
+            myPosts.value.noMore = false;
+            myPosts.value.items = [];
+            myPosts.value.searchStr = '';
+
+        }
 
         await apiCall({
             method: 'get',
             path: 'ot/articles/collections',
-            query: {page: myPosts.value.next_page, limit: myPosts.value.limit},
+            query: {page: myPosts.value.next_page, limit: myPosts.value.limit, s: myPosts.value.searchStr},
             success: myPostsReceived
         })
 
         fetching.value = false;
+
     };
 
     const getLessons = async ({search} = {search: ''}) => {

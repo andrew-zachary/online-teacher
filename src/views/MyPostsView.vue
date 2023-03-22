@@ -1,30 +1,62 @@
 <script setup>
-import {onBeforeMount} from 'vue';
+import { onMounted, onBeforeMount, ref } from 'vue';
 
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
-import deletePost from '../components/delete-post.vue';
-import editPost from '../components/edit-post.vue';
+import DeletePost from '../components/delete-post.vue';
+import EditPost from '../components/edit-post.vue';
+import ListHeaderSearch from '../components/list-header-search.vue';
 
+import { useDebounceFn } from '@vueuse/core';
 import { useLessonsStore } from '../stores/lessons.js';
 import { useTranslate } from '../composables/useTranslate';
 
+const searchInput = ref(null);
 const lessonsStore = useLessonsStore();
 const id = 'posts-list';
 const { doTranslate } = useTranslate();
 
-const paginateLessons = () => {
-    if(!lessonsStore.myPosts.noMore && !lessonsStore.fetching) {
-        lessonsStore.getMyPosts();
-    }
+const doSearch = useDebounceFn((searchInputTxt) => {
+
+    searchInput.value = searchInputTxt;
+
+    lessonsStore.getMyPosts({search: searchInput.value});
+
+}, 1000);
+const resetSearch = () => {
+
+    if(searchInput.value === '') return;
+
+    searchInput.value = '';
+    lessonsStore.getMyPosts({search: searchInput.value});
+
 }
 
-onBeforeMount(() => {
-    if(lessonsStore.myPosts.items.length === 0) {
-        paginateLessons();
+const paginateLessons = () => {
+
+    if(!lessonsStore.myPosts.noMore && !lessonsStore.fetching) {
+
+        lessonsStore.getMyPosts({search: searchInput.value});
     }
+
+}
+
+onMounted(() => {
+
+    searchInput.value = lessonsStore.myPosts.searchStr;
+
+});
+
+onBeforeMount(() => {
+
+    if(lessonsStore.myPosts.items.length === 0) {
+
+        lessonsStore.getMyPosts();
+
+    }
+
 });
 </script>
 
@@ -32,7 +64,11 @@ onBeforeMount(() => {
     <View :id="id">
         <PaginateScroller @atBottom="paginateLessons">
             <template #header>
-                {{ doTranslate( "posts.title" ) }}
+                <ListHeaderSearch 
+                    :title="doTranslate( 'posts.title' )" 
+                    :previousSearchStr="lessonsStore.myPosts.searchStr"
+                    @emitDoSearch="doSearch"
+                    @emitResetSearch="resetSearch" />
             </template>
             <template #content>
                 <h3 v-if="lessonsStore.fetching"
@@ -68,8 +104,8 @@ onBeforeMount(() => {
                             {{post.catId.title}}
                         </div>
                         <div class="post-ctrls flex justify-end mt-12">
-                            <editPost :post-id="post._id" />
-                            <deletePost :post-id="post._id" />
+                            <EditPost :post-id="post._id" />
+                            <DeletePost :post-id="post._id" />
                         </div>
                     </li>
                     <li><Loader v-if="lessonsStore.myPosts.items.length > 5 && !lessonsStore.myPosts.noMore" /></li>

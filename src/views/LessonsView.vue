@@ -29,6 +29,8 @@ const doSearch = useDebounceFn(() => {
 }, 1000);
 const resetSearch = () => {
 
+    if(searchInput.value.value === '') return;
+
     searchInput.value.value = '';
     lessonsStore.getLessons({search: searchInput.value.value});
 
@@ -84,8 +86,8 @@ onBeforeMount(() => {
                         class="p-4 w-full text-3xl capitalize font-mont" 
                         ref="searchInput" 
                         @input="doSearch"/>
-                    <BtnSolidWithSlot class="rounded-none self-stretch">
-                        <closeIcon class="h-full" @click="resetSearch" />
+                    <BtnSolidWithSlot class="rounded-none self-stretch" @click="resetSearch" :disabled="lessonsStore.lessons.searchStr === ''">
+                        <closeIcon class="h-full" />
                     </BtnSolidWithSlot>
                 </div>
             </template>

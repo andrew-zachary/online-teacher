@@ -2,43 +2,35 @@
 import { onMounted, onBeforeMount, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-import closeIcon from '../assets/close.vue';
-import searchIcon from '../assets/search.vue';
-
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
-import BtnIcon from '../layout/btn-icon.vue';
 import BtnSolidWithSlot from '../layout/btn-solid-with-slot.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
+import ListHeaderSearch from '../components/list-header-search.vue';
 
 import { useDebounceFn } from '@vueuse/core';
 import { useLessonsStore } from '../stores/lessons.js';
 import { useTranslate } from '../composables/useTranslate';
 
-const toggleSearch = ref(false);
 const searchInput = ref(null);
 const lessonsStore = useLessonsStore();
 const id = 'lessons';
 const { doTranslate } = useTranslate();
 
-const doSearch = useDebounceFn(() => {
+const doSearch = useDebounceFn((searchInputTxt) => {
 
-    lessonsStore.getLessons({search: searchInput.value.value});
+    searchInput.value = searchInputTxt;
+
+    lessonsStore.getLessons({search: searchInput.value});
 
 }, 1000);
 const resetSearch = () => {
 
-    if(searchInput.value.value === '') return;
+    if(searchInput.value === '') return;
 
-    searchInput.value.value = '';
-    lessonsStore.getLessons({search: searchInput.value.value});
-
-}
-
-const showSearchBar = () => {
-
-    toggleSearch.value = !toggleSearch.value;
+    searchInput.value = '';
+    lessonsStore.getLessons({search: searchInput.value});
 
 }
 
@@ -46,15 +38,14 @@ const paginateLessons = () => {
 
     if(!lessonsStore.lessons.noMore && !lessonsStore.fetching) {
 
-        lessonsStore.getLessons({search: searchInput.value.value});
+        lessonsStore.getLessons({search: searchInput.value});
 
     }
 }
 
 onMounted(() => {
 
-    toggleSearch.value = lessonsStore.lessons.searchStr !== '';
-    searchInput.value.value = lessonsStore.lessons.searchStr;
+    searchInput.value = lessonsStore.lessons.searchStr;
 
 });
 
@@ -67,29 +58,18 @@ onBeforeMount(() => {
     }
 
 });
+
 </script>
 
 <template>
     <View :id="id">
         <PaginateScroller @atBottom="paginateLessons">
             <template #header>
-                <div class="flex items-center" v-show="!toggleSearch">
-                    <h1 class="text-6xl font-bold font-popp text-primary dark:text-primary-dark capitalize">
-                        {{ doTranslate( "lessons.title" ) }}
-                    </h1>
-                    <BtnIcon :icon="searchIcon" @click="showSearchBar" />
-                </div>
-                <div v-show="toggleSearch" class="has-inputs p-6 flex items-center">                    
-                    <input
-                        type="text" 
-                        placeholder="search for ..." 
-                        class="p-4 w-full text-3xl capitalize font-mont" 
-                        ref="searchInput" 
-                        @input="doSearch"/>
-                    <BtnSolidWithSlot class="rounded-none self-stretch" @click="resetSearch" :disabled="lessonsStore.lessons.searchStr === ''">
-                        <closeIcon class="h-full" />
-                    </BtnSolidWithSlot>
-                </div>
+                <ListHeaderSearch 
+                    :title="doTranslate( 'lessons.title' )" 
+                    :previousSearchStr="lessonsStore.lessons.searchStr"
+                    @emitDoSearch="doSearch"
+                    @emitResetSearch="resetSearch" />
             </template>
             <template #content>
                 <h3 

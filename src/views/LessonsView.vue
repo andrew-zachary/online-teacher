@@ -8,21 +8,38 @@ import BtnSolidWithSlot from '../layout/btn-solid-with-slot.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
 import ListHeaderSearch from '../components/list-header-search.vue';
+import FilteringCatBtn from '../components/filtering-cat-btn.vue';
 
 import { useDebounceFn } from '@vueuse/core';
 import { useLessonsStore } from '../stores/lessons.js';
 import { useTranslate } from '../composables/useTranslate';
 
+const filteringCat = ref({slug: ''});
 const searchInput = ref(null);
 const lessonsStore = useLessonsStore();
 const id = 'lessons';
 const { doTranslate } = useTranslate();
 
+const doFilter = (newCat) => {
+
+    if( lessonsStore.lessons.filteringCat.slug === newCat.slug ) return;
+    
+    filteringCat.value = newCat;
+    lessonsStore.getLessons({search: searchInput.value, cat: newCat});
+};
+
+const resetFiltering = () => {
+
+    filteringCat.value = {slug: ''};
+    lessonsStore.getLessons({search: searchInput.value, cat: filteringCat.value});
+
+}
+
 const doSearch = useDebounceFn((searchInputTxt) => {
 
     searchInput.value = searchInputTxt;
 
-    lessonsStore.getLessons({search: searchInput.value});
+    lessonsStore.getLessons({search: searchInput.value, cat: filteringCat.value});
 
 }, 1000);
 const resetSearch = () => {
@@ -30,7 +47,7 @@ const resetSearch = () => {
     if(searchInput.value === '') return;
 
     searchInput.value = '';
-    lessonsStore.getLessons({search: searchInput.value});
+    lessonsStore.getLessons({search: searchInput.value, cat: filteringCat.value});
 
 }
 
@@ -46,6 +63,7 @@ const paginateLessons = () => {
 onMounted(() => {
 
     searchInput.value = lessonsStore.lessons.searchStr;
+    filteringCat.value = lessonsStore.lessons.filteringCat;
 
 });
 
@@ -70,6 +88,7 @@ onBeforeMount(() => {
                     :previousSearchStr="lessonsStore.lessons.searchStr"
                     @emitDoSearch="doSearch"
                     @emitResetSearch="resetSearch" />
+                <FilteringCatBtn :filteringCat="filteringCat" @resetFiltering="resetFiltering" />
             </template>
             <template #content>
                 <h3 
@@ -89,7 +108,7 @@ onBeforeMount(() => {
                         <h2 
                         class="mt-2
                         text-2xl capitalize font-mont">{{lesson.excerpt}}</h2>
-                        <BtnSolidWithSlot class="mt-4">{{lesson.catId.title}}</BtnSolidWithSlot>
+                        <BtnSolidWithSlot class="mt-4" @click="doFilter(lesson.catId)">{{lesson.catId.title}}</BtnSolidWithSlot>
                     </li>
                     <li><Loader v-if="lessonsStore.lessons.items.length > 5 && !lessonsStore.lessons.noMore" /></li>
                 </ul>

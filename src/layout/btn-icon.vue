@@ -1,5 +1,5 @@
 <script setup>
-const {icon} = defineProps(['icon']);
+    const {icon} = defineProps(['icon']);
 </script>
 <template>
     <button class="p-4 rounded-full text-3xl capitalize text-secondary font-popp font-bold">

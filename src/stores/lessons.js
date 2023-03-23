@@ -10,7 +10,8 @@ const initMyPosts = {
     noMore: false,
     next_page: 1,
     limit: 10,
-    searchStr: ''
+    searchStr: '',
+    filteringCat: ''
 }
 
 const initLessons = {
@@ -18,7 +19,8 @@ const initLessons = {
     noMore: false,
     next_page: 1,
     limit: 10,
-    searchStr: ''
+    searchStr: '',
+    filteringCat: ''
 }
 
 const initLesson = {};
@@ -100,33 +102,37 @@ export const useLessonsStore = defineStore('lessons', () => {
 
     };
 
-    const getLessons = async ({search} = {search: ''}) => {
+    const getLessons = async ({search, cat} = {search: '', cat: {slug: ''}}) => {
 
         fetching.value = true;
 
-        // is this a new search
-        if(search.length > 0 && lessons.value.searchStr !== search) {
+        // is this a new search or new filter
+        if( (search.length > 0 && lessons.value.searchStr !== search) || lessons.value.filteringCat.slug !== cat.slug ) {
 
             lessons.value.next_page = 1;
             lessons.value.noMore = false;
             lessons.value.items = [];
             lessons.value.searchStr = search;
+            lessons.value.filteringCat = cat;
 
         } 
-        // is this a recovering from a search
-        else if(search.length === 0 && lessons.value.searchStr !== '') {
+        // is this a recovering from a search or a filter
+        else if( (search.length === 0 && lessons.value.searchStr !== '') || cat.slug === '') {
+
+            console.log(cat);
 
             lessons.value.next_page = 1;
             lessons.value.noMore = false;
             lessons.value.items = [];
-            lessons.value.searchStr = '';
+            lessons.value.searchStr = search;
+            lessons.value.filteringCat = cat;
 
         }
 
         await apiCall({
             method: 'get',
             path: 'ot/articles',
-            query: {page: lessons.value.next_page, limit: lessons.value.limit, s: lessons.value.searchStr},
+            query: {page: lessons.value.next_page, limit: lessons.value.limit, s: lessons.value.searchStr, cat: cat.slug},
             success: lessonsReceived
         });
 

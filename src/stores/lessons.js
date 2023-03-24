@@ -107,7 +107,7 @@ export const useLessonsStore = defineStore('lessons', () => {
         fetching.value = true;
 
         // is this a new search or new filter
-        if( (search.length > 0 && lessons.value.searchStr !== search) || lessons.value.filteringCat.slug !== cat.slug ) {
+        if( lessons.value.searchStr !== search || lessons.value.filteringCat.slug !== cat.slug ) {
 
             lessons.value.next_page = 1;
             lessons.value.noMore = false;
@@ -116,18 +116,6 @@ export const useLessonsStore = defineStore('lessons', () => {
             lessons.value.filteringCat = cat;
 
         } 
-        // is this a recovering from a search or a filter
-        else if( (search.length === 0 && lessons.value.searchStr !== '') || cat.slug === '') {
-
-            console.log(cat);
-
-            lessons.value.next_page = 1;
-            lessons.value.noMore = false;
-            lessons.value.items = [];
-            lessons.value.searchStr = search;
-            lessons.value.filteringCat = cat;
-
-        }
 
         await apiCall({
             method: 'get',

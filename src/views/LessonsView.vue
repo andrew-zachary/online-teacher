@@ -25,7 +25,8 @@ const doFilter = (newCat) => {
     if( lessonsStore.lessons.filteringCat.slug === newCat.slug ) return;
     
     filteringCat.value = newCat;
-    lessonsStore.getLessons({search: searchInput.value, cat: newCat});
+    lessonsStore.getLessons({search: searchInput.value, cat: filteringCat.value});
+
 };
 
 const resetFiltering = () => {
@@ -55,7 +56,7 @@ const paginateLessons = () => {
 
     if(!lessonsStore.lessons.noMore && !lessonsStore.fetching) {
 
-        lessonsStore.getLessons({search: searchInput.value});
+        lessonsStore.getLessons({search: searchInput.value, cat: filteringCat.value});
 
     }
 }

@@ -68,33 +68,25 @@ export const useLessonsStore = defineStore('lessons', () => {
         });
     };
 
-    const getMyPosts = async ({search} = {search: ''}) => {
+    const getMyPosts = async ({search, cat} = {search: '', cat: {slug: ''}}) => {
 
         fetching.value = true;
 
-        // is this a new search
-        if(search.length > 0 && myPosts.value.searchStr !== search) {
+        // is this a new query
+        if( myPosts.value.searchStr !== search || myPosts.value.filteringCat.slug !== cat.slug ) {
 
             myPosts.value.next_page = 1;
             myPosts.value.noMore = false;
             myPosts.value.items = [];
             myPosts.value.searchStr = search;
-
-        } 
-        // is this a recovering from a search
-        else if(search.length === 0 && myPosts.value.searchStr !== '') {
-
-            myPosts.value.next_page = 1;
-            myPosts.value.noMore = false;
-            myPosts.value.items = [];
-            myPosts.value.searchStr = '';
+            myPosts.value.filteringCat = cat;
 
         }
 
         await apiCall({
             method: 'get',
             path: 'ot/articles/collections',
-            query: {page: myPosts.value.next_page, limit: myPosts.value.limit, s: myPosts.value.searchStr},
+            query: {page: myPosts.value.next_page, limit: myPosts.value.limit, s: myPosts.value.searchStr, cat: cat.slug},
             success: myPostsReceived
         })
 
@@ -106,7 +98,7 @@ export const useLessonsStore = defineStore('lessons', () => {
 
         fetching.value = true;
 
-        // is this a new search or new filter
+        // is this a new query
         if( lessons.value.searchStr !== search || lessons.value.filteringCat.slug !== cat.slug ) {
 
             lessons.value.next_page = 1;
@@ -115,7 +107,7 @@ export const useLessonsStore = defineStore('lessons', () => {
             lessons.value.searchStr = search;
             lessons.value.filteringCat = cat;
 
-        } 
+        }
 
         await apiCall({
             method: 'get',

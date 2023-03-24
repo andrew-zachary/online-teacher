@@ -3,26 +3,45 @@ import { onMounted, onBeforeMount, ref } from 'vue';
 
 import View from '../layout/view.vue';
 import Loader from '../layout/loader.vue';
+import BtnSolidWithSlot from '../layout/btn-solid-with-slot.vue';
 
 import PaginateScroller from '../components/paginate-scroller.vue';
+import ListHeaderSearch from '../components/list-header-search.vue';
+import FilteringCatBtn from '../components/filtering-cat-btn.vue';
 import DeletePost from '../components/delete-post.vue';
 import EditPost from '../components/edit-post.vue';
-import ListHeaderSearch from '../components/list-header-search.vue';
 
 import { useDebounceFn } from '@vueuse/core';
 import { useLessonsStore } from '../stores/lessons.js';
 import { useTranslate } from '../composables/useTranslate';
 
+const filteringCat = ref({slug: ''});
 const searchInput = ref(null);
 const lessonsStore = useLessonsStore();
 const id = 'posts-list';
 const { doTranslate } = useTranslate();
 
+const doFilter = (newCat) => {
+
+if( lessonsStore.myPosts.filteringCat.slug === newCat.slug ) return;
+
+    filteringCat.value = newCat;
+    lessonsStore.getMyPosts({search: searchInput.value, cat: filteringCat.value});
+
+};
+
+const resetFiltering = () => {
+
+    filteringCat.value = {slug: ''};
+    lessonsStore.getMyPosts({search: searchInput.value, cat: filteringCat.value});
+
+}
+
 const doSearch = useDebounceFn((searchInputTxt) => {
 
     searchInput.value = searchInputTxt;
 
-    lessonsStore.getMyPosts({search: searchInput.value});
+    lessonsStore.getMyPosts({search: searchInput.value, cat: filteringCat.value});
 
 }, 1000);
 const resetSearch = () => {
@@ -30,7 +49,7 @@ const resetSearch = () => {
     if(searchInput.value === '') return;
 
     searchInput.value = '';
-    lessonsStore.getMyPosts({search: searchInput.value});
+    lessonsStore.getMyPosts({search: searchInput.value, cat: filteringCat.value});
 
 }
 
@@ -38,7 +57,7 @@ const paginateLessons = () => {
 
     if(!lessonsStore.myPosts.noMore && !lessonsStore.fetching) {
 
-        lessonsStore.getMyPosts({search: searchInput.value});
+        lessonsStore.getMyPosts({search: searchInput.value, cat: filteringCat.value});
     }
 
 }
@@ -46,6 +65,7 @@ const paginateLessons = () => {
 onMounted(() => {
 
     searchInput.value = lessonsStore.myPosts.searchStr;
+    filteringCat.value = lessonsStore.myPosts.filteringCat;
 
 });
 
@@ -69,6 +89,7 @@ onBeforeMount(() => {
                     :previousSearchStr="lessonsStore.myPosts.searchStr"
                     @emitDoSearch="doSearch"
                     @emitResetSearch="resetSearch" />
+                <FilteringCatBtn :filteringCat="filteringCat" @resetFiltering="resetFiltering" />
             </template>
             <template #content>
                 <h3 v-if="lessonsStore.fetching"
@@ -94,15 +115,7 @@ onBeforeMount(() => {
                         text-2xl capitalize font-mont">
                             {{post.excerpt}}
                         </h2>
-                        <div 
-                        class="text-2xl text-secondary capitalize font-mont font-bold
-                        mt-6 py-1 px-2 
-                        rounded-lg
-                        bg-quaternary dark:bg-quaternary-dark
-                        inline-block
-                        cursor-pointer">
-                            {{post.catId.title}}
-                        </div>
+                        <BtnSolidWithSlot class="mt-4" @click="doFilter(post.catId)">{{post.catId.title}}</BtnSolidWithSlot>
                         <div class="post-ctrls flex justify-end mt-12">
                             <EditPost :post-id="post._id" />
                             <DeletePost :post-id="post._id" />

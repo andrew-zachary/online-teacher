@@ -43,6 +43,7 @@ const doSearch = useDebounceFn((searchInputTxt) => {
     lessonsStore.getLessons({search: searchInput.value, cat: filteringCat.value});
 
 }, 1000);
+
 const resetSearch = () => {
 
     if(searchInput.value === '') return;

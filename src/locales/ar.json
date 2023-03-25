@@ -5,7 +5,8 @@
     },
     "lessons": {
         "title": "الدروس",
-        "searching": "جاري البحث"
+        "searching": "جاري البحث",
+        "no_lessons": "لا يوجد نتائج"
     },
     "tell_you": {
         "title": "بالتأكيد",
@@ -124,8 +125,8 @@
     },
     "posts": {
         "title": "اعمالي",
-        "no_posts": "ليس لديك أي دروس",
-        "searching": "جاري البحث"
+        "searching": "جاري البحث",
+        "no_posts": "ليس لديك أي دروس"
     },
     "new_lesson": {
         "title": "لدينا اليوم",

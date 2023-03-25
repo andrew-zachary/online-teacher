@@ -93,23 +93,28 @@ onBeforeMount(() => {
                 <FilteringCatBtn :filteringCat="filteringCat" @resetFiltering="resetFiltering" />
             </template>
             <template #content>
-                <h3 
-                class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold 
-                text-center" 
-                v-if="lessonsStore.fetching">
+                <h3
+                    class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold text-center" 
+                    v-if="lessonsStore.fetching"
+                >
                     {{ doTranslate( "lessons.searching" ) }} ...
+                </h3>
+                <h3 
+                    class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold text-center"
+                    v-else-if="lessonsStore.lessons.items.length === 0 && !lessonsStore.fetching"
+                >
+                    {{ doTranslate( "lessons.no_lessons" ) }}
                 </h3>
                 <ul class="w-full px-6">
                     <li
-                    class="lesson-item"
-                    v-for="lesson of lessonsStore.lessons.items"
-                    :key="lesson._id">
+                        class="lesson-item"
+                        v-for="lesson of lessonsStore.lessons.items"
+                        :key="lesson._id"
+                    >
                         <h1 class="text-4xl capitalize font-popp font-bold">
                             <RouterLink :to="`/lessons/${lesson._id}`">{{lesson.title}}</RouterLink>
                         </h1>
-                        <h2 
-                        class="mt-2
-                        text-2xl capitalize font-mont">{{lesson.excerpt}}</h2>
+                        <h2 class="mt-2 text-2xl capitalize font-mont">{{lesson.excerpt}}</h2>
                         <BtnSolidWithSlot class="mt-4" @click="doFilter(lesson.catId)">{{lesson.catId.title}}</BtnSolidWithSlot>
                     </li>
                     <li><Loader v-if="lessonsStore.lessons.items.length > 5 && !lessonsStore.lessons.noMore" /></li>

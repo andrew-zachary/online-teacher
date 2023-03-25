@@ -92,27 +92,31 @@ onBeforeMount(() => {
                 <FilteringCatBtn :filteringCat="filteringCat" @resetFiltering="resetFiltering" />
             </template>
             <template #content>
-                <h3 v-if="lessonsStore.fetching"
-                class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold 
-                text-center">
+                <h3 
+                    v-if="lessonsStore.fetching"
+                    class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold text-center"
+                >
                     {{ doTranslate( "posts.searching" ) }} ...
                 </h3>
-                <h3 v-else-if="lessonsStore.myPosts.items.length === 0 && !lessonsStore.fetching"
-                class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold 
-                text-center">
+                <h3 
+                    v-else-if="lessonsStore.myPosts.items.length === 0 && !lessonsStore.fetching"
+                    class="text-3xl text-ternary dark:text-ternary-dark font-mont font-bold text-center"
+                >
                     {{ doTranslate( "posts.no_posts" ) }}
                 </h3>
                 <ul class="px-6">
                     <li
-                    class="post-item"
-                    v-for="post of lessonsStore.myPosts.items"
-                    :key="post._id">
+                        class="post-item"
+                        v-for="post of lessonsStore.myPosts.items"
+                        :key="post._id"
+                    >
                         <h1 class="text-4xl capitalize font-popp font-bold">
                             <a href="#">{{post.title}}</a>
                         </h1>
                         <h2 
-                        class="mt-2
-                        text-2xl capitalize font-mont">
+                            class="mt-2
+                            text-2xl capitalize font-mont"
+                        >
                             {{post.excerpt}}
                         </h2>
                         <BtnSolidWithSlot class="mt-4" @click="doFilter(post.catId)">{{post.catId.title}}</BtnSolidWithSlot>

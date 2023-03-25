@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, nextTick } from 'vue';
     import { useTranslate } from '../composables/useTranslate';
 
     import closeIcon from '../assets/close.vue';
@@ -16,9 +16,14 @@
 
     const { doTranslate } = useTranslate();
 
-    const showSearchBar = () => toggleSearch.value = !toggleSearch.value;
+    const showSearchBar = () => { 
+
+        toggleSearch.value = !toggleSearch.value;
+        nextTick(() => searchInput.value.focus());
+    };
 
     const clearInputAndReset = () => {
+
         searchInput.value.value = '';
         emits('emitResetSearch');
     }
@@ -27,7 +32,6 @@
 
         toggleSearch.value = previousSearchStr !== '';
         searchInput.value.value = previousSearchStr;
-
     });
 </script>
 <template>

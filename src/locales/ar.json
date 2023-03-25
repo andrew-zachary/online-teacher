@@ -323,5 +323,8 @@
             "ok": "حسناً",
             "cancel": "الغاء"
         }
+    },
+    "searching": {
+        "searching_for": "البحث عن ..."
     }
 }

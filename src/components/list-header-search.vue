@@ -1,5 +1,6 @@
 <script setup>
     import { ref, onMounted } from 'vue';
+    import { useTranslate } from '../composables/useTranslate';
 
     import closeIcon from '../assets/close.vue';
     import searchIcon from '../assets/search.vue';
@@ -8,13 +9,15 @@
     import BtnSolidWithSlot from '../layout/btn-solid-with-slot.vue';
 
     const { previousSearchStr } = defineProps(['title', 'previousSearchStr']);
-
     const emits = defineEmits(['emitDoSearch', 'emitResetSearch']);
 
     const toggleSearch = ref(false);
     const searchInput = ref(null);
 
+    const { doTranslate } = useTranslate();
+
     const showSearchBar = () => toggleSearch.value = !toggleSearch.value;
+
     const clearInputAndReset = () => {
         searchInput.value.value = '';
         emits('emitResetSearch');
@@ -37,7 +40,7 @@
     <div v-show="toggleSearch" class="has-inputs p-6 flex items-center">                    
         <input
             type="text" 
-            placeholder="search for ..." 
+            :placeholder="doTranslate( 'searching.searching_for' )"
             class="p-4 w-full text-3xl capitalize font-mont" 
             ref="searchInput" 
             @input="emits('emitDoSearch', searchInput.value)"/>

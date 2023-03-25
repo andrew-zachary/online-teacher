@@ -323,5 +323,8 @@
             "ok": "ok",
             "cancel": "cancel"
         }
+    },
+    "searching": {
+        "searching_for": "searching for ..."
     }
 }

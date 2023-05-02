@@ -13,7 +13,8 @@ export const apiCall = async ({
     loading = null} = {}) => {
 
     const appStore = useAppStore();
-    appStore.appState = 'busy';
+
+    if(appStore.appState === 'busy') return;
     
     let apiCallString = `${path}`;
 
@@ -37,6 +38,7 @@ export const apiCall = async ({
 
     try {
         
+        appStore.appState = 'busy';
         const res = await axiosClient[method](apiCallString, {...body});
         success(res.data);
 

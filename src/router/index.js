@@ -119,26 +119,20 @@ const router = createRouter({
   ]
 });
 
-router.beforeEach(async (to, _, next) => {
+router.beforeEach(async (to, _) => {
 
   const appStore = useAppStore();
   if(appStore.appState === 'busy') return false;
 
-  if(!to.meta.requireAuth) {
-    return next();
-  }
+  if(!to.meta.requireAuth) return true;
 
   const userStore = useUserStore();
 
-  if(userStore.isAuthed === null) {
-    await userStore.getProfile();
-  }
+  if(userStore.isAuthed === null) await userStore.getProfile();
 
-  if(userStore.isAuthed) {
-    next();
-  } else {
-    next({name: 'home'});
-  }
+  if(userStore.isAuthed) return true;
+  else return {name: 'home'};
+
 });
 
 export default router;

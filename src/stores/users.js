@@ -227,6 +227,7 @@ export const useUserStore = defineStore('user', () => {
         profileData.name = null;
         profileData.email = null;
         isAuthed.value = false;
+        router.push({name: 'home'});
     };
 
     const registered = (data) => {

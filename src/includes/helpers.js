@@ -11,6 +11,9 @@ export const apiCall = async ({
     success,
     fail = null,
     loading = null} = {}) => {
+
+    const appStore = useAppStore();
+    appStore.appState = 'busy';
     
     let apiCallString = `${path}`;
 
@@ -44,6 +47,8 @@ export const apiCall = async ({
     }
 
     if(loading) loading();
+
+    appStore.appState = 'available';
     
 }
 

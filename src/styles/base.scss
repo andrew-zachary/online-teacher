@@ -63,6 +63,11 @@ form, .has-inputs {
   @include withRtl('font-family', 'Poppins', 'Vazirmatn');
 }
 
+// nav
+nav ul.nav-dim li a {
+  opacity: 0.4!important;
+}
+
 // scroller global style
 #section-scroller {
   overflow-y: auto;

@@ -11,6 +11,7 @@ export const useAppStore = defineStore('app', () => {
     {index:1, locale:'ar', name: 'العربية', dir:'rtl'}
   ];
 
+  const appState = ref('available');
   const currentLang = ref(langs[defaultLangIndex]);
   const currentColorMode = ref('light');
   const togglePageLoader = ref(false);
@@ -25,6 +26,10 @@ export const useAppStore = defineStore('app', () => {
     msg:"",
     to_confirm: null
   });
+
+  function updateAppstate(state) {
+    appState.value = state;
+  }
 
   function toggleNotificationModalHandler(modalData) {
     toggleNotificationModal.open = modalData.open;
@@ -73,9 +78,11 @@ export const useAppStore = defineStore('app', () => {
   }
 
   return {
+    appState,
     langs, 
     currentLang, 
     currentColorMode,
+    updateAppstate,
     togglePageLoader,
     toggleNotificationModal,
     toggleConfirmationModal,

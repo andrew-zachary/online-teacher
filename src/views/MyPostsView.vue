@@ -84,7 +84,7 @@ onBeforeMount(() => {
     <View :id="id">
         <PaginateScroller @atBottom="paginateLessons">
             <template #header>
-                <ListHeaderSearch 
+                <ListHeaderSearch
                     :title="doTranslate( 'posts.title' )" 
                     :previousSearchStr="lessonsStore.myPosts.searchStr"
                     @emitDoSearch="doSearch"

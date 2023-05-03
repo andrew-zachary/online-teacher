@@ -1,7 +1,8 @@
 {
     "home": {
         "title": "online teacher",
-        "para": "تعلّم وعلّم"
+        "para": "تعلّم وعلّم",
+        "api": "API تحتاج الي دقيقة واحدة علي 'Render.com' للتنشيط"
     },
     "lessons": {
         "title": "الدروس",

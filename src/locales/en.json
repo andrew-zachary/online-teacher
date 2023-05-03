@@ -1,7 +1,8 @@
 {
     "home": {
         "title": "online teacher",
-        "para": "learn and teach"
+        "para": "learn and teach",
+        "api": "prototype API at 'Render.com' needs 1 min to wake up"
     },
     "lessons": {
         "title": "lessons",

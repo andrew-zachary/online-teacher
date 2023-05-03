@@ -4,7 +4,7 @@
 
 When you learn something with the intention to teach it later, you learn it more deeply. Online Teacher will help you to exchange your experiences with everyone.
 
-## Demo
+## Prototype API at 'Render.com' needs 1 min to wake up, **Demo** :point_down:
 <a href="online-teacher-dev.netlify.app">https://online-teacher-dev.netlify.app</a>
 
 ## Technical Details

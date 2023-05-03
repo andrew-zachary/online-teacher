@@ -63,8 +63,8 @@ form, .has-inputs {
   @include withRtl('font-family', 'Poppins', 'Vazirmatn');
 }
 
-// nav
-nav ul.nav-dim li a, input.input-dim {
+// dim disabled
+nav ul.nav-dim li a, input.input-dim, div.box-dim {
   opacity: 0.4!important;
 }
 

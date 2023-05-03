@@ -1,8 +1,21 @@
 <script setup>
+    import { computed } from 'vue';
+
     import close from '../assets/close.vue';
     import BtnIcon from '../layout/btn-icon.vue';
 
+    import { useAppStore } from '../stores/app';
+
     const emits = defineEmits(['resetFiltering']);
+    const appStore = useAppStore();
+    const isAppBusy = computed(() => appStore.appState === 'busy'? true : false);
+
+    const resetFiltering = () => {
+
+        if(isAppBusy.value) return;
+
+        emits('resetFiltering');
+    };
 
     defineProps(['filteringCat']);
 </script>
@@ -13,7 +26,8 @@
     >
         <div v-if="filteringCat.slug !== ''"
             class="flex border-2 border-primary dark:border-primary-dark py-1 px-4 cursor-pointer rounded-full"
-            @click="emits('resetFiltering')">
+            :class="{'box-dim': isAppBusy}"
+            @click="resetFiltering">
             <span>{{ filteringCat.slug }}</span> <BtnIcon :icon="close" class="p-0" />
         </div>
         <div v-else class="py-2 px-4">

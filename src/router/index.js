@@ -127,7 +127,6 @@ router.beforeEach(async (to, _) => {
   if(!to.meta.requireAuth) return true;
 
   const userStore = useUserStore();
-
   if(userStore.isAuthed === null) await userStore.getProfile();
 
   if(userStore.isAuthed) return true;

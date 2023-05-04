@@ -12,7 +12,7 @@
         
         svg {
             width: 4rem;
-            fill: var(--ternary);
+            @apply fill-ternary dark:fill-ternary-dark;
         }
     }
 </style>

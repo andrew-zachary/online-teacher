@@ -71,7 +71,8 @@ nav {
 
                 &.active-link {
                     font-weight: 700;
-                    border-bottom: 0.3rem solid var(--ternary);
+                    border-bottom: 0.3rem solid;
+                    @apply border-ternary dark:border-ternary-dark;
                 }
             }
         }

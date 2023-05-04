@@ -15,7 +15,7 @@
     & > div {
         width: 1.8rem;
         height: 1.8rem;
-        background-color: var(--ternary);
+        @apply bg-ternary dark:bg-ternary-dark;
         border-radius: 100%;
         display: inline-block;
         -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;

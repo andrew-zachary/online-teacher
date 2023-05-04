@@ -40,13 +40,13 @@ onMounted(() => {
         #tabs-header {
     
             a {
-                color: var(--ternary);
+                @apply text-ternary dark:text-ternary-dark;
                 border-radius: 10px 10px 0 0;
 
                 &.active-link {
                     font-weight: 700;
                     color: rgb(209 250 229);
-                    background: var(--quaternary);
+                    @apply bg-quaternary dark:bg-quaternary-dark
                 }
             }
         }
@@ -55,7 +55,8 @@ onMounted(() => {
             form {
 
                 padding: 1rem;
-                border: 0.1rem solid var(--quaternary);
+                border: 0.1rem solid;
+                @apply border-quaternary dark:border-quaternary-dark
             }
         }
     }

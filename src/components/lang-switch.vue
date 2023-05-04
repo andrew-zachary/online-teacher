@@ -48,7 +48,7 @@ watch(() => appStore.currentLang, (lang) => {
 
         svg {
             width: 2rem;
-            fill: var(--ternary);
+            @apply fill-ternary dark:fill-ternary-dark;
         }
     }
 </style>

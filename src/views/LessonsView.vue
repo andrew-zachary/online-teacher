@@ -133,7 +133,8 @@ onBeforeMount(() => {
     }
     .lesson-item {
         margin-bottom: 3rem;
-        border-bottom: 0.1rem solid var(--primary);
+        border-bottom: 0.1rem solid;
+        @apply border-primary dark:border-primary-dark;
         padding-bottom: 0.5rem;
 
         &:last-child {
